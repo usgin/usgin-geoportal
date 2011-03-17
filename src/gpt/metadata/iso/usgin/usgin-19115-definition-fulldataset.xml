@@ -200,8 +200,8 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="selectOneMenu"/>
                 <validation required="true"/>
                 <content nodeType="isoCodeListValue" deleteParentIfEmpty="true" useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue">
-                    update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue"
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue"
+                    	 update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue">
                     <codes>
                         <code key="completed" resourceKey="catalog.mdCode.status.completed"/>
                         <code key="historicalArchive" resourceKey="catalog.mdCode.status.historicalArchive"/>
@@ -1104,8 +1104,8 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="selectOneMenu"/>
                 <validation required="true"/>
                 <content nodeType="isoCodeListValue" deleteParentIfEmpty="true" useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue">
-                    update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue"
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue"
+                    	 update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue">
                     <codes>
                         <code key="completed" resourceKey="catalog.mdCode.status.completed"/>
                         <code key="historicalArchive" resourceKey="catalog.mdCode.status.historicalArchive"/>
