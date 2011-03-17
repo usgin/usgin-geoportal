@@ -18,7 +18,17 @@
 
 
 <div id="gptTitle">
-	<%=com.esri.gpt.framework.jsf.PageContext.extract().getSiteTitle()%>
+
+   <div>
+     <div>
+       <h:graphicImage value="/catalog/images/usgin_logo.png" style='padding-left: 10px; padding-top: 20px;'/>
+       <h:graphicImage value="/catalog/images/aasg_logo.jpg" style='padding-left: 10px; padding-top: 20px;'/>
+     </div>
+     <div>
+       <%=com.esri.gpt.framework.jsf.PageContext.extract().getSiteTitle()%>
+     </div>
+   </div>
+
 </div>
 
 <h:form id="frmTertiaryNavigation">
@@ -62,11 +72,7 @@
 		value="#{gptMsg['catalog.identity.logout.menuCaption']}" 
 		rendered="#{not PageContext.roleMap['anonymous'] && PageContext.identitySupport.supportsLogout}"
 		actionListener="#{LoginController.processLogout}"/>
-
-  <h:outputText 
-    id="msgAuthenticatedUser"
-    rendered="#{not PageContext.roleMap['anonymous']}"
-    value="#{PageContext.welcomeMessage}"/>
+                                                                                                               
   <h:outputText 
     id="msgNonAuthenticatedUser"
     rendered="#{PageContext.roleMap['anonymous']}"

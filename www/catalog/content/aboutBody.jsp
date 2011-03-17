@@ -17,9 +17,29 @@
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
-<h:outputFormat value="#{gptMsg['catalog.content.about.version']}">
-  <f:param value="#{PageContext.version}"/>
-</h:outputFormat>
-  
-<h:outputText styleClass="contentStatement" escape="false"
-  value="#{gptMsg['catalog.content.about.statement']}"/>
+<strong>The USGIN ESRI geoportal:</strong>
+
+<div style='padding-right: 10px; padding-left: 10px;'>
+
+   <h2>What's in this repository?</h2>
+   <p>
+      Most of the metadata currently held in the repository local to this server are for AZGS in house resources, developed under
+      the auspices of the National Geological and Geophysical Preservation program. We are collecting  metadata for  other geoscience
+      resources on the web and will be adding continuously to the metadata store. If you have resource metadata you would like
+      to distribute to the community please contact the USGIN project at <a href="http://lab.usgin.org/contact">http://lab.usgin.org/contact</a> or visit the
+      <a href="http://lab.usgin.org/">USGIN website.</a>
+   </p>
+</div>
+
+<br/>
+
+<div style='padding-right: 10px; padding-left: 10px;'>
+   <h:outputFormat value="#{gptMsg['catalog.content.about.version']}">
+     <f:param value="#{PageContext.version}"/>
+   </h:outputFormat>
+</div>
+
+<div style='padding-right: 10px; padding-left: 10px;'>
+  <br/>
+   Last updated: 01/20/2011
+</div>
