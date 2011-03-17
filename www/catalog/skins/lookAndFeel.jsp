@@ -37,4 +37,6 @@ String VER = "v1";
 <script type="text/javascript" src="<%=request.getContextPath()+"/catalog/js/" +VER+ "/livedata.js"%>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()+"/catalog/js/" +VER+ "/gpt-asn.js"%>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()+"/catalog/js/" +VER+ "/gpt-browse.js"%>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()+"/catalog/js/" +"jquery.maskedinput-1.2.2.js"%>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()+"/catalog/js/" +"azgs.js"%>"></script>
 
