@@ -4,8 +4,8 @@
         templateFile="gpt/metadata/iso/usgin/usgin-19119-template-service.xml"
         cswOutputSchema="http://www.isotc211.org/2005/gmd"
         cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt"
-        cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt"
-        xsdLocation="http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+        cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt">
+        <!--xsdLocation="http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">-->
 
     <!-- definition file for Service metadata using USGIN profile of ISO19115/19119 -->
     <!-- developed by Leah Musil and Steve Richard, 2/14/2011 -->
