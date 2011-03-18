@@ -199,19 +199,19 @@ th {
 	height: 120px;
 	position: relative;
 }
-/*
+
 #gptBanner img {
-	bottom: 0pt;
-	color: #FFFFFF;
-	left: 0pt;
-	position: absolute;
+	padding-right: 10px;
+	padding-top: 10px;
+	float: right;
 }
-*/
+
 #gptTitle {
 	position: absolute;
 	bottom: 10px;
 	left: 10px;
-	font-size: 2em;
+	width: 100%;
+	font-size: 2.5em;
 	font-family: "Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
 	/*RJC: color: #FFF;*/
 	color: #AE4F0C;
@@ -219,6 +219,11 @@ th {
 	
     text-decoration: none !important;
 }
+
+#siteTitle{
+	padding-top: 45px;
+}
+
 #gptSubTitle {
 	display: none;
 	float: left;

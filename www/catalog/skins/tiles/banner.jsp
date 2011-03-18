@@ -24,7 +24,7 @@
        <h:graphicImage value="/catalog/images/usgin_logo.png" style='padding-left: 10px; padding-top: 20px;'/>
        <h:graphicImage value="/catalog/images/aasg_logo.jpg" style='padding-left: 10px; padding-top: 20px;'/>
      </div>
-     <div>
+     <div id="siteTitle">
        <%=com.esri.gpt.framework.jsf.PageContext.extract().getSiteTitle()%>
      </div>
    </div>
