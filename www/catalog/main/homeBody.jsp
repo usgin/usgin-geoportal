@@ -132,7 +132,7 @@
 <f:verbatim>
    <div style='padding-right: 10px; padding-left: 10px;'>
       <div style='padding-right: 10px; padding-left: 10px;'>
-         <h1>GeoPortal</h1>
+         <h1>The AASG Geothermal Data Catalog</h1>
          <ul>
            <li>
              <strong>Why are you here?</strong> You want to locate some  geoscience resources for a project you are working on or learn more about some topic of interest. Your web search using a commercial search engine yielded 210,026 hits, 90 percent of which are nonsense.

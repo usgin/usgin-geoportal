@@ -195,7 +195,7 @@ th {
  * HEADER
  */
 #gptBanner {
-	background: #450200 url(images/banner.jpg) no-repeat scroll 0pt 0px;
+	/*RJC: background: #450200 url(images/banner.jpg) no-repeat scroll 0pt 0px;*/
 	height: 120px;
 	position: relative;
 }
@@ -213,7 +213,10 @@ th {
 	left: 10px;
 	font-size: 2em;
 	font-family: "Trebuchet MS",Helvetica,Arial,Geneva,sans-serif;
-	color: #FFF;
+	/*RJC: color: #FFF;*/
+	color: #AE4F0C;
+	font-weight: bold;
+	
     text-decoration: none !important;
 }
 #gptSubTitle {
@@ -226,7 +229,8 @@ th {
 	
 }
 #gptBanner a, #gptBanner a:hover {
-	color: #FFF;
+	/*RJC: color: #FFF;*/
+	color: #AE4F0C; 
 	margin-right: 1em;
 	padding-top: 0.5em;
 	text-decoration: none;
