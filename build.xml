@@ -147,8 +147,8 @@
 	  <!-- Copy the gpt-template file and replace variables with values from local.properties -->
 	  <copy file='${src.dir}/gpt/config/gpt-template.xml' tofile='${classes.dir}/gpt/config/gpt.xml'/>
 	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(ldap.connection.string)' value='${local.ldap.connection.string}' />
-	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.index.location)' value='${local.lucene.index.location}' />
-	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.rating.location)' value='${local.lucene.rating.location}' />
+	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.index.location)' value='${sillimanite.lucene.index.location}' />
+	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.rating.location)' value='${sillimanite.lucene.rating.location}' />
 	</target>
 	
 	<!-- =========================================================================================== -->
