@@ -131,20 +131,20 @@
 
 <f:verbatim>
    <div style='padding-right: 10px; padding-left: 10px;'>
-      <div style='padding-right: 10px; padding-left: 10px;'>
          <h1>The AASG Geothermal Data Catalog</h1>
-         <ul>
-           <li>
-             <strong>Why are you here?</strong> You want to locate some  geoscience resources for a project you are working on or learn more about some topic of interest. Your web search using a commercial search engine yielded 210,026 hits, 90 percent of which are nonsense.
-           </li>
-           <br/>
-           <li>If you are looking for geothermal-related geologic information this is the website for you. <strong>Welcome!!!</strong></li>
-           <br/>
-           <li><strong>How do you use this site?</strong>  The easiest way to get started using this site is to type in a search phrase in the "Find Data" input box above. Titles and brief descriptions of located resources for search results will appear on the right side of your window, along with links to view metadata details, connect directly to the resource or preview it (if applicable), or view the complete xml metadata record.</li>
-           <br/>
-           <li><strong>This site</strong> uses the ESRI Geoportal toolkit (v. 10) open source project (http://www.esri.com/software/arcgis/geoportal/index.html)
-         </ul>
-      </div>
+         <div style='padding-right: 10px; padding-left: 10px;'>
+	         <ul>
+	           <li>
+	             <strong>Why are you here?</strong> You want to locate some  geoscience resources for a project you are working on or learn more about some topic of interest. Your web search using a commercial search engine yielded 210,026 hits, 90 percent of which are nonsense.
+	           </li>
+	           <br/>
+	           <li>If you are looking for geothermal-related geologic information this is the website for you. <strong>Welcome!!!</strong></li>
+	           <br/>
+	           <li><strong>How do you use this site?</strong>  The easiest way to get started using this site is to type in a search phrase in the "Find Data" input box above. Titles and brief descriptions of located resources for search results will appear on the right side of your window, along with links to view metadata details, connect directly to the resource or preview it (if applicable), or view the complete xml metadata record.</li>
+	           <br/>
+	           <li><strong>This site</strong> uses the <a href="http://geoportal.sourceforge.net/">ESRI Geoportal Server open source project (v. 10)</a>
+	         </ul>
+         </div>
    </div>
 </f:verbatim>
 
@@ -154,14 +154,13 @@
   <div style='padding-right: 10px; padding-left: 10px;'>
     <h1>What is this repository?</h1>
     <div style='padding-left: 10px; padding-right: 10px;'>
-      At the heart of the Geoscience Information network is a catalog system that enables data providers to publish metadata for data and services, and for data consumers to discover
+      <p>At the heart of the Geoscience Information network is a catalog system that enables data providers to publish metadata for data and services, and for data consumers to discover
       those resources.  The catalog system is based on a federated system of metadata registries (databases that host and manage the metadata) that are accessible for search and
-      harvest via public web services. Metadata records in this system are viewed as a public resource. For more information see <a href='http://usgin.org/index.php?option=com_content&view=article&id=50&Itemid=28'>USGIN Catalog Service</a>
-      (http://usgin.org/index.php?option=com_content&view=article&id=50&Itemid=28).
-
-      This site is an access point to search this catalog. We are collecting metadata for geoscience resources, especially those geographically associated with the United States,
-      and will be adding continuously to the metadata store. If you have resource metadata you would like to distribute to the community please contact the <a href='http://lab.usgin.org/contact'>USGIN project</a> at
-      http://lab.usgin.org/contact or visit the USGIN website.
+      harvest via public web services. Metadata records in this system are viewed as a public resource. For more information see <a href='http://usgin.org/index.php?option=com_content&view=article&id=50&Itemid=28'>USGIN Catalog Service</a>.</p>
+	  <br />
+      <p>This site is an access point to search the catalog. We are collecting metadata for geoscience resources, especially those geographically associated with the United States,
+      and will be adding continuously to the metadata store. If you have resource metadata you would like to distribute to the community please <a href='http://lab.usgin.org/contact'>contact the USGIN project</a>
+      or visit <a href="http://lab.usgin.org/">the USGIN website.</a></p>
     </div>
   </div>
 </f:verbatim>
