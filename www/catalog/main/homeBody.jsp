@@ -163,7 +163,4 @@
       or visit <a href="http://lab.usgin.org/">the USGIN website.</a></p>
     </div>
   </div>
-</f:verbatim>e USGIN website.
-    </div>
-  </div>
 </f:verbatim>
