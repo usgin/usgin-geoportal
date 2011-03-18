@@ -133,6 +133,25 @@
 	</target>
 	
 	<!-- =========================================================================================== -->
+	<!-- Packages/copies all of the compiled java classes, jsp files, config files, etc to the build -->
+	<!-- location or folder. This is for a Sillimanite install.                                      -->
+	<!-- =========================================================================================== -->
+	<target name="sillimanite.package" depends='basic.package' description="Compiles then packages application into exploded war directory for Sillimanite.">
+	  
+	  <!-- Copy the context-template file and replace variables with values from local.properties -->
+	  <copy file='${www.dir}/META-INF/context-template.xml' tofile='${build.dir}/META-INF/context.xml'/>
+	  <replace file='${build.dir}/META-INF/context.xml' token='$(db.connection.string)' value='${local.db.connection.string}' />
+	  <replace file='${build.dir}/META-INF/context.xml' token='$(db.user.name)' value='${local.db.user.name}' />
+	  <replace file='${build.dir}/META-INF/context.xml' token='$(db.user.password)' value='${local.db.user.password}' />
+	  
+	  <!-- Copy the gpt-template file and replace variables with values from local.properties -->
+	  <copy file='${src.dir}/gpt/config/gpt-template.xml' tofile='${classes.dir}/gpt/config/gpt.xml'/>
+	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(ldap.connection.string)' value='${local.ldap.connection.string}' />
+	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.index.location)' value='${local.lucene.index.location}' />
+	  <replace file='${classes.dir}/gpt/config/gpt.xml' token='$(lucene.rating.location)' value='${local.lucene.rating.location}' />
+	</target>
+	
+	<!-- =========================================================================================== -->
 	<!-- Create the project's deployable war file.                                                   -->
 	<!-- =========================================================================================== -->
 	<target name="war" depends='basic.package' description="Create the project's deployable war file">
@@ -163,6 +182,20 @@
 	  <deploy url="${remote.tomcat.manager.url}"
 			  username="${remote.tomcat.manager}"
 			  password="${remote.tomcat.manager.password}"
+			  path="/geoportal"
+			  update="true"
+			  war="${build.dir}/geoportal.war"/>
+
+	</target>
+	
+	<!-- =========================================================================================== -->
+	<!-- Executes the Ant install instructing Tomcat to install the web application on Sillimanite.  -->
+	<!-- =========================================================================================== -->
+	<target name="sillimanite" depends="clean, sillimanite.package, war" description="Install to Sillimanite.">
+
+	  <deploy url="${sillimanite.tomcat.manager.url}"
+			  username="${sillimanite.tomcat.manager}"
+			  password="${sillimanite.tomcat.manager.password}"
 			  path="/geoportal"
 			  update="true"
 			  war="${build.dir}/geoportal.war"/>

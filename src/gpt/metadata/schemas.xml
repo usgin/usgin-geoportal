@@ -15,7 +15,12 @@
  limitations under the License.
 -->
 <schemas>
-	<schema fileName="gpt/metadata/esri/esri-arcgis-definition.xml"/>
+  <!--USGIN Schemas -->
+  <schema fileName="gpt/metadata/iso/usgin/usgin-19115-definition-fulldataset.xml"/>
+  <schema fileName="gpt/metadata/iso/usgin/usgin-19119-definition-service.xml"/>
+  <!--End USGIN Schemas -->
+  
+  <schema fileName="gpt/metadata/esri/esri-arcgis-definition.xml"/>
   <schema fileName="gpt/metadata/esri/esri-fgdc-definition.xml"/>  
   <schema fileName="gpt/metadata/esri/esri-iso-definition.xml"/>
     
