@@ -17,41 +17,45 @@
 <csw:Capabilities version="2.0.2" xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xlink="http://www.w3.org/1999/xlink">
   <ows:ServiceIdentification>
     <ows:Title>
-      ArcGIS Server Geoportal Extension 10 - OGC CSW 2.0.2 ISO AP
+      USGIN AASG Geothermal Data Catalog
     </ows:Title>
     <ows:Abstract>
-      A catalogue service that conforms to the HTTP protocol binding of the OpenGIS Catalogue Service ISO Metadata Application Profile specification (version 2.0.2)
+      At the heart of the Geoscience Information network is a catalog system that enables data providers to publish metadata for data and services, and for data consumers to discover those resources. The catalog system is based on a federated system of metadata registries (databases that host and manage the metadata) that are accessible for search and harvest via public web services. Metadata records in this system are viewed as a public resource.
     </ows:Abstract>
     <ows:Keywords>
-      <ows:Keyword>keyword1</ows:Keyword>
-      <ows:Keyword>keyword2</ows:Keyword>
+      <ows:Keyword>USGIN</ows:Keyword>
+      <ows:Keyword>Geoscience</ows:Keyword>
+      <ows:Keyword>AASG</ows:Keyword>
+      <ows:Keyword>Geothermal</ows:Keyword>
+      <ows:Keyword>Geology</ows:Keyword>
+      <ows:Keyword>Catalog</ows:Keyword>
     </ows:Keywords>
     <ows:ServiceType>CSW</ows:ServiceType>
     <ows:ServiceTypeVersion>2.0.2</ows:ServiceTypeVersion>
-    <ows:Fees>unknown</ows:Fees>
-    <ows:AccessConstraints>unknown</ows:AccessConstraints>
+    <ows:Fees>None</ows:Fees>
+    <ows:AccessConstraints>None</ows:AccessConstraints>
   </ows:ServiceIdentification>
   <ows:ServiceProvider>
-    <ows:ProviderName>provider name</ows:ProviderName>
-    <ows:ProviderSite xlink:href="http://localhost"/>
+    <ows:ProviderName>Arizona Geological Survey</ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://azgs.az.gov"/>
     <ows:ServiceContact>
-      <ows:IndividualName>name</ows:IndividualName>
-      <ows:PositionName>position</ows:PositionName>
+      <ows:IndividualName>Stephen Richard</ows:IndividualName>
+      <ows:PositionName>Head of Geoinformatics</ows:PositionName>
       <ows:ContactInfo>
         <ows:Phone>
-          <ows:Voice>voice</ows:Voice>
-          <ows:Facsimile>fax</ows:Facsimile>
+          <ows:Voice>520-209-4127</ows:Voice>
+          <ows:Facsimile>520-770-3505</ows:Facsimile>
         </ows:Phone>
         <ows:Address>
-          <ows:DeliveryPoint>address1</ows:DeliveryPoint>
-          <ows:DeliveryPoint>address2</ows:DeliveryPoint>
-          <ows:City>city</ows:City>
-          <ows:AdministrativeArea>adminArea</ows:AdministrativeArea>
-          <ows:PostalCode>postCode</ows:PostalCode>
-          <ows:Country>country</ows:Country>
-          <ows:ElectronicMailAddress>email</ows:ElectronicMailAddress>
+          <ows:DeliveryPoint>Arizona Geological Survey</ows:DeliveryPoint>
+          <ows:DeliveryPoint>416 W. Congress St. Suite 100</ows:DeliveryPoint>
+          <ows:City>Tucson</ows:City>
+          <ows:AdministrativeArea>Arizona</ows:AdministrativeArea>
+          <ows:PostalCode>85701</ows:PostalCode>
+          <ows:Country>USA</ows:Country>
+          <ows:ElectronicMailAddress>steve.richard@azgs.az.gov</ows:ElectronicMailAddress>
         </ows:Address>
-        <ows:OnlineResource xlink:href=""/>
+        <ows:OnlineResource xlink:href="http://azgs.az.gov"/>
       </ows:ContactInfo>
     </ows:ServiceContact>
   </ows:ServiceProvider>
