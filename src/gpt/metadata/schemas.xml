@@ -20,6 +20,10 @@
   <schema fileName="gpt/metadata/iso/usgin/usgin-19119-definition-service.xml"/>
   <!--End USGIN Schemas -->
   
+  <!-- Conversion to USGIN Schemas -->
+  <schema fileName="gpt/metadata/ogc/to-usgin/csw-definition.xml"/>
+  <!-- End Conversion to USGIN Schemas -->
+  
   <!-- USGIN Geoportal only accepts USGIN-ISO Records 
   	RJC 03-23-11: I suspect the following will have to be reintroduced in order
   	not break existing harvest and OpenSearch functionality 

@@ -18,7 +18,7 @@
     <!-- schema interrogation identifies anything with a MD_DataIdentification section and metadata standard name
 either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
     <interrogation
-            count="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) * (count(/gmd:MD_Metadata/gmd:metadataStandardName[gco:CharacterString='ISO-USGIN']) + count(/gmd:MD_Metadata/gmd:metadataStandardName[gco:CharacterString='ISO-NAP-USGIN']))" />
+            count="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) * (count(/gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString[contains(.,'ISO-USGIN')]) + count(/gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString[contains(.,'ISO-NAP-USGIN')]))" />
 
     <!-- indexables Uses all csw core queryables and those added by ISO CSW profile (apiso)-->
     <indexables fileName="gpt/metadata/iso/apiso-indexables.xml"/>
