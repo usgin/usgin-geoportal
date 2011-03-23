@@ -20,11 +20,23 @@
   <schema fileName="gpt/metadata/iso/usgin/usgin-19119-definition-service.xml"/>
   <!--End USGIN Schemas -->
   
+  <!-- USGIN Geoportal only accepts USGIN-ISO Records 
+  	RJC 03-23-11: I suspect the following will have to be reintroduced in order
+  	not break existing harvest and OpenSearch functionality 
+  -->
+  <!--
+  <schema fileName="gpt/metadata/dc/dc-definition.xml"/>
+  <schema fileName="gpt/metadata/ogc/ogc-definition.xml"/> 
+  <schema fileName="gpt/metadata/ogc/cswRecord-definition.xml"/>
+  <schema fileName="gpt/metadata/other/opensearch-definition.xml"/>
+  -->
+  
+  <!-- These ones I think we'll just leave off -->
+  <!--
   <schema fileName="gpt/metadata/esri/esri-arcgis-definition.xml"/>
   <schema fileName="gpt/metadata/esri/esri-fgdc-definition.xml"/>  
   <schema fileName="gpt/metadata/esri/esri-iso-definition.xml"/>
-    
-  <schema fileName="gpt/metadata/dc/dc-definition.xml"/>
+  
   <schema fileName="gpt/metadata/fgdc/fgdc-definition.xml"/>
   <schema fileName="gpt/metadata/iso/inspire/inspire-iso-19115-definition.xml"/>
   <schema fileName="gpt/metadata/iso/inspire/inspire-iso-19119-definition.xml"/>
@@ -33,8 +45,8 @@
   <schema fileName="gpt/metadata/iso/iso-19115-definition.xml"/>
   <schema fileName="gpt/metadata/iso/iso-19119-definition.xml"/>
   
-  <schema fileName="gpt/metadata/ogc/ogc-definition.xml"/> 
-  <schema fileName="gpt/metadata/ogc/cswRecord-definition.xml"/>
+  
   <schema fileName="gpt/metadata/other/georss-definition.xml"/> 
-  <schema fileName="gpt/metadata/other/opensearch-definition.xml"/>
+  
+  -->
 </schemas>
