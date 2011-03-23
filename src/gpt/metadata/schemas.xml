@@ -22,6 +22,7 @@
   
   <!-- Conversion to USGIN Schemas -->
   <schema fileName="gpt/metadata/ogc/to-usgin/csw-definition.xml"/>
+  <schema fileName="gpt/metadata/ogc/to-usgin/wms-definition.xml"/>
   <!-- End Conversion to USGIN Schemas -->
   
   <!-- USGIN Geoportal only accepts USGIN-ISO Records 
