@@ -771,7 +771,7 @@ and USGIN service metadata example xml document -->
                                 <gco:CharacterString>WMS</gco:CharacterString>
                             </gmd:keyword>
 
-                            <xsl:for-each select="tokenize(//Keywords, '\s+')">
+                            <xsl:for-each select="//Keywords">
                                 <gmd:keyword>
                                     <gco:CharacterString>
                                         <xsl:value-of select="."/>
