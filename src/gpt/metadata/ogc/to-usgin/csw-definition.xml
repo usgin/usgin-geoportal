@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+	<!-- Catch any CSW version and send to xslt for CSW capabilties to USGIN ISO transformation -->
+	<schema key="csw" editable="false">
+		<namespace prefix="ows" uri="http://www.opengis.net/ows"/>
+		<namespace prefix="wms" uri="http://www.opengis.net/wms"/>
+		<namespace prefix="csw" uri="http://www.opengis.net/cat/csw/2.0.2"/>
+		<namespace prefix="wcs" uri="http://www.opengis.net/wcs" />
+		<namespace prefix="wcs1" uri="http://www.opengis.net/wcs/1.1.1" />
+		<namespace prefix="wfs" uri="http://www.opengis.net/wfs"/>
+		<namespace prefix="ows1" uri="http://www.opengis.net/ows/1.1"/>
+		<namespace prefix="kml" uri="http://www.opengis.net/kml/2.2"/>
+		
+		<interrogation
+		count="count(//ows:ServiceType[contains(.,'CSW')])"
+		toKnownSchemaXslt="gpt/metadata/ogc/to-usgin/csw-to-usgin-19139.xslt"/>
+	</schema>
+</schemas>
