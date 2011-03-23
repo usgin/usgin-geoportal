@@ -12,7 +12,7 @@
 		<namespace prefix="kml" uri="http://www.opengis.net/kml/2.2"/>
 		
 		<interrogation
-		count="count(//ows:ServiceType='CSW')"
+		count="count(//ows:ServiceType[contains(.,'CSW')])"
 		toKnownSchemaXslt="gpt/metadata/ogc/to-usgin/csw-to-usgin-19139.xslt"/>
 	</schema>
 </schemas>

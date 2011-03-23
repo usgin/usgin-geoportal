@@ -4,7 +4,10 @@
 	<xsl:param name="sourceUrl"/>
 	<xsl:param name="serviceType"/>
 	<xsl:param name="currentDate"/>
+	<!-- Trying to do without the auto-generated UUID for as long as possible 
 	<xsl:param name="generatedUUID"/>
+	-->
+	
 	<!-- *********** -->
 	<!-- This style sheet converts OGC CSW capabilities response document (versions 2.0.0, 2.0.1 or 2.0.2 to 
 		ISO (19115(2006), 19119, 19139 metadata that conforms with the USGIN metadata profile.
@@ -35,7 +38,10 @@
 				- USGIN recommends using a valid Universally Unique Identifier (UUID) -->
 			<gmd:fileIdentifier>
 				<gco:CharacterString>
+					<!-- 
 					<xsl:value-of select="$generatedUUID" />
+					-->
+					<xsl:value-of select="concat('csw-capabilities-for-', substring-before($sourceUrl, '?'))"/>
 				</gco:CharacterString>
 			</gmd:fileIdentifier>
 			<!-- language -->
