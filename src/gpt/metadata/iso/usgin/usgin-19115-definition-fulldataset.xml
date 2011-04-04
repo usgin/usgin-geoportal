@@ -25,7 +25,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
     
 
-    <!--Resource Desription begins-->
+    <!--Resource Description begins-->
 
     <section key="identification" open="true">
         <label resourceKey="fgdc.distInfo.resoDesc"/>
@@ -305,6 +305,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
         <!--Contact Information for Distributor Starts here-->
         <!-- Contact name-->
+        
+         <parameter key="positionName.distibutor">
+                <label resourceKey="catalog.mdParam.contact.positionName.distibutor"/>
+                <input type="text"/>
+                <validation required="true"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:positionName/gco:CharacterString"/>
+            </parameter>
 
         <parameter key="general.contact.role.publisher">
             <label resourceKey="catalog.mdParam.inspire.general.contact.role.publisher"/>
@@ -330,8 +338,16 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 </codes>
             </content>
         </parameter>
-
-        <parameter key="distribution.format.name">
+       
+      <parameter key="contact.distributor.email">
+                <label resourceKey="catalog.mdParam.contact.distributor.email"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
+                <validation required="true"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:email/gco:CharacterString"/>
+            </parameter>
+        
+  <parameter key="distribution.format.name">
             <label resourceKey="catalog.mdParam.distribution.format.name"/>
             <input type="text" hintResourceKey="catalog.distribution.fName.hint" hintMode="tip"/>
             <validation required="false"/>
@@ -462,29 +478,21 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 </section>
             </section>
         </section>
-
+		
+<!-- Distributor Contact Information-->
 
         <section key="contact.organizationDistributor.caption" open="false">
             <label resourceKey="catalog.mdParam.contact.organizationDistributor.caption"/>
 
-
-            <parameter key="positionName.distibutor">
-                <label resourceKey="catalog.mdParam.contact.positionName.distibutor"/>
+<parameter key="distributor.organization">
+                <label resourceKey="catalog.mdParam.contact.distributor.organization"/>
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:positionName/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
             </parameter>
-
-            <parameter key="contact.distributor.telephone">
-                <label resourceKey="catalog.mdParam.contact.distributor.telephone"/>
-                <input type="text" defaultValue="#{EditMetadataController.userProfile['phone'].value}"/>
-                <validation required="false"/>
-                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:telephone/gco:CharacterString"/>
-            </parameter>
-
-            <parameter key="contact.distributor.address">
+           
+	<parameter key="contact.distributor.address">
                 <label resourceKey="catalog.mdParam.contact.distributor.address"/>
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['street'].value}"/>
                 <validation required="false"/>
@@ -515,14 +523,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:postalCode/gco:CharacterString"/>
             </parameter>
-            <parameter key="contact.distributor.email">
-                <label resourceKey="catalog.mdParam.contact.distributor.email"/>
-                <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
+           
+ <parameter key="contact.distributor.telephone">
+                <label resourceKey="catalog.mdParam.contact.distributor.telephone"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['phone'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:email/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:telephone/gco:CharacterString"/>
             </parameter>
-
 
         </section>
     </section>
@@ -684,7 +692,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:associationType/gcoDS_AssociationTypeCode"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:associationType/gco:DS_AssociationTypeCode"/>
             </parameter>
         </section>
         <!--End of first aggregate section-->
@@ -863,7 +871,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                    defaultValue="#{EditMetadataController.userProfile['username'].value}"/>
             <validation required="true"/>
             <content useSelectForUpdate="true"
-                     select="//gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
+                     select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
         </parameter>
         <parameter key="general.contact.role">
             <label resourceKey="catalog.mdParam.inspire.general.contact.role"/>

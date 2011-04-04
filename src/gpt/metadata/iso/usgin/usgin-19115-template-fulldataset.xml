@@ -728,7 +728,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 						<!-- (C-C) Distribution responsible party - For CI_ResponsibleParty, count of (individualName + organisationName + positionName) > 0 -->
 						<gmd:CI_ResponsibleParty>
 							<gmd:organisationName>
-								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+								<gco:CharacterString></gco:CharacterString>
 							</gmd:organisationName>
 							<!-- (C-C) If CI_ResponsibleParty exists, the role element is required -->
 							<gmd:role>
