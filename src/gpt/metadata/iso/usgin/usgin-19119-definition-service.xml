@@ -75,7 +75,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <input type="text"/>
             <validation required="true"/>
             <content useSelectForUpdate="true"
-                     select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:SV_ServiceIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
+                     select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
         </parameter>
 
         <parameter key="identification.title">
@@ -222,7 +222,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                        maxlength="2048" editable="true" defaultValue="No conditions/constraints apply"/>
                 <validation required="true"/>
                 <content useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints/gmd:MD_Constraints/gmd:useLimitation/gco:CharacterString"/>
             </parameter>
 
             <parameter key="dataQualityInfo.lineage.resource">

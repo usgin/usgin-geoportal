@@ -1010,26 +1010,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                          delete="/gmd:MD_Metadata/gmd:hierarchyLevel">
                     <codes>
                         <code key=""/>
-                        <!--          Not used by USGIN profile
-                                    <code key="attribute" resourceKey="catalog.mdCode.hierarchyLevel.attribute"/>
-                                       <code key="attributeType" resourceKey="catalog.mdCode.hierarchyLevel.attributeType"/>
-                                       <code key="collectionHardware" resourceKey="catalog.mdCode.hierarchyLevel.collectionHardware"/>
-                                       <code key="collectionSession" resourceKey="catalog.mdCode.hierarchyLevel.collectionSession"/>
-                        -->
-                        <code key="dataset" resourceKey="catalog.mdCode.hierarchyLevel.dataset"/>
+                       <code key="dataset" resourceKey="catalog.mdCode.hierarchyLevel.dataset"/>
                         <code key="series" resourceKey="catalog.mdCode.hierarchyLevel.series"/>
                         <code key="nonGeographicDataset"
                               resourceKey="catalog.mdCode.hierarchyLevel.nonGeographicDataset"/>
-                        <!--           <code key="dimensionGroup" resourceKey="catalog.mdCode.hierarchyLevel.dimensionGroup"/>
-                                       <code key="feature" resourceKey="catalog.mdCode.hierarchyLevel.feature"/>
-                                       <code key="featureType" resourceKey="catalog.mdCode.hierarchyLevel.featureType"/>
-                                       <code key="propertyType" resourceKey="catalog.mdCode.hierarchyLevel.propertyType"/>
-                                       <code key="fieldSession" resourceKey="catalog.mdCode.hierarchyLevel.fieldSession"/>
-                        -->
+                       
                         <code key="software" resourceKey="catalog.mdCode.hierarchyLevel.software"/>
                         <code key="model" resourceKey="catalog.mdCode.hierarchyLevel.model"/>
-                        <!--              <code key="tile" resourceKey="catalog.mdCode.hierarchyLevel.tile"/>  -->
-                    </codes>
+                   </codes>
                 </content>
             </parameter>
             <parameter key="general.hierarchyLevelName">
