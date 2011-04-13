@@ -1032,6 +1032,7 @@ and USGIN service metadata example xml document -->
 									  //LatLonBoundingBox | 	
 									  //wms:BoundingBox[@CRS='EPSG:4326']
 									  ">
+									  <!--CRS="EPSG:4326-->
 										<xsl:call-template name="WMS_BoundingBox"/>
 									</xsl:when>
 									<xsl:when test="//wms:EX_GeographicBoundingBox">
