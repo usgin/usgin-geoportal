@@ -142,7 +142,7 @@
 	</gmd:contact>
 	<gmd:dateStamp>
 		<!-- Requires an extended ISO 8601 formatted combined UTC date and time string (2009-11-17T10:00:00) -->
-		<gco:DateTime>2009-11-17T10:00:00</gco:DateTime>
+		<gco:DateTime>11-17-2009T10:00:00</gco:DateTime>
 	</gmd:dateStamp>
 	<!-- (M-M) metadata standard - USGIN profile conformant metadata is indicated by using “ISO-NAP-USGIN" -->
 	<gmd:metadataStandardName>

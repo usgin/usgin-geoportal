@@ -16,11 +16,11 @@
                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd
  http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd">
 
-	<xsl:output method="xml" version="1.0" encoding="UTF-8"
-                indent="yes"/>
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:param name="sourceUrl"/>
 	<xsl:param name="serviceType"/>
 	<xsl:param name="currentDate"/>
+	<xsl:strip-space elements="*"/>
 	<!-- *********** -->
 	<!-- This style sheet converts OGC WMS capabilities response document (versions 1.0.0, 1.1.1 or 1.3.0 to
          ISO (19115(2006), 19119, 19139 metadata that conforms with the USGIN metadata profile.
@@ -42,9 +42,7 @@ and USGIN service metadata example xml document -->
 			<!-- (M-M) Metadata file identifier - A unique File Identifier (GUID)
                    - USGIN recommends using a valid Universally Unique Identifier (UUID) -->
 			<gmd:fileIdentifier>
-				<gco:CharacterString>
-					<xsl:value-of select="concat('wms-capabilities-for-', substring-before($sourceUrl, '?'))"/>
-				</gco:CharacterString>
+				<gco:CharacterString><xsl:value-of select="concat('wms-capabilities-for-', substring-before($sourceUrl, '?'))"/></gco:CharacterString>
 			</gmd:fileIdentifier>
 			<!-- language -->
 			<xsl:choose>
@@ -67,15 +65,13 @@ and USGIN service metadata example xml document -->
 			<gmd:characterSet>
 				<gmd:MD_CharacterSetCode
                         codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"
-                        codeListValue="utf8">UTF-8
-				</gmd:MD_CharacterSetCode>
+                        codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
 			</gmd:characterSet>
 			<!-- (M-M) Resource type - this is specific to WMS, so define as service -->
 			<gmd:hierarchyLevel>
 				<gmd:MD_ScopeCode
                         codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-                        codeListValue="service">service
-				</gmd:MD_ScopeCode>
+                        codeListValue="service">service</gmd:MD_ScopeCode>
 			</gmd:hierarchyLevel>
 			<!-- (O-M) Resource hierarchy level name - For services USGIN hierarchyLevelName.CharacterString
                    is "Service". -->
@@ -91,11 +87,10 @@ and USGIN service metadata example xml document -->
 					<!-- (M-M) (individualName + organisationName + positionName) > 0 -->
 					<!-- Individual name added LMM 04/07/2011-->
 					<gmd:individualName>
-						<gco:CharacterString> Metadata Editor </gco:CharacterString>
+						<gco:CharacterString>Metadata Editor</gco:CharacterString>
 					</gmd:individualName>
 					<gmd:organisationName>
-						<gco:CharacterString>US Geoscience Information Network, Arizona Geological Survey
-						</gco:CharacterString>
+						<gco:CharacterString>US Geoscience Information Network, Arizona Geological Survey</gco:CharacterString>
 					</gmd:organisationName>
 					<gmd:positionName>
 						<gco:CharacterString>Metadata Editor</gco:CharacterString>
@@ -152,13 +147,11 @@ and USGIN service metadata example xml document -->
 							</gmd:onlineResource>
 							<!-- (O-O) hours of service -->
 							<gmd:hoursOfService>
-								<gco:CharacterString>8 AM to 5 PM Mountain Standard time (no daylight savings)
-								</gco:CharacterString>
+								<gco:CharacterString>8 AM to 5 PM Mountain Standard time (no daylight savings)</gco:CharacterString>
 							</gmd:hoursOfService>
 							<!-- (O-O) contact instructions -->
 							<gmd:contactInstructions>
-								<gco:CharacterString>Fill out contact form at http://www.azgs.az.gov
-								</gco:CharacterString>
+								<gco:CharacterString>Fill out contact form at http://www.azgs.az.gov</gco:CharacterString>
 							</gmd:contactInstructions>
 						</gmd:CI_Contact>
 					</gmd:contactInfo>
@@ -173,8 +166,7 @@ and USGIN service metadata example xml document -->
 						<!-- ISO example -->
 						<gmd:CI_RoleCode
                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                codeListValue="pointOfContact">point of contact
-						</gmd:CI_RoleCode>
+                                codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
 					</gmd:role>
 				</gmd:CI_ResponsibleParty>
 			</gmd:contact>
@@ -195,9 +187,7 @@ and USGIN service metadata example xml document -->
 									<!-- Icon image file (e.g. tif, png, jpg) for the metadata originator.
                                                  This Icon will be displayed in search results to credit the metadata originator. -->
 									<gmd:linkage>
-										<gmd:URL>
-                                            http://resources.usgin.org/uri-gin/usgin/organization/azgs/logo/50x50.png
-										</gmd:URL>
+										<gmd:URL>http://resources.usgin.org/uri-gin/usgin/organization/azgs/logo/50x50.png</gmd:URL>
 									</gmd:linkage>
 									<!-- (X-C) For URL's that indicate icon thumbnails, the CI_OnlineResource/name
                                                  should be 'icon'. -->
@@ -214,8 +204,7 @@ and USGIN service metadata example xml document -->
                                   publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
 						<gmd:CI_RoleCode
                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                codeListValue="originator">originator
-						</gmd:CI_RoleCode>
+                                codeListValue="originator">originator</gmd:CI_RoleCode>
 					</gmd:role>
 				</gmd:CI_ResponsibleParty>
 			</gmd:contact>
@@ -223,9 +212,10 @@ and USGIN service metadata example xml document -->
                    (Note this contrasts with INSPIRE mandate to use dateStamp/gco:Date). This
                    is the date and time when the metadata record was created or updated (following
                    NAP). -->
+				   <!--concat($currentDate,'T12:00:00'-->
 			<gmd:dateStamp>
 				<gco:DateTime>
-					<xsl:value-of select="concat($currentDate,'T12:00:00')"/>
+					<xsl:value-of select="concat(translate($currentDate, '/', '-'), 'T12:00:00')"/>
 				</gco:DateTime>
 			</gmd:dateStamp>
 			<!-- (M-M) metadata standard - NAP specifies "NAP - Metadata". USGIN profile
@@ -238,8 +228,7 @@ and USGIN service metadata example xml document -->
 				<gco:CharacterString>1.1</gco:CharacterString>
 			</gmd:metadataStandardVersion>
 			<!-- (O-O) Resource's spatial reference system -->
-			<xsl:if
-                    test="//Capability/Layer[1]/SRS | //wms:Capability/wms:Layer[1]/wms:SRS">
+			<xsl:if test="//Capability/Layer[1]/SRS | //wms:Capability/wms:Layer[1]/wms:SRS">
 				<gmd:referenceSystemInfo>
 					<gmd:MD_ReferenceSystem>
 						<!-- ISO 19115:2003 Corrigendum 1:2006 removes CRS and projection parameter
@@ -251,9 +240,8 @@ and USGIN service metadata example xml document -->
                                             in the form "EPSG:nnnn" where nnnn is the EPSG code number for the CRS. -->
 								<gmd:code>
 									<gco:CharacterString>
-										<xsl:value-of
-                                                select="//Capability/Layer[1]/SRS | //wms:Capability/wms:Layer[1]/wms:SRS"/>
-									</gco:CharacterString>
+										<xsl:value-of select="//Capability/Layer[1]/SRS | //wms:Capability/wms:Layer[1]/wms:SRS"/>
+										</gco:CharacterString>
 								</gmd:code>
 								<gmd:codeSpace>
 									<gco:CharacterString>urn:ogc:def:crs</gco:CharacterString>
@@ -277,10 +265,7 @@ and USGIN service metadata example xml document -->
 						<gmd:CI_Citation>
 							<!-- (M-M) Resource title - USGIN recommends using titles that inform
                                        the human reader about the dataset's content as well as its context. -->
-						
-
-									
-			<gmd:title>
+		<gmd:title>
 								<xsl:choose>
 									<xsl:when test="string-length(/WMT_MS_Capabilities/Service/Title |
 								//wms:Service/wms:Title  | 
@@ -291,10 +276,8 @@ and USGIN service metadata example xml document -->
 								/wms:WMT_MS_Capabilities/wms:Service/wms:Title"/>
 										</gco:CharacterString>
 									</xsl:when>
-
-									<xsl:otherwise>
-										<gco:CharacterString>Missing
-										</gco:CharacterString>
+<xsl:otherwise>
+<gco:CharacterString>Missing</gco:CharacterString>
 									</xsl:otherwise>
 								</xsl:choose>
 							</gmd:title>
@@ -323,40 +306,40 @@ and USGIN service metadata example xml document -->
 							
 							<!-- (M-M) Resource reference date - This will be difficult to know
                                        for harvested ogc GetCapabilities -->
-							<xsl:choose>
+							<!--<xsl:choose>
 								<xsl:when test="//gml:relatedTime">
 									<gmd:date>
 										<gmd:CI_Date>
 											<gmd:date>
-												<gco:Date>
-													<xsl:value-of select="//gml:relatedTime"/>
-												</gco:Date>
+												<gco:DateTime>
+													<xsl:value-of select="//gml:relatedTime">
+												</gco:DateTime>
 											</gmd:date>
 											<gmd:dateType>
-												<gmd:CI_DateTypeCode
-                                                        codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
-                                                        codeListValue="publication"/>
+												<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
 											</gmd:dateType>
 										</gmd:CI_Date>
 									</gmd:date>
 								</xsl:when>
-								<xsl:otherwise>
+								<xsl:otherwise>-->
 									<gmd:date>
 										<gmd:CI_Date>
-											<gmd:date gco:nilReason="missing">
+											<gmd:date> 
+											
+											<!-- gco:nilReason="missing"-->
 												<gco:DateTime>
-													<xsl:value-of select="concat($currentDate,'T12:00:00')"/>
+												<!--<xsl:value-of select="concat($day, '/', $month, '/', $year, ' ',$time, ' - ', format-number($hours, '00'), ':', format-number($minutes,'00'))" />-->
+												<xsl:value-of select="concat(translate($currentDate, '/', '-'), 'T12:00:00')"/>
 												</gco:DateTime>
 											</gmd:date>
-											<gmd:dateType gco:nilReason="missing">
-												<gmd:CI_DateTypeCode
-                                                        codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
-                                                        codeListValue="publication"/>
+											<gmd:dateType>
+											<!-- gco:nilReason="missing" -->
+												<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
 											</gmd:dateType>
 										</gmd:CI_Date>
 									</gmd:date>
-								</xsl:otherwise>
-							</xsl:choose>
+								<!--</xsl:otherwise>
+							</xsl:choose>-->
 							<!-- (C-O) Unique resource identifier - For USGIN, because the Citation
                                        is for the service, this identifier should be identical to MD_Metadta/dataSetURI,
                                        and is therefore optional. For USGIN purposes, this element content value
@@ -532,8 +515,7 @@ and USGIN service metadata example xml document -->
 																		</xsl:when>
 																		<xsl:otherwise>
 																			<!-- at least an e-mail address is required -->
-																			<gco:CharacterString>metadata@usgin.org
-																			</gco:CharacterString>
+																			<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
 																		</xsl:otherwise>
 																	</xsl:choose>
 																</gmd:electronicMailAddress>
@@ -552,8 +534,7 @@ and USGIN service metadata example xml document -->
                                                                 publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
 												<gmd:CI_RoleCode
                                                         codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                        codeListValue="resourceProvider">resource provider
-												</gmd:CI_RoleCode>
+                                                        codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 											</gmd:role>
 										</gmd:CI_ResponsibleParty>
 									</gmd:citedResponsibleParty>
@@ -585,8 +566,7 @@ and USGIN service metadata example xml document -->
 											<gmd:role>
 												<gmd:CI_RoleCode
                                                         codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                        codeListValue="resourceProvider">resource provider
-												</gmd:CI_RoleCode>
+                                                        codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 											</gmd:role>
 										</gmd:CI_ResponsibleParty>
 									</gmd:citedResponsibleParty>
@@ -623,11 +603,9 @@ and USGIN service metadata example xml document -->
 									<xsl:value-of select="//Abstract | //wms:Abstract"/>
 								</gco:CharacterString>
 							</xsl:when>
-
-							<xsl:otherwise>
+<xsl:otherwise>
 								<gco:CharacterString>OGC WMS service, this metadata harvested from service capabilities.
-                                    No abstract provided by service.
-								</gco:CharacterString>
+                                    No abstract provided by service.</gco:CharacterString>
 							</xsl:otherwise>
 						</xsl:choose>
 					</gmd:abstract>
@@ -646,8 +624,7 @@ and USGIN service metadata example xml document -->
                                   deprecated. -->
 						<gmd:MD_ProgressCode
                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode"
-                                codeListValue="completed">completed
-						</gmd:MD_ProgressCode>
+                                codeListValue="completed">completed</gmd:MD_ProgressCode>
 					</gmd:status>
 					<!-- (O-C) Resource service point of contact (access contact) - CI_ResponsibleParty
                              element here would contain information for point of contact to access the
@@ -796,8 +773,7 @@ and USGIN service metadata example xml document -->
 																</xsl:when>
 																<xsl:otherwise>
 																	<!-- at least an e-mail address is required -->
-																	<gco:CharacterString>metadata@usgin.org
-																	</gco:CharacterString>
+																	<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
 																</xsl:otherwise>
 															</xsl:choose>
 														</gmd:electronicMailAddress>
@@ -816,8 +792,7 @@ and USGIN service metadata example xml document -->
                                                           publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
 										<gmd:CI_RoleCode
                                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                codeListValue="resourceProvider">resource provider
-										</gmd:CI_RoleCode>
+                                                codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 									</gmd:role>
 								</gmd:CI_ResponsibleParty>
 							</xsl:when>
@@ -828,9 +803,7 @@ and USGIN service metadata example xml document -->
 										<gco:CharacterString>not reported</gco:CharacterString>
 									</gmd:individualName>
 									<gmd:organisationName gco:nilReason="missing">
-										<gco:CharacterString>
-										not reported
-										</gco:CharacterString>
+										<gco:CharacterString>not reported</gco:CharacterString>
 									</gmd:organisationName>
 
 
@@ -842,8 +815,7 @@ and USGIN service metadata example xml document -->
 									<gmd:role>
 										<gmd:CI_RoleCode
                                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                codeListValue="resourceProvider">resource provider
-										</gmd:CI_RoleCode>
+                                                codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 									</gmd:role>
 								</gmd:CI_ResponsibleParty>
 							</xsl:otherwise>
@@ -880,19 +852,14 @@ and USGIN service metadata example xml document -->
 							<gmd:keyword>
 								<gco:CharacterString>WMS</gco:CharacterString>
 							</gmd:keyword>
-
 							<xsl:for-each select="//Keywords">
 								<gmd:keyword>
-									<gco:CharacterString>
-										<xsl:value-of select="."/>
-									</gco:CharacterString>
+									<gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
 								</gmd:keyword>
 							</xsl:for-each>
 							<xsl:for-each select="//wms:Keyword | //Keyword">
 								<gmd:keyword>
-									<gco:CharacterString>
-										<xsl:value-of select="."/>
-									</gco:CharacterString>
+									<gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
 								</gmd:keyword>
 							</xsl:for-each>
 							<!-- Keyword Type - allowed values from MD_KeywordTypeCode names:
@@ -902,8 +869,7 @@ and USGIN service metadata example xml document -->
 							<gmd:type>
 								<gmd:MD_KeywordTypeCode
                                         codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                        codeListValue="theme">theme
-								</gmd:MD_KeywordTypeCode>
+                                        codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
 							</gmd:type>
 							<!-- although OGC capabilities allow a vocabulary attribute that broadly
                                        corresponds to a Thesaurus name, its too much of a pain to fool around -->
@@ -940,7 +906,6 @@ and USGIN service metadata example xml document -->
 							</gmd:useLimitation>
 							</xsl:choose>
 									-->
-
 					<gmd:resourceConstraints>
 						<gmd:MD_Constraints>
 							<gmd:useLimitation>
@@ -950,28 +915,14 @@ and USGIN service metadata example xml document -->
 											<xsl:value-of select="//wms:AccessConstraints | //AccessConstraints"/>
 										</gco:CharacterString>
 									</xsl:when>
-
-									<xsl:otherwise>
-										<gco:CharacterString>None Stated
-										</gco:CharacterString>
+										<xsl:otherwise>
+										<gco:CharacterString>None Stated</gco:CharacterString>
 									</xsl:otherwise>
 								</xsl:choose>
 							</gmd:useLimitation>
 						</gmd:MD_Constraints>
 					</gmd:resourceConstraints>
-
-
-
-
-
-
-
-
-
-
-
-
-					<!-- (O-X) Aggregation information - For USGIN profile, this property,
+<!-- (O-X) Aggregation information - For USGIN profile, this property,
                              rather than MD_Metadata/parentIdentifier, should be used to indicate relationships
                              between described resources. This might be the best place to put links to
                              dataset metadata for data offered by the service, but there is no binding
@@ -985,9 +936,7 @@ and USGIN service metadata example xml document -->
 					<srv:serviceType>
 						<!-- Valid values for OGC services would be then {<WMS, WFS, WVS, CSW,
                                   …} -->
-						<gco:LocalName
-                                codeSpace="http://resources.usgin.org/uri-gin/usgin/vocabulary/serviceType">WMS
-						</gco:LocalName>
+						<gco:LocalName codeSpace="http://resources.usgin.org/uri-gin/usgin/vocabulary/serviceType">WMS</gco:LocalName>
 					</srv:serviceType>
 					<!-- (O-C) Resource service type version - Multiple serviceTypeVersion
                              tags may not be implemented in applications. USGIN recommends a reverse chronological
@@ -1030,7 +979,7 @@ and USGIN service metadata example xml document -->
                                             test="//wms:LatLonBoundingBox |
 									  //LatLonBoundingBox |
 									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']
+									  //wms:BoundingBox[@SRS='EPSG:4326']
 									  ">
 									  <!--CRS="EPSG:4326-->
 										<xsl:call-template name="WMS_BoundingBox"/>
@@ -1039,8 +988,12 @@ and USGIN service metadata example xml document -->
 										<xsl:call-template name="WMS_EX_GeographicBoundingBox"/>
 									</xsl:when>
 									<xsl:when
-                                            test=" //ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner | //gml:Envelope[@srsName='EPSG:4326'] ">
+                                            test="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner | //gml:Envelope[@srsName='EPSG:4326'] ">
 										<xsl:call-template name="OWS_WGS84BoundingBox"/>
+									</xsl:when>
+									<xsl:when
+                                            test="//wms:BoundingBox[@CRS='EPSG:4326']">
+										<xsl:call-template name="WMS1_3_BoundingBox"/>
 									</xsl:when>
 								</xsl:choose>
 							</gmd:geographicElement>
@@ -1050,6 +1003,7 @@ and USGIN service metadata example xml document -->
                              and associated data (if exists) - "Qualitative information on the tightness
                              with which the service and the associated data are coupled." NAP. -->
 					<!-- According to ISO: -->
+					
 					<!-- 1) loose - service instance is loosely coupled with a data instance,
                              i.e. no MD_DataIdentification class has to be described (ISO 19119). -->
 					<!-- 2) mixed - service instance is mixed coupled with a data instance,
@@ -1078,8 +1032,7 @@ and USGIN service metadata example xml document -->
 						<!-- ISO Example -->
 						<srv:SV_CouplingType
                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#SV_CouplingType"
-                                codeListValue="tight">tight
-						</srv:SV_CouplingType>
+                                codeListValue="tight">tight</srv:SV_CouplingType>
 					</srv:couplingType>
 					<!--*** -->
 					<!-- (M-M) Service operation - "Operations performed by the service"
@@ -1092,9 +1045,7 @@ and USGIN service metadata example xml document -->
 							<srv:operationName>
 								<gco:CharacterString>GetCapabilities</gco:CharacterString>
 							</srv:operationName>
-							<srv:DCP>
-								<srv:DCPList codeList="#DCPList" codeListValue="WebServices">WebServices</srv:DCPList>
-							</srv:DCP>
+							<srv:DCP><srv:DCPList codeList="#DCPList" codeListValue="WebServices">WebServices</srv:DCPList></srv:DCP>
 							<!-- should be called only on nonempty WMS 1.0.0 -->
 							<xsl:apply-templates select="//Service/OnlineResource" mode="connectPoint"/>
 							<!-- should be called only on other WMS -->
@@ -1125,9 +1076,6 @@ and USGIN service metadata example xml document -->
 					<gmd:distributor>
 						<gmd:MD_Distributor>
 							<gmd:distributorContact>
-
-
-
 								<xsl:choose>
 									<xsl:when test="//wms:ContactInformation | //ContactInformation">
 										<gmd:CI_ResponsibleParty>
@@ -1238,10 +1186,7 @@ and USGIN service metadata example xml document -->
 															<xsl:if
                                                                 test="//wms:ContactAddress/Country | //ContactAddress/Country">
 																<gmd:country>
-																	<gco:CharacterString>
-																		<xsl:value-of
-                                                                            select="//wms:ContactAddress/Country | //ContactAddress/Country"/>
-																	</gco:CharacterString>
+																	<gco:CharacterString><xsl:value-of select="//wms:ContactAddress/Country | //ContactAddress/Country"/></gco:CharacterString>
 																</gmd:country>
 															</xsl:if>
 
@@ -1250,14 +1195,11 @@ and USGIN service metadata example xml document -->
 															<gmd:electronicMailAddress>							
 																<xsl:choose>
 																	<xsl:when test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
-																		<gco:CharacterString>
-																			<xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
-																		</gco:CharacterString>
+																		<gco:CharacterString> <xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/></gco:CharacterString>
 																	</xsl:when>
 																	<xsl:otherwise>
 																		<!-- at least an e-mail address is required -->
-																		<gco:CharacterString>missing@missing.com
-																		</gco:CharacterString>
+																		<gco:CharacterString>missing@missing.com</gco:CharacterString>
 																	</xsl:otherwise>
 																</xsl:choose>
 															</gmd:electronicMailAddress>
@@ -1295,23 +1237,18 @@ and USGIN service metadata example xml document -->
                                                           publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
 												<gmd:CI_RoleCode
                                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                codeListValue="resourceProvider">resource provider
-												</gmd:CI_RoleCode>
+                                                codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 											</gmd:role>
 										</gmd:CI_ResponsibleParty>
 									</xsl:when>
 									<xsl:otherwise>
-
-										<gmd:CI_ResponsibleParty>
+									<gmd:CI_ResponsibleParty>
 											<gmd:individualName gco:nilReason="missing">
 												<gco:CharacterString>not reported</gco:CharacterString>
 											</gmd:individualName>
 											<gmd:contactInfo>
 												<gmd:CI_Contact>
 													<gmd:phone gco:nilReason="missing">888-888-8888</gmd:phone>
-												
-
-
 											<gmd:address>
 												<gmd:CI_Address>
 												
@@ -1322,13 +1259,10 @@ and USGIN service metadata example xml document -->
 											</gmd:address>
 												</gmd:CI_Contact>
 											</gmd:contactInfo>
-
-
-										<gmd:role>
+												<gmd:role>
 											<gmd:CI_RoleCode
                                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-                                                codeListValue="resourceProvider">resource provider
-											</gmd:CI_RoleCode>
+                                                codeListValue="resourceProvider">resource provider</gmd:CI_RoleCode>
 										</gmd:role>
 									</gmd:CI_ResponsibleParty>
 								</xsl:otherwise>
@@ -1346,18 +1280,13 @@ and USGIN service metadata example xml document -->
 						<!-- Two online elements are included, one for the serviceDescription
                                        and one for the baseURL, which in this case is the full URL for the OGC getCapabilities
                                        document -->
+									   <!-- should be called only on nonempty WMS 1.0.0 -->
 						<gmd:onLine>
 							<gmd:CI_OnlineResource>
 								<gmd:linkage>
-									<gmd:URL>
-										<!-- should be called only on nonempty WMS 1.0.0 -->
-										<xsl:apply-templates select="//Service/OnlineResource"
-                                                                 mode="transferOptions"/>
-										<!-- should be called only on other WMS -->
-										<xsl:apply-templates
-                                                    select="//wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href"
-                                                    mode="transferOptions"/>
-									</gmd:URL>
+								<!--	<gmd:URL><xsl:apply-templates select="//Service/OnlineResource" mode="transferOptions"/><xsl:apply-templates select="//wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="transferOptions"/></gmd:URL> -->
+									<gmd:URL><xsl:value-of select="$sourceUrl"/></gmd:URL> <!-- assumption is that this record is harvested from 
+									and OGC WMS get capabilities -->
 								</gmd:linkage>
 								<!-- The protocol element defines a valid internet protocol used
                                                  to access the resource. NAP recommended best practice is that the protocol
@@ -1373,8 +1302,7 @@ and USGIN service metadata example xml document -->
 						</gmd:onLine>
 					</gmd:MD_DigitalTransferOptions>
 				</gmd:transferOptions>
-				<xsl:apply-templates select="//wms:Capability/wms:Request | //Capability/Request"
-                                         mode="transferOptions"/>
+				<xsl:apply-templates select="//wms:Capability/wms:Request | //Capability/Request" mode="transferOptions"/>
 			</gmd:MD_Distribution>
 		</gmd:distributionInfo>
 		<gmd:dataQualityInfo>
@@ -1382,20 +1310,14 @@ and USGIN service metadata example xml document -->
 				<gmd:scope>
 					<gmd:DQ_Scope>
 						<gmd:level>
-							<gmd:MD_ScopeCode
-                                        codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-                                        codeListValue="dataset">dataset
-							</gmd:MD_ScopeCode>
+							<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
 						</gmd:level>
 					</gmd:DQ_Scope>
 				</gmd:scope>
 				<gmd:lineage>
 					<gmd:LI_Lineage>
 						<gmd:statement>
-							<gco:CharacterString>
-								<xsl:value-of
-                                            select="concat('This metadata record harvested from ', $sourceUrl, '. and transformed to USGIN ISO19139 profile using ogcWMS-toUSGIN_ISO19139.xslt version 1.0')"/>
-							</gco:CharacterString>
+							<gco:CharacterString><xsl:value-of select="concat('This metadata record harvested from ', $sourceUrl, '. and transformed to USGIN ISO19139 profile using ogcWMS-toUSGIN_ISO19139.xslt version 1.0')"/></gco:CharacterString>
 						</gmd:statement>
 					</gmd:LI_Lineage>
 				</gmd:lineage>
@@ -1403,70 +1325,50 @@ and USGIN service metadata example xml document -->
 		</gmd:dataQualityInfo>
 	</gmd:MD_Metadata>
 </xsl:template>
-
 <!-- OWS Bounding Box -->
 <xsl:template name="OWS_WGS84BoundingBox">
-	<EX_GeographicBoundingBox
-                xsl:exclude-result-prefixes="wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<EX_GeographicBoundingBox xsl:exclude-result-prefixes="wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<westBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getLCMinx"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getLCMinx"/></gco:Decimal>
 		</westBoundLongitude>
 		<southBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getLCMiny"/>
-			</gco:Decimal>
+		<gco:Decimal><xsl:call-template name="getLCMiny"/></gco:Decimal>
 		</southBoundLatitude>
 		<eastBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getUCMaxx"/>
-			</gco:Decimal>
+		<gco:Decimal><xsl:call-template name="getUCMaxx"/></gco:Decimal>
 		</eastBoundLongitude>
 		<northBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getUCMaxy"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getUCMaxy"/></gco:Decimal>
 		</northBoundLatitude>
 	</EX_GeographicBoundingBox>
 </xsl:template>
 <xsl:template name="getLCMinx">
-	<xsl:for-each
-                select="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner">
-		<xsl:sort
-                    select="number(normalize-space(substring-before(normalize-space(.),' ')))"
-                    data-type="number" order="ascending"/>
+	<xsl:for-each select="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner">
+		<xsl:sort select="number(normalize-space(substring-before(normalize-space(.),' ')))" data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
-			<xsl:value-of
-                        select="number(normalize-space(substring-before(normalize-space(.),' ')))"/>
+			<xsl:value-of select="number(normalize-space(substring-before(normalize-space(.),' ')))"/>
 		</xsl:if>
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getLCMiny">
-	<xsl:for-each
-                select="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner">
-		<xsl:sort select="substring-after(.,' ') " data-type="number"
-                      order="ascending"/>
+	<xsl:for-each select="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner">
+		<xsl:sort select="substring-after(.,' ') " data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="substring-after(.,' ') "/>
 		</xsl:if>
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getUCMaxx">
-	<xsl:for-each
-                select="//ows:UpperCorner | //ows11:UpperCorner | //gml:UpperCorner | //gml:pos[2] | //gml:coord[2] | //gml:upperCorner">
-		<xsl:sort select="substring-before(. ,' ')" data-type="number"
-                      order="descending"/>
+	<xsl:for-each select="//ows:UpperCorner | //ows11:UpperCorner | //gml:UpperCorner | //gml:pos[2] | //gml:coord[2] | //gml:upperCorner">
+		<xsl:sort select="substring-before(. ,' ')" data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="substring-before( . ,' ')"/>
 		</xsl:if>
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getUCMaxy">
-	<xsl:for-each
-                select="//ows:UpperCorner | //ows11:UpperCorner | //gml:UpperCorner | //gml:pos[2] | //gml:coord[2] | //gml:upperCorner">
-		<xsl:sort select="substring-after( . ,' ') " data-type="number"
-                      order="descending"/>
+	<xsl:for-each select="//ows:UpperCorner | //ows11:UpperCorner | //gml:UpperCorner | //gml:pos[2] | //gml:coord[2] | //gml:upperCorner">
+		<xsl:sort select="substring-after( . ,' ') " data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="substring-after( . ,' ') "/>
 		</xsl:if>
@@ -1475,86 +1377,71 @@ and USGIN service metadata example xml document -->
 <!-- WMS Bounding Box -->
 <xsl:template name="WMS_SummaryBoundingBox">
 	<xsl:param name="box"/>
-	<EX_GeographicBoundingBox
-                xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<westBoundLongitude>
-			<gco:Decimal>
-				<xsl:value-of select="$box/@minx"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:value-of select="$box/@minx"/></gco:Decimal>
 		</westBoundLongitude>
 		<southBoundLatitude>
-			<gco:Decimal>
-				<xsl:value-of select="$box/@miny"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:value-of select="$box/@miny"/></gco:Decimal>
 		</southBoundLatitude>
 		<eastBoundLongitude>
-			<gco:Decimal>
-				<xsl:value-of select="$box/@maxx"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:value-of select="$box/@maxx"/></gco:Decimal>
 		</eastBoundLongitude>
 		<northBoundLatitude>
-			<gco:Decimal>
-				<xsl:value-of select="$box/@maxy"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:value-of select="$box/@maxy"/></gco:Decimal>
 		</northBoundLatitude>
 	</EX_GeographicBoundingBox>
 </xsl:template>
 <xsl:template name="WMS_BoundingBox">
-	<gmd:EX_GeographicBoundingBox
-                xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<gmd:EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<gmd:westBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getMinx"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getMinx"/></gco:Decimal>
 		</gmd:westBoundLongitude>
 		<gmd:eastBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getMaxx"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getMaxx"/></gco:Decimal>
 		</gmd:eastBoundLongitude>
 		<gmd:southBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getMiny"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getMiny"/></gco:Decimal>
 		</gmd:southBoundLatitude>
 		<gmd:northBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getMaxy"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getMaxy"/></gco:Decimal>
+		</gmd:northBoundLatitude>
+	</gmd:EX_GeographicBoundingBox>
+</xsl:template>
+<xsl:template name="WMS1_3_BoundingBox"><!--lat and long are reversed for crs=epsg:4326-->
+	<gmd:EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+		<gmd:westBoundLongitude>
+			<gco:Decimal><xsl:call-template name="getMiny"/></gco:Decimal>
+		</gmd:westBoundLongitude>
+		<gmd:eastBoundLongitude>
+			<gco:Decimal><xsl:call-template name="getMaxy"/></gco:Decimal>
+		</gmd:eastBoundLongitude>
+		<gmd:southBoundLatitude>
+			<gco:Decimal><xsl:call-template name="getMinx"/></gco:Decimal>
+		</gmd:southBoundLatitude>
+		<gmd:northBoundLatitude>
+			<gco:Decimal><xsl:call-template name="getMaxx"/></gco:Decimal>
 		</gmd:northBoundLatitude>
 	</gmd:EX_GeographicBoundingBox>
 </xsl:template>
 <xsl:template name="WMS_EX_GeographicBoundingBox">
-	<gmd:EX_GeographicBoundingBox
-                xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<gmd:EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<gmd:westBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getWestBound"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getWestBound"/></gco:Decimal>
 		</gmd:westBoundLongitude>
 		<gmd:eastBoundLongitude>
-			<gco:Decimal>
-				<xsl:call-template name="getEastBound"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getEastBound"/></gco:Decimal>
 		</gmd:eastBoundLongitude>
 		<gmd:southBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getSouthBound"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getSouthBound"/></gco:Decimal>
 		</gmd:southBoundLatitude>
 		<gmd:northBoundLatitude>
-			<gco:Decimal>
-				<xsl:call-template name="getNorthBound"/>
-			</gco:Decimal>
+			<gco:Decimal><xsl:call-template name="getNorthBound"/></gco:Decimal>
 		</gmd:northBoundLatitude>
 	</gmd:EX_GeographicBoundingBox>
 </xsl:template>
 <xsl:template name="getMinx">
-	<xsl:for-each
-                select="//wms:LatLonBoundingBox |
-									  //LatLonBoundingBox |
-									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@minx" data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@minx"/>
@@ -1562,11 +1449,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMiny">
-	<xsl:for-each
-                select="//wms:LatLonBoundingBox |
-									  //LatLonBoundingBox |
-									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@miny" data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@miny"/>
@@ -1574,11 +1457,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMaxy">
-	<xsl:for-each
-                select="//wms:LatLonBoundingBox |
-									  //LatLonBoundingBox |
-									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@maxy" data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@maxy"/>
@@ -1586,11 +1465,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMaxx">
-	<xsl:for-each
-                select="//wms:LatLonBoundingBox |
-									  //LatLonBoundingBox |
-									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@maxx" data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@maxx"/>
@@ -1636,70 +1511,50 @@ and USGIN service metadata example xml document -->
 		<srv:SV_OperationMetadata
                     xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 			<srv:operationName>
-				<gco:CharacterString>
-					<xsl:value-of select="local-name()"/>
-				</gco:CharacterString>
+				<gco:CharacterString><xsl:value-of select="local-name()"/></gco:CharacterString>
 			</srv:operationName>
-			<srv:DCP>
-				<srv:DCPList codeList="#DCPList" codeListValue="WebServices">WebServices</srv:DCPList>
-			</srv:DCP>
-			<xsl:apply-templates
-                        select="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource"
-                        mode="connectPoint"/>
+			<srv:DCP><srv:DCPList codeList="#DCPList" codeListValue="WebServices">WebServices</srv:DCPList></srv:DCP>
+			<xsl:apply-templates select="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource" mode="connectPoint"/>
 		</srv:SV_OperationMetadata>
 	</xsl:for-each>
 </xsl:template>
 
 <xsl:template match="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource
 	| //wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="connectPoint">
-	<srv:connectPoint
-                xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<srv:connectPoint xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<CI_OnlineResource>
 			<linkage>
-				<URL>
-					<xsl:value-of select="."/>
-				</URL>
+				<URL><xsl:value-of select="."/></URL>
 			</linkage>
 		</CI_OnlineResource>
 	</srv:connectPoint>
 </xsl:template>
-
 <!-- should be called only on nonempty string WMS 1.0.0 -->
 <xsl:template match="//Service/OnlineResource[normalize-space()]" mode="connectPoint">
-	<srv:connectPoint
-                xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+	<srv:connectPoint xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<CI_OnlineResource>
 			<linkage>
-				<URL>
-					<xsl:value-of select="."/>
-				</URL>
+				<URL><xsl:value-of select="."/></URL>
 			</linkage>
 		</CI_OnlineResource>
 	</srv:connectPoint>
 </xsl:template>
-
 <xsl:template match="//wms:Capability/wms:Request | //Capability/Request" mode="transferOptions">
 	<!-- operation names are stored as element names and vary between wms versions -->
 	<xsl:for-each select="child::*">
 		<xsl:variable name="operationName">
 			<xsl:value-of select="local-name()"/>
 		</xsl:variable>
-		<xsl:for-each
-                    select="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource">
-			<gmd:transferOptions
-                        xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+		<xsl:for-each select="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource">
+			<gmd:transferOptions xsl:exclude-result-prefixes="ows ows11 wms wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 				<gmd:MD_DigitalTransferOptions>
 					<gmd:onLine>
 						<gmd:CI_OnlineResource>
 							<gmd:linkage>
-								<gmd:URL>
-									<xsl:value-of select="."/>
-								</gmd:URL>
+								<gmd:URL><xsl:value-of select="."/></gmd:URL>
 							</gmd:linkage>
 							<gmd:name>
-								<gco:CharacterString>
-									<xsl:value-of select="$operationName"/>
-								</gco:CharacterString>
+								<gco:CharacterString><xsl:value-of select="$operationName"/></gco:CharacterString>
 							</gmd:name>
 						</gmd:CI_OnlineResource>
 					</gmd:onLine>
@@ -1708,15 +1563,11 @@ and USGIN service metadata example xml document -->
 		</xsl:for-each>
 	</xsl:for-each>
 </xsl:template>
-
 <!-- should be called only on nonempty string WMS 1.0.0 -->
 <xsl:template match="//Service/OnlineResource[normalize-space()]" mode="transferOptions">
 	<xsl:value-of select="."/>
 </xsl:template>
-
-<xsl:template match="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource
-	| //wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="transferOptions">
+<xsl:template match="wms:DCPType/wms:HTTP//wms:OnlineResource/@xlink:href | DCPType/HTTP//OnlineResource/@xlink:href | DCPType/HTTP//@onlineResource| //wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="transferOptions">
 	<xsl:value-of select="."/>
 </xsl:template>
-
 </xsl:stylesheet>
