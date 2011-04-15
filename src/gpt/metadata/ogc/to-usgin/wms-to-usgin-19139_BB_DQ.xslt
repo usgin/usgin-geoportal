@@ -16,8 +16,7 @@
                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd
  http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd">
 
-	<xsl:output method="xml" version="1.0" encoding="UTF-8"
-                indent="yes"/>
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:param name="sourceUrl"/>
 	<xsl:param name="serviceType"/>
 	<xsl:param name="currentDate"/>
@@ -325,13 +324,16 @@ and USGIN service metadata example xml document -->
 								<xsl:otherwise>-->
 									<gmd:date>
 										<gmd:CI_Date>
-											<gmd:date> <!-- gco:nilReason="missing"-->
+											<gmd:date> 
+											
+											<!-- gco:nilReason="missing"-->
 												<gco:DateTime>
 												<!--<xsl:value-of select="concat($day, '/', $month, '/', $year, ' ',$time, ' - ', format-number($hours, '00'), ':', format-number($minutes,'00'))" />-->
 												<xsl:value-of select="concat(translate($currentDate, '/', '-'), 'T12:00:00')"/>
 												</gco:DateTime>
 											</gmd:date>
-											<gmd:dateType> <!-- gco:nilReason="missing" -->
+											<gmd:dateType>
+											<!-- gco:nilReason="missing" -->
 												<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
 											</gmd:dateType>
 										</gmd:CI_Date>
@@ -977,7 +979,7 @@ and USGIN service metadata example xml document -->
                                             test="//wms:LatLonBoundingBox |
 									  //LatLonBoundingBox |
 									  //LatLonBoundingBox | 	
-									  //wms:BoundingBox[@CRS='EPSG:4326']
+									  //wms:BoundingBox[@SRS='EPSG:4326']
 									  ">
 									  <!--CRS="EPSG:4326-->
 										<xsl:call-template name="WMS_BoundingBox"/>
@@ -986,8 +988,12 @@ and USGIN service metadata example xml document -->
 										<xsl:call-template name="WMS_EX_GeographicBoundingBox"/>
 									</xsl:when>
 									<xsl:when
-                                            test=" //ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner | //gml:Envelope[@srsName='EPSG:4326'] ">
+                                            test="//ows:LowerCorner | //ows11:LowerCorner | //gml:LowerCorner | //gml:pos[1] | //gml:coord[1] | //gml:lowerCorner | //gml:Envelope[@srsName='EPSG:4326'] ">
 										<xsl:call-template name="OWS_WGS84BoundingBox"/>
+									</xsl:when>
+									<xsl:when
+                                            test="//wms:BoundingBox[@CRS='EPSG:4326']">
+										<xsl:call-template name="WMS1_3_BoundingBox"/>
 									</xsl:when>
 								</xsl:choose>
 							</gmd:geographicElement>
@@ -997,6 +1003,7 @@ and USGIN service metadata example xml document -->
                              and associated data (if exists) - "Qualitative information on the tightness
                              with which the service and the associated data are coupled." NAP. -->
 					<!-- According to ISO: -->
+					
 					<!-- 1) loose - service instance is loosely coupled with a data instance,
                              i.e. no MD_DataIdentification class has to be described (ISO 19119). -->
 					<!-- 2) mixed - service instance is mixed coupled with a data instance,
@@ -1277,7 +1284,9 @@ and USGIN service metadata example xml document -->
 						<gmd:onLine>
 							<gmd:CI_OnlineResource>
 								<gmd:linkage>
-									<gmd:URL><xsl:apply-templates select="//Service/OnlineResource" mode="transferOptions"/><xsl:apply-templates select="//wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="transferOptions"/></gmd:URL>
+								<!--	<gmd:URL><xsl:apply-templates select="//Service/OnlineResource" mode="transferOptions"/><xsl:apply-templates select="//wms:Service/wms:OnlineResource/@xlink:href | //Service/OnlineResource/@xlink:href" mode="transferOptions"/></gmd:URL> -->
+									<gmd:URL><xsl:value-of select="$sourceUrl"/></gmd:URL> <!-- assumption is that this record is harvested from 
+									and OGC WMS get capabilities -->
 								</gmd:linkage>
 								<!-- The protocol element defines a valid internet protocol used
                                                  to access the resource. NAP recommended best practice is that the protocol
@@ -1399,6 +1408,22 @@ and USGIN service metadata example xml document -->
 		</gmd:northBoundLatitude>
 	</gmd:EX_GeographicBoundingBox>
 </xsl:template>
+<xsl:template name="WMS1_3_BoundingBox"><!--lat and long are reversed for crs=epsg:4326-->
+	<gmd:EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
+		<gmd:westBoundLongitude>
+			<gco:Decimal><xsl:call-template name="getMiny"/></gco:Decimal>
+		</gmd:westBoundLongitude>
+		<gmd:eastBoundLongitude>
+			<gco:Decimal><xsl:call-template name="getMaxy"/></gco:Decimal>
+		</gmd:eastBoundLongitude>
+		<gmd:southBoundLatitude>
+			<gco:Decimal><xsl:call-template name="getMinx"/></gco:Decimal>
+		</gmd:southBoundLatitude>
+		<gmd:northBoundLatitude>
+			<gco:Decimal><xsl:call-template name="getMaxx"/></gco:Decimal>
+		</gmd:northBoundLatitude>
+	</gmd:EX_GeographicBoundingBox>
+</xsl:template>
 <xsl:template name="WMS_EX_GeographicBoundingBox">
 	<gmd:EX_GeographicBoundingBox xsl:exclude-result-prefixes="wps100 swe myorg tml sml sps sos10 wfs wcs wcs11 wcs111 csw csw202 gml">
 		<gmd:westBoundLongitude>
@@ -1416,7 +1441,7 @@ and USGIN service metadata example xml document -->
 	</gmd:EX_GeographicBoundingBox>
 </xsl:template>
 <xsl:template name="getMinx">
-	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@minx" data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@minx"/>
@@ -1424,7 +1449,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMiny">
-	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox |//wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@miny" data-type="number" order="ascending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@miny"/>
@@ -1432,7 +1457,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMaxy">
-	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox |//wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@maxy" data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@maxy"/>
@@ -1440,7 +1465,7 @@ and USGIN service metadata example xml document -->
 	</xsl:for-each>
 </xsl:template>
 <xsl:template name="getMaxx">
-	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox |//wms:BoundingBox[@CRS='EPSG:4326']">
+	<xsl:for-each select="//wms:LatLonBoundingBox |//LatLonBoundingBox |//LatLonBoundingBox | //wms:BoundingBox[@CRS='EPSG:4326'] | //wms:BoundingBox[@SRS='EPSG:4326']">
 		<xsl:sort select="./@maxx" data-type="number" order="descending"/>
 		<xsl:if test="position() = 1">
 			<xsl:value-of select="./@maxx"/>

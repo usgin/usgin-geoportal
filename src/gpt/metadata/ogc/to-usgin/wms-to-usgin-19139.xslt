@@ -426,8 +426,7 @@ and USGIN service metadata example xml document -->
                                                            ) > 0. Best practice is to include at least an e-mail address -->
 											<gmd:contactInfo>
 												<gmd:CI_Contact>
-													<xsl:if
-                                                            test="//wms:ContactVoiceTelephone | ContactVoiceTelephone | wms:ContactFacsimileTelephone |
+													<xsl:if test="//wms:ContactVoiceTelephone | ContactVoiceTelephone | wms:ContactFacsimileTelephone |
 												ContactFacsimileTelephone">
 														<gmd:phone>
 															<gmd:CI_Telephone>
@@ -504,7 +503,20 @@ and USGIN service metadata example xml document -->
 																		</gco:CharacterString>
 																	</gmd:country>
 																</xsl:if>
-																<gmd:electronicMailAddress>
+																
+										<gmd:electronicMailAddress>			
+										<gco:CharacterString>
+											<xsl:choose>
+												<xsl:when test="string-length(//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress) > 0">
+													<xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:value-of select="'missing'"/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</gco:CharacterString>
+									</gmd:electronicMailAddress>
+															<!--<gmd:electronicMailAddress>
 																	<xsl:choose>
 																		<xsl:when
                                                                                 test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
@@ -514,11 +526,10 @@ and USGIN service metadata example xml document -->
 																			</gco:CharacterString>
 																		</xsl:when>
 																		<xsl:otherwise>
-																			<!-- at least an e-mail address is required -->
-																			<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
+															<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
 																		</xsl:otherwise>
 																	</xsl:choose>
-																</gmd:electronicMailAddress>
+																</gmd:electronicMailAddress> -->
 															</gmd:CI_Address>
 														</gmd:address>
 													</xsl:if>
@@ -637,7 +648,7 @@ and USGIN service metadata example xml document -->
                                   near end of document -->
 						<xsl:choose>
 							<xsl:when test="//wms:ContactInformation | //ContactInformation">
-								<gmd:CI_ResponsibleParty id="R264537">
+								<gmd:CI_ResponsibleParty>
 									<!-- (M-M) (individualName + organisationName + positionName) >
                                                      0 -->
 									<gmd:individualName>
@@ -762,21 +773,38 @@ and USGIN service metadata example xml document -->
 																</gco:CharacterString>
 															</gmd:country>
 														</xsl:if>
-														<gmd:electronicMailAddress>
+														
+										<gmd:electronicMailAddress>			
+										<gco:CharacterString>
+											<xsl:choose>
+												<xsl:when test="string-length(//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress) > 0">
+													<xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:value-of select="'missing'"/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</gco:CharacterString>
+									</gmd:electronicMailAddress>
+														
+														
+														
+														
+														<!--<gmd:electronicMailAddress>
 															<xsl:choose>
-																<xsl:when
-                                                                        test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
+																<xsl:when test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
 																	<gco:CharacterString>
 																		<xsl:value-of
                                                                                 select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
 																	</gco:CharacterString>
 																</xsl:when>
 																<xsl:otherwise>
-																	<!-- at least an e-mail address is required -->
+																	 at least an e-mail address is required 
 																	<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
 																</xsl:otherwise>
 															</xsl:choose>
-														</gmd:electronicMailAddress>
+														</gmd:electronicMailAddress> -->
+														
 													</gmd:CI_Address>
 												</gmd:address>
 											</xsl:if>
@@ -1076,12 +1104,12 @@ and USGIN service metadata example xml document -->
 					<gmd:distributor>
 						<gmd:MD_Distributor>
 							<gmd:distributorContact>
+								
 								<xsl:choose>
 									<xsl:when test="//wms:ContactInformation | //ContactInformation">
 										<gmd:CI_ResponsibleParty>
 											<!-- (M-M) (individualName + organisationName + positionName) >
                                                      0 -->
-
 											<gmd:individualName>
 												<gco:CharacterString>
 													<xsl:choose>
@@ -1192,23 +1220,19 @@ and USGIN service metadata example xml document -->
 
 
 
-															<gmd:electronicMailAddress>							
+														<!--	<gmd:electronicMailAddress>							
 																<xsl:choose>
 																	<xsl:when test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
 																		<gco:CharacterString> <xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/></gco:CharacterString>
 																	</xsl:when>
 																	<xsl:otherwise>
-																		<!-- at least an e-mail address is required -->
+																		### at least an e-mail address is required###
 																		<gco:CharacterString>missing@missing.com</gco:CharacterString>
 																	</xsl:otherwise>
 																</xsl:choose>
-															</gmd:electronicMailAddress>
-
-
-
-
-
-															<!--<gmd:electronicMailAddress>			
+															</gmd:electronicMailAddress -->
+														
+									<gmd:electronicMailAddress>			
 										<gco:CharacterString>
 											<xsl:choose>
 												<xsl:when test="string-length(//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress) > 0">
@@ -1219,15 +1243,13 @@ and USGIN service metadata example xml document -->
 												</xsl:otherwise>
 											</xsl:choose>
 										</gco:CharacterString>
-									</gmd:electronicMailAddress> -->
-
-
-														</gmd:CI_Address>
-													</gmd:address>
+									</gmd:electronicMailAddress>
+									</gmd:CI_Address>
+									</gmd:address>
 													<!-- /xsl:if -->
 													<!-- test if have e-mail -->
-												</gmd:CI_Contact>
-											</gmd:contactInfo>
+									</gmd:CI_Contact>
+									</gmd:contactInfo>
 											<!-- (M-M) ISO 19139 Mandatory: contact role - Guidance on use
                                                      of role codes would be helpful for consistency, but has not been developed
                                                      as yet. -->
@@ -1248,15 +1270,18 @@ and USGIN service metadata example xml document -->
 											</gmd:individualName>
 											<gmd:contactInfo>
 												<gmd:CI_Contact>
-													<gmd:phone gco:nilReason="missing">888-888-8888</gmd:phone>
+												<gmd:phone>
+												<gmd:CI_Telephone>
+												<gmd:phone gco:nilReason="missing">888-888-8888</gmd:phone>
+												</gmd:CI_Telephone>
+												</gmd:phone>
 											<gmd:address>
 												<gmd:CI_Address>
-												
-													<gmd:electronicMailAddress gco:nilReason="missing">
-														<gco:CharacterString>not reported</gco:CharacterString>
+												<gmd:electronicMailAddress gco:nilReason="missing">
+														<gco:CharacterString>Missing@Email.com</gco:CharacterString>
 													</gmd:electronicMailAddress>
 												</gmd:CI_Address>
-											</gmd:address>
+											</gmd:address> 
 												</gmd:CI_Contact>
 											</gmd:contactInfo>
 												<gmd:role>
