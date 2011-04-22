@@ -265,7 +265,7 @@ and USGIN service metadata example xml document -->
 						<gmd:CI_Citation>
 							<!-- (M-M) Resource title - USGIN recommends using titles that inform
                                        the human reader about the dataset's content as well as its context. -->
-		<gmd:title>
+								<gmd:title>
 								<xsl:choose>
 									<xsl:when test="string-length(/WMT_MS_Capabilities/Service/Title |
 								//wms:Service/wms:Title  | 
@@ -276,56 +276,14 @@ and USGIN service metadata example xml document -->
 								/wms:WMT_MS_Capabilities/wms:Service/wms:Title"/>
 										</gco:CharacterString>
 									</xsl:when>
-<xsl:otherwise>
-<gco:CharacterString>Missing</gco:CharacterString>
+									<xsl:otherwise>
+									<gco:CharacterString>Missing</gco:CharacterString>
 									</xsl:otherwise>
 								</xsl:choose>
 							</gmd:title>
-
-
-<!--changed by LMM 04/13/2011-->
-						<!--<gmd:title>
-								<xsl:if
-                                        test="
-								/WMT_MS_Capabilities/Service/Title |
-								//wms:Service/wms:Title  | 
-								/wms:WMT_MS_Capabilities/wms:Service/wms:Title				
-						">
-									<gco:CharacterString>
-										<xsl:value-of
-                                                select="
-								/WMT_MS_Capabilities/Service/Title |
-								//wms:Service/wms:Title  | 
-								/wms:WMT_MS_Capabilities/wms:Service/wms:Title				
-						"/>
-									</gco:CharacterString>
-								</xsl:if>
-								
-							</gmd:title> -->
-							
-							
-							<!-- (M-M) Resource reference date - This will be difficult to know
-                                       for harvested ogc GetCapabilities -->
-							<!--<xsl:choose>
-								<xsl:when test="//gml:relatedTime">
-									<gmd:date>
-										<gmd:CI_Date>
-											<gmd:date>
-												<gco:DateTime>
-													<xsl:value-of select="//gml:relatedTime">
-												</gco:DateTime>
-											</gmd:date>
-											<gmd:dateType>
-												<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
-											</gmd:dateType>
-										</gmd:CI_Date>
-									</gmd:date>
-								</xsl:when>
-								<xsl:otherwise>-->
 									<gmd:date>
 										<gmd:CI_Date>
 											<gmd:date> 
-											
 											<!-- gco:nilReason="missing"-->
 												<gco:DateTime>
 												<!--<xsl:value-of select="concat($day, '/', $month, '/', $year, ' ',$time, ' - ', format-number($hours, '00'), ':', format-number($minutes,'00'))" />-->
@@ -354,21 +312,7 @@ and USGIN service metadata example xml document -->
 										<gmd:CI_ResponsibleParty>
 											<!-- (M-M) (individualName + organisationName + positionName)
                                                            > 0 -->
-
-
-											<!--  <xsl:if test="//wms:ContactPerson | //ContactPerson">
-                                                <gmd:individualName>
-                                                    <gco:CharacterString>
-                                                        <xsl:value-of select="//wms:ContactPerson | //ContactPerson"/>
-                                                    </gco:CharacterString>
-                                                </gmd:individualName>
-                                            </xsl:if>-->
-											<!--<xsl:otherwise>
-														<gco:CharacterString>missing
-														</gco:CharacterString>
-													</xsl:otherwise>-->
-
-											<gmd:individualName>
+												<gmd:individualName>
 												<gco:CharacterString>
 													<xsl:choose>
 														<xsl:when
@@ -381,20 +325,6 @@ and USGIN service metadata example xml document -->
 													</xsl:choose>
 												</gco:CharacterString>
 											</gmd:individualName>
-
-
-
-											<!--   <xsl:if test="//wms:ContactOrganization | //ContactOrganization">
-                                                <gmd:organisationName>
-                                                    <gco:CharacterString>
-                                                        <xsl:value-of
-                                                                select="//wms:ContactOrganization | //ContactOrganization"/>
-                                                    </gco:CharacterString>
-                                                </gmd:organisationName>
-                                            </xsl:if> -->
-
-
-
 											<gmd:organisationName>
 												<gco:CharacterString>
 													<xsl:choose>
@@ -408,8 +338,6 @@ and USGIN service metadata example xml document -->
 													</xsl:choose>
 												</gco:CharacterString>
 											</gmd:organisationName>
-
-
 											<xsl:if test="//wms:ContactPosition | //ContactPosition">
 												<gmd:positionName>
 													<gco:CharacterString>
@@ -418,10 +346,6 @@ and USGIN service metadata example xml document -->
 													</gco:CharacterString>
 												</gmd:positionName>
 											</xsl:if>
-
-
-
-
 											<!-- (O-C) Contact Information - (phone + deliveryPoint + electronicMailAddress
                                                            ) > 0. Best practice is to include at least an e-mail address -->
 											<gmd:contactInfo>
@@ -516,25 +440,10 @@ and USGIN service metadata example xml document -->
 											</xsl:choose>
 										</gco:CharacterString>
 									</gmd:electronicMailAddress>
-															<!--<gmd:electronicMailAddress>
-																	<xsl:choose>
-																		<xsl:when
-                                                                                test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
-																			<gco:CharacterString>
-																				<xsl:value-of
-                                                                                        select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
-																			</gco:CharacterString>
-																		</xsl:when>
-																		<xsl:otherwise>
-															<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
-																		</xsl:otherwise>
-																	</xsl:choose>
-																</gmd:electronicMailAddress> -->
-															</gmd:CI_Address>
-														</gmd:address>
-													</xsl:if>
-													<!-- test if have e-mail -->
-												</gmd:CI_Contact>
+									</gmd:CI_Address>
+									</gmd:address>
+									</xsl:if>
+										</gmd:CI_Contact>
 											</gmd:contactInfo>
 											<!-- (M-M) ISO 19139 Mandatory: contact role - Guidance on use
                                                            of role codes would be helpful for consistency, but has not been developed
@@ -680,10 +589,6 @@ and USGIN service metadata example xml document -->
 											</xsl:choose>
 										</gco:CharacterString>
 									</gmd:organisationName>
-
-
-
-
 									<xsl:if test="//wms:ContactPosition | //ContactPosition">
 										<gmd:positionName>
 											<gco:CharacterString>
@@ -786,28 +691,9 @@ and USGIN service metadata example xml document -->
 											</xsl:choose>
 										</gco:CharacterString>
 									</gmd:electronicMailAddress>
-														
-														
-														
-														
-														<!--<gmd:electronicMailAddress>
-															<xsl:choose>
-																<xsl:when test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
-																	<gco:CharacterString>
-																		<xsl:value-of
-                                                                                select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/>
-																	</gco:CharacterString>
-																</xsl:when>
-																<xsl:otherwise>
-																	 at least an e-mail address is required 
-																	<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
-																</xsl:otherwise>
-															</xsl:choose>
-														</gmd:electronicMailAddress> -->
-														
-													</gmd:CI_Address>
-												</gmd:address>
-											</xsl:if>
+									</gmd:CI_Address>
+									</gmd:address>
+									</xsl:if>
 											<!-- test if have e-mail -->
 										</gmd:CI_Contact>
 									</gmd:contactInfo>
@@ -914,27 +800,7 @@ and USGIN service metadata example xml document -->
                              In some situations, the metadataConstraints may allow a user to learn of
                              the existence of a resource that they may not actually be able to access
                              without further clearance. Follow NAP for specification of resourceConstraints. -->
-					<!-- <xsl:when test="//wms:AccessConstraints | //AccessConstraints"> -->
-					<!--	<xsl:choose>
-				
-				 <xsl:when test="//wms:AccessConstraints | //AccessConstraints">
-                        <gmd:resourceConstraints>
-                            <gmd:MD_Constraints>
-                                <gmd:useLimitation>
-                                    <gco:CharacterString>
-                                        <xsl:value-of select="//wms:AccessConstraints | //AccessConstraints/">
-                                    </gco:CharacterString>
-                               </gmd:MD_Constraints>
-                        </gmd:resourceConstraints>
-                    </xsl:when>
-					<xsl:otherwise>
-							<xsl:value-of select="'missing'"/>
-							</xsl:otherwise>
-							</gco:CharacterString>
-							</gmd:useLimitation>
-							</xsl:choose>
-									-->
-					<gmd:resourceConstraints>
+				<gmd:resourceConstraints>
 						<gmd:MD_Constraints>
 							<gmd:useLimitation>
 								<xsl:choose>
@@ -1217,22 +1083,7 @@ and USGIN service metadata example xml document -->
 																	<gco:CharacterString><xsl:value-of select="//wms:ContactAddress/Country | //ContactAddress/Country"/></gco:CharacterString>
 																</gmd:country>
 															</xsl:if>
-
-
-
-														<!--	<gmd:electronicMailAddress>							
-																<xsl:choose>
-																	<xsl:when test="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress">
-																		<gco:CharacterString> <xsl:value-of select="//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress"/></gco:CharacterString>
-																	</xsl:when>
-																	<xsl:otherwise>
-																		### at least an e-mail address is required###
-																		<gco:CharacterString>missing@missing.com</gco:CharacterString>
-																	</xsl:otherwise>
-																</xsl:choose>
-															</gmd:electronicMailAddress -->
-														
-									<gmd:electronicMailAddress>			
+															<gmd:electronicMailAddress>			
 										<gco:CharacterString>
 											<xsl:choose>
 												<xsl:when test="string-length(//wms:ContactElectronicMailAddress | //ContactElectronicMailAddress) > 0">
@@ -1246,8 +1097,6 @@ and USGIN service metadata example xml document -->
 									</gmd:electronicMailAddress>
 									</gmd:CI_Address>
 									</gmd:address>
-													<!-- /xsl:if -->
-													<!-- test if have e-mail -->
 									</gmd:CI_Contact>
 									</gmd:contactInfo>
 											<!-- (M-M) ISO 19139 Mandatory: contact role - Guidance on use
