@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+<schema key="iso to USGIN" editable="false">
+<!--    cswOutputSchema="http://www.isotc211.org/2005/gmd" 
+        cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt" 
+        cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt" 
+        xsdLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd"> -->
+  <!--  schema namespaces-->
+ 
+  <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
+  <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+  <namespace prefix="gml" uri="http://www.opengis.net/gml"/>
+  <namespace prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
+  
+  <!-- schema interrogation -->
+  <interrogation count="count(/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification)"
+  toKnownSchemaXslt="gpt/metadata/iso/usgin/iso-19119-to-usgin-19119-service.xslt"/>
+  </schema>
+</schemas>

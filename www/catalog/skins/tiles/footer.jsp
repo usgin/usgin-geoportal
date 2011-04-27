@@ -24,11 +24,11 @@
            <td width="20%" align='left'>
              <h:graphicImage value="/catalog/images/doe_banner_50h.png" 
                      style=''
-                     alt="The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE1002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists."
-                     title="The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE1002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists."/>
+                     alt="The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE0002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists."
+                     title="The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE0002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists."/>
            </td>
            <td width="80%" align='left'>
-             The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE1002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists.
+             The U.S. Department of Energy under award DE-EE0001120 to Boise State University and under award DE-EE0002850 to the Arizona Geological Survey acting on behalf of the Association of American State Geologists.
            </td>
          </tr>
          <tr>
