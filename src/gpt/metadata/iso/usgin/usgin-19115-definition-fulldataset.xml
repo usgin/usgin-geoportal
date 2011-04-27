@@ -33,7 +33,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="citation.author">
             <label resourceKey="catalog.mdParam.citation.author"/>
             <input type="text" hintResourceKey="catalog.resource.description.hint" hintMode="tip"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
         </parameter>
@@ -41,7 +41,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="general.contact.role.resources">
             <label resourceKey="catalog.mdParam.inspire.general.contact.role.resources"/>
             <input type="selectOneMenu" defaultValue="user"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content nodeType="isoCodeListValue" useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue">
                 <codes>
@@ -67,7 +67,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <label resourceKey="catalog.mdParam.citation.organization.resource"/>
             <input type="text"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
         </parameter>
@@ -75,7 +75,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="identification.title" meaning="title">
             <label resourceKey="catalog.mdParam.inspire.identification.title"/>
             <input type="text" hintResourceKey="catalog.resource.title.hint" hintMode="tip"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
         </parameter>
@@ -86,7 +86,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="identification.date" meaning="datetime">
             <label resourceKey="catalog.mdParam.citation.referenceDate"/>
             <input type="text" hintResourceKey="catalog.general.inputDateFormat" hintMode="inline"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
         </parameter>
@@ -96,7 +96,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="identification.abstract">
             <label resourceKey="catalog.mdParam.identification.abstract"/>
             <input type="textArea"/>
-            <validation required="True"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString"/>
         </parameter>
@@ -181,7 +181,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.mdParam.inspire.datasetInfo.datasetLanguage"/>
 
                 <input type="text" size="12" maxlength="12" defaultValue="eng"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:language/gco:CharacterString"/>
             </parameter>
@@ -190,7 +190,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 			<parameter key="resourceIdentifier.datasetURI.caption">
 				<label resourceKey="catalog.dataset.resourceIdentifier.datasetURI.caption"/>
 				<input type="text" size="50" maxlength="2048" defaultValue="#{EditMetadataController.newUuid}"/>
-				<validation required="true"/>
+				<validation required="false"/>
 				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
 			</parameter>
 
@@ -198,7 +198,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="identification.resourceMaintenanceStatus">
                 <label resourceKey="catalog.mdParam.identification.resourceMaintenanceStatus"/>
                 <input type="selectOneMenu"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content nodeType="isoCodeListValue" deleteParentIfEmpty="true" useSelectForUpdate="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue"
                     	 update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue">
@@ -309,7 +309,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
          <parameter key="positionName.distibutor">
                 <label resourceKey="catalog.mdParam.contact.positionName.distibutor"/>
                 <input type="text"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:positionName/gco:CharacterString"/>
             </parameter>
@@ -317,7 +317,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="general.contact.role.publisher">
             <label resourceKey="catalog.mdParam.inspire.general.contact.role.publisher"/>
             <input type="selectOneMenu" defaultValue="distributor"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content nodeType="isoCodeListValue" useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue">
                 <codes>
@@ -342,7 +342,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
       <parameter key="contact.distributor.email">
                 <label resourceKey="catalog.mdParam.contact.distributor.email"/>
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:email/gco:CharacterString"/>
             </parameter>
@@ -822,7 +822,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.inspire.envelope.west"/>
             <input type="text" size="24" maxlength="24" defaultValue="-179.0771"
                    hintResourceKey="catalog.general.inputLongitudeFormat"/>
-            <validation required="true" valueType="double"/>
+            <validation required="false" valueType="double"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal"/>
         </parameter>
@@ -830,7 +830,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.inspire.envelope.south"/>
             <input type="text" size="24" maxlength="24" defaultValue="12.7047"
                    hintResourceKey="catalog.general.inputLatitudeFormat"/>
-            <validation required="true" valueType="double"/>
+            <validation required="false" valueType="double"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal"/>
         </parameter>
@@ -838,7 +838,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.inspire.envelope.east"/>
             <input type="text" size="24" maxlength="24" defaultValue="-48.999"
                    hintResourceKey="catalog.general.inputLongitudeFormat"/>
-            <validation required="true" valueType="double"/>
+            <validation required="false" valueType="double"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal"/>
         </parameter>
@@ -846,7 +846,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.inspire.envelope.north"/>
             <input type="text" size="24" maxlength="24" defaultValue="75.359"
                    hintResourceKey="catalog.general.inputLatitudeFormat"/>
-            <validation required="true" valueType="double"/>
+            <validation required="false" valueType="double"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal"/>
         </parameter>
@@ -869,14 +869,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.general.individualName"/>
             <input type="text" hintResourceKey="catalog.md.originator.hint" hintMode="tip"
                    defaultValue="#{EditMetadataController.userProfile['username'].value}"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
         </parameter>
         <parameter key="general.contact.role">
             <label resourceKey="catalog.mdParam.inspire.general.contact.role"/>
             <input type="selectOneMenu" defaultValue="originator"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content nodeType="isoCodeListValue" useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue">
                 <codes>
@@ -901,7 +901,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <label resourceKey="catalog.mdParam.contact.email"/>
             <input type="text" hintResourceKey="catalog.md.email.hint" hintMode="tip"
                    defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                      select="gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
         </parameter>
@@ -976,7 +976,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="general.fileIdentifier" meaning="fileIdentifier">
                 <label resourceKey="catalog.mdParam.general.fileIdentifier"/>
                 <input type="text" size="50" maxlength="2048" defaultValue="#{EditMetadataController.newUuid}"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString"/>
             </parameter>
@@ -986,25 +986,25 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.mdParam.general.metadataLanguage"/>
 
                 <input type="text" size="50" maxlength="2048" defaultValue="eng"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:language/gco:CharacterString"/>
             </parameter>
             <parameter key="general.characterSet">
                 <label resourceKey="catalog.mdParam.general.characterSet"/>
                 <input type="selectOneMenu" defaultValue="utf8"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content nodeType="isoCodeListValue" useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue">
                     <codes>
-                        <code key="utf8" resourceKey="catalog.mdCode.characterSet.utf8"/>
+                        <code key="utf8" resourceKey="catalog.mdCode.characterSet.utf8"/> 
                     </codes>
                 </content>
             </parameter>
-            <parameter key="general.hierarchyLevel">
+            <parameter key="general.hierarchyLevel"> 
                 <label resourceKey="catalog.mdParam.general.hierarchyLevel"/>
                 <input type="selectOneMenu" defaultValue="dataset"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content nodeType="isoCodeListValue" useSelectForUpdate="true"
                          select="/gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue"
                          delete="/gmd:MD_Metadata/gmd:hierarchyLevel">
@@ -1023,10 +1023,10 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="general.hierarchyLevelName">
                 <label resourceKey="catalog.mdParam.general.hierarchyLevelName"/>
                 <!--         <input type="text" size="25" maxLength="25" defaultValue="dataset" editable="true"/>
-            <validation required="true"/>
+            <validation required="false"/>
             <content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString"/> -->
                 <input type="selectOneMenu" size="30" defaultValue="Dataset"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true" select="/gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString"
                          deleteIfEmpty="true" deleteParentIfEmpty="true">
                     <codes>
@@ -1075,15 +1075,15 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.mdParam.inspire.general.metadataDateStamp"/>
                 <input type="text" size="20" maxlength="20" hintResourceKey="catalog.general.inputDateFormat"
                        defaultValue="#{EditMetadataController.now}"/>
-                <!--<validation required="true" valueType="date"/>-->
-                <validation required="true" valueType="Timestamp"/>
+                <!--<validation required="false" valueType="date"/>-->
+                <validation required="false" valueType="Timestamp"/>
                 <content select="/gmd:MD_Metadata/gmd:dateStamp/gco:Date | /gmd:MD_Metadata/gmd:dateStamp/gco:DateTime"
                          update="/gmd:MD_Metadata/gmd:dateStamp/gco:DateTime"/>
             </parameter>
             <parameter key="standard.name">
                 <label resourceKey="catalog.mdParam.standard.name"/>
                 <input type="text" editable="false" defaultValue="ISO-NAP-USGIN"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true"
                          select="/gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString"/>
             </parameter>
@@ -1091,14 +1091,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="standard.version">
                 <label resourceKey="catalog.mdParam.standard.version"/>
                 <input type="text" editable="false" defaultValue="1.1"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content useSelectForUpdate="true"
                          select="/gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString"/>
             </parameter>
             <parameter key="identification.status">
                 <label resourceKey="catalog.mdParam.identification.maintenanceStatus"/>
                 <input type="selectOneMenu"/>
-                <validation required="true"/>
+                <validation required="false"/>
                 <content nodeType="isoCodeListValue" deleteParentIfEmpty="true" useSelectForUpdate="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status/gmd:MD_ProgressCode/@codeListValue"
                     	 update="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:status[gmd:MD_ProgressCode/@codeListValue='status']/gmd:MD_ProgressCode/@codeListValue">
