@@ -32,13 +32,11 @@
             <gmd:fileIdentifier>
                 <gco:CharacterString>
                     <xsl:choose>
-                        <xsl:when
-                                test="string-length(/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString) &lt; 36">
-                            <xsl:value-of select="$generatedUUID"/>
+                        <xsl:when test="string-length(/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString) &lt; 36">
+                         <xsl:value-of select="$generatedUUID"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of
-                                    select="/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString"/>
+                            <xsl:value-of select="/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </gco:CharacterString>
@@ -46,18 +44,13 @@
             <xsl:copy-of select="/gmd:MD_Metadata/gmd:language"/>
             <gmd:characterSet>
                 <gmd:MD_CharacterSetCode
-                        codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"
-                        codeListValue="utf8">UTF-8
-                </gmd:MD_CharacterSetCode>
+                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
             </gmd:characterSet>
             <gmd:hierarchyLevel>
-                <gmd:MD_ScopeCode
-                        codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-                        codeListValue="service">service
-                </gmd:MD_ScopeCode>
+                <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="service">service</gmd:MD_ScopeCode>
             </gmd:hierarchyLevel>
             <gmd:hierarchyLevelName>
-                <gco:CharacterString>Service</gco:CharacterString>
+            <gco:CharacterString>Service</gco:CharacterString>
             </gmd:hierarchyLevelName>
 
             <xsl:apply-templates select="/gmd:MD_Metadata/gmd:contact"/>
@@ -75,7 +68,7 @@
             <xsl:copy-of select="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
             <xsl:choose>
                 <xsl:when test="/gmd:MD_Metadata/gmd:referenceSystemInfo">
-                    <xsl:apply-templates select="/gmd:MD_Metadata/gmd:referenceSystemInfo"/>
+                <xsl:apply-templates select="/gmd:MD_Metadata/gmd:referenceSystemInfo"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- Create single empty required element -->
@@ -104,16 +97,11 @@
                         <gmd:DQ_Scope>
                             <gmd:level>
                                 <xsl:choose>
-                                    <xsl:when
-                                            test="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode">
-                                        <xsl:copy-of
-                                                select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode"/>
+                                    <xsl:when test="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode">
+                                        <xsl:copy-of select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <gmd:MD_ScopeCode
-                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-                                                codeListValue="dataset">dataset
-                                        </gmd:MD_ScopeCode>
+                                        <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </gmd:level>
@@ -124,14 +112,11 @@
                         <gmd:LI_Lineage>
                             <gmd:statement>
                                 <gco:CharacterString>
-                                    <xsl:value-of
-                                            select="concat(/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString, ' This metadata record harvested from ', $sourceUrl, '. and transformed to USGIN ISO19139 profile using iso_19119_to_usgin_iso_19119.xslt version 1.0')"/>
+                                    <xsl:value-of select="concat(/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString, ' This metadata record harvested from ', $sourceUrl, '. and transformed to USGIN ISO19139 profile using iso-19119-to-usgin-iso-19119.xslt version 1.0')"/>
                                 </gco:CharacterString>
                             </gmd:statement>
-                            <xsl:copy-of
-                                    select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:source"/>
-                            <xsl:copy-of
-                                    select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:processStep"/>
+                            <xsl:copy-of select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:source"/>
+                            <xsl:copy-of select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:processStep"/>
                         </gmd:LI_Lineage>
                     </gmd:lineage>
                 </gmd:DQ_DataQuality>
@@ -156,45 +141,31 @@
                 <gmd:contactInfo>
                     <gmd:CI_Contact>
                         <xsl:attribute name="uuid">
-                            <xsl:value-of
-                                    select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/@uuid"/>
+                            <xsl:value-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/@uuid"/>
                         </xsl:attribute>
-                        <xsl:copy-of
-                                select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone"/>
+                        <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone"/>
                         <gmd:address>
                             <gmd:CI_Address>
-                                <xsl:copy-of
-                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint"/>
-                                <xsl:copy-of
-                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city"/>
-                                <xsl:copy-of
-                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea"/>
-                                <xsl:copy-of
-                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode"/>
-                                <xsl:copy-of
-                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country"/>
+                                <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint"/>
+                                <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city"/>
+                                <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea"/>
+                                <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode"/>
+                                <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country"/>
                                 <gmd:electronicMailAddress>
                                     <gco:CharacterString>
                                         <xsl:choose>
-                                            <xsl:when
-                                                    test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress">
-                                                <xsl:value-of
-                                                        select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
+                                            <xsl:when test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress">
+                                                <xsl:value-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
                                             </xsl:when>
-                                            <xsl:otherwise>
-                                                missing
-                                            </xsl:otherwise>
+                                            <xsl:otherwise>missing</xsl:otherwise>
                                         </xsl:choose>
                                     </gco:CharacterString>
                                 </gmd:electronicMailAddress>
                             </gmd:CI_Address>
                         </gmd:address>
-                        <xsl:copy-of
-                                select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource"/>
-                        <xsl:copy-of
-                                select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:hoursOfService"/>
-                        <xsl:copy-of
-                                select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:contactInstructions"/>
+                        <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource"/>
+						<xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:hoursOfService"/>
+                        <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:contactInstructions"/>
                     </gmd:CI_Contact>
                 </gmd:contactInfo>
                 <xsl:copy-of select="gmd:CI_ResponsibleParty/gmd:role"/>
@@ -210,10 +181,8 @@
                         <gmd:code>
                             <gco:CharacterString>
                                 <xsl:choose>
-                                    <xsl:when
-                                            test="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
-                                        <xsl:value-of
-                                                select="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString"/>
+                                    <xsl:when test="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
+                                     <xsl:value-of select="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                     </xsl:otherwise>
@@ -223,10 +192,8 @@
                         <gmd:codeSpace>
                             <gco:CharacterString>
                                 <xsl:choose>
-                                    <xsl:when
-                                            test="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString">
-                                        <xsl:value-of
-                                                select="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString"/>
+                                    <xsl:when test="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString">
+                                        <xsl:value-of select="gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                     </xsl:otherwise>
@@ -248,16 +215,12 @@
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:purpose"/>
                 <gmd:status>
                     <xsl:choose>
-                        <xsl:when
-                                test="srv:SV_ServiceIdentification/gmd:status/gmd:MD_ProgressCode">
-                            <xsl:copy-of
-                                    select="srv:SV_ServiceIdentification/gmd:status/gmd:MD_ProgressCode"/>
+                        <xsl:when test="srv:SV_ServiceIdentification/gmd:status/gmd:MD_ProgressCode">
+                            <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:status/gmd:MD_ProgressCode"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <gmd:MD_ProgressCode
-                                    codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode"
-                                    codeListValue="completed">completed
-                            </gmd:MD_ProgressCode>
+                            <gmd:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode"
+                            codeListValue="completed">completed</gmd:MD_ProgressCode>
                         </xsl:otherwise>
                     </xsl:choose>
                 </gmd:status>
@@ -265,8 +228,7 @@
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:resourceMaintenance"/>
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:graphicOverview"/>
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:descriptiveKeywords"/>
-                <xsl:copy-of
-                        select="srv:SV_ServiceIdentification/gmd:resourceSpecificUsage"/>
+                <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:resourceSpecificUsage"/>
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:resourceConstraints"/>
                 <xsl:copy-of select="srv:SV_ServiceIdentification/gmd:aggregationInfo"/>
                 <xsl:copy-of select="srv:SV_ServiceIdentification/srv:serviceType"/>

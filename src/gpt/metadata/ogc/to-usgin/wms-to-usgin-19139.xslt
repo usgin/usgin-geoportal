@@ -42,7 +42,16 @@ and USGIN service metadata example xml document -->
 			<!-- (M-M) Metadata file identifier - A unique File Identifier (GUID)
                    - USGIN recommends using a valid Universally Unique Identifier (UUID) -->
 			<gmd:fileIdentifier>
+            	<xsl:choose>
+                <xsl:when test="string-length($sourceURL)=0">
 				<gco:CharacterString><xsl:value-of select="concat('wms-capabilities-for-', substring-before($sourceUrl, '?'))"/></gco:CharacterString>
+                </xsl:when>
+                <xsl:otherwise>
+                			<gco:CharacterString><xsl:value-of select="concat('USGIN-ID-missing-', generate-id(.))"/></gco:CharacterString>
+
+                </xsl:otherwise>
+                
+                </xsl:choose>
 			</gmd:fileIdentifier>
 			<!-- language -->
 			<xsl:choose>
@@ -523,7 +532,7 @@ and USGIN service metadata example xml document -->
 									<xsl:value-of select="//Abstract | //wms:Abstract"/>
 								</gco:CharacterString>
 							</xsl:when>
-<xsl:otherwise>
+					<xsl:otherwise>
 								<gco:CharacterString>OGC WMS service, this metadata harvested from service capabilities.
                                     No abstract provided by service.</gco:CharacterString>
 							</xsl:otherwise>

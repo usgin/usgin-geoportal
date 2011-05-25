@@ -18,8 +18,10 @@
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
-                xmlns:gmx="http://www.isotc211.org/2005/gmx">
-	
+                xmlns:gmx="http://www.isotc211.org/2005/gmx"
+				xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+		
+				
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
     <xsl:param name="sourceUrl"/>
     <xsl:param name="serviceType"/>
@@ -40,8 +42,8 @@ and USGIN service metadata example xml document -->
     </xsl:template>
     <xsl:template name="main">
         <!-- coverts ISO 19115 metadata to USGIN ISO 191115 metadata -->
-        <gmd:MD_Metadata
-                xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+        <gmd:MD_Metadata xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+                
             <gmd:fileIdentifier>
                 <gco:CharacterString>
                     <xsl:choose>

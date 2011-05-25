@@ -66,7 +66,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
         <parameter key="resource.organisation">
 		<label resourceKey="catalog.usgin.resource.organisation"/>
             <input type="text"/>
-            <validation required="false"/>
+            <validation required="false"/> 
             <content useSelectForUpdate="true"
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
         </parameter>
@@ -236,7 +236,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="fasle"/>
                 <content useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_QuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString"/>
             </parameter>
 
             <!--Browse Graphic Section-->

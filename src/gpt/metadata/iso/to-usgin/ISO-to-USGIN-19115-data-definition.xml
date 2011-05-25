@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemas>
-<schema key="iso to USGIN" editable="false">
+<schema key="ISOtoUSGIN 19115" editable="false">
   <!--  cswOutputSchema="http://www.isotc211.org/2005/gmd" 
         cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt" 
         cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt" 
         xsdLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd"> -->
+		
   <!--  schema namespaces-->
   <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
   <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
   <namespace prefix="gml" uri="http://www.opengis.net/gml"/>
+  
   <!-- schema interrogation -->
   <interrogation count="count(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification)"
-  toKnownSchemaXslt="gpt/metadata/iso/usgin/iso-19115-to-usgin-19115-data.xslt"/>
+  toKnownSchemaXslt="gpt/metadata/iso/to-usgin/iso-19115-to-usgin-19115-data.xslt"/>
 </schema>
 </schemas>

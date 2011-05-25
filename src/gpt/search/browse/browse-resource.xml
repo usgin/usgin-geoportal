@@ -21,11 +21,11 @@
     <name resourceKey="catalog.browse.toc.browseResource"></name>
 		<item>
 			<name resourceKey="catalog.resource.relationships.toc.operates-On">Operates On</name>
-	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.OperatesOn-apiso.ResourceIdentifier</query>
+	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.OperatesOnIdentifier</query>
 		</item>	
 		<item>
 			<name resourceKey="catalog.resource.relationships.toc.used-By"></name>  
-	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.OperatesOn</query>		
+	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.ParentIdentifier</query>		
 		</item>	
   </item>
 </tree>
