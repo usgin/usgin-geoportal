@@ -117,9 +117,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 			<!-- (M-M) ISO 19139 Mandatory: contact role -->
 			<gmd:role>
 				<!-- CI_RoleCode names: {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author}.  -->
-				
-				<!-- ISO example -->
-				<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
+			<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
 			</gmd:role>
 		</gmd:CI_ResponsibleParty>
 	</gmd:contact>
@@ -146,8 +144,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 			</gmd:contactInfo>
 			<gmd:role>
 				<!-- CI_RoleCode names: {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} -->
-				<!-- ISO example -->
-				<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator">originator</gmd:CI_RoleCode>
+			<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator">originator</gmd:CI_RoleCode>
 			</gmd:role>
 		</gmd:CI_ResponsibleParty>
 	</gmd:contact>
@@ -219,12 +216,6 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					<gmd:title>
 						<gco:CharacterString>template</gco:CharacterString>
 					</gmd:title>
-					<!-- (O-O) Alternate title -->
-					<!--
-					<gmd:alternateTitle>
-						<gco:CharacterString>some alternate title</gco:CharacterString>
-					</gmd:alternateTitle>
-					-->
 					<!-- (M-M) Resource reference date - Best practice is to include at least the date of publication or creation of the resource. The date of the resource reported in the citation corresponds to the resource�s last update version according to its update frequency. CI_Date content includes a date and dateType -->
 					<gmd:date>
 						<gmd:CI_Date>
@@ -234,9 +225,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 							</gmd:date>
 							<gmd:dateType>
 								<!-- CI_DateTypeCode names: {creation, publication, revision}.-->
-								
-								<!-- ISO Example -->
-								<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+						<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
 							</gmd:dateType>
 						</gmd:CI_Date>
 					</gmd:date>
@@ -303,14 +292,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 							<!-- (M-M) ISO 19139 Mandatory: contact role - Guidance on use of role codes would be helpful for consistency, but has not been developed as yet.. -->
 							<gmd:role>
 								<!-- CI_RoleCode names: {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}.  -->
-								<!-- NAP example -->
-								<!--
-								<gmd:CI_RoleCode 
-									codeList="http://www.fgdc.gov/nap/metadata/register/codelists.html#IC_90" 
-									codeListValue="RI_414">pointOfContact</gmd:CI_RoleCode>
-								-->
-								<!-- ISO example -->
-								<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
+						<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
 							</gmd:role>
 						</gmd:CI_ResponsibleParty>
 					</gmd:citedResponsibleParty>
@@ -430,7 +412,6 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					<gmd:role>
 						<!-- CI_RoleCode names: {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}.  -->
 				
-						<!-- ISO example -->
 						<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
 					</gmd:role>
 				</gmd:CI_ResponsibleParty>
@@ -440,8 +421,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 				<gmd:MD_MaintenanceInformation>
 					<gmd:maintenanceAndUpdateFrequency>
 						<!-- MD_MaintenanceFrequencyCode names: {continual, daily, weekly, fortnightly, monthly, quarterly, biannually, annually, asNeeded, irregular, not-Planned, unknown} -->
-						
-						<!-- ISO Example -->
+					
 						<gmd:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded">as needed</gmd:MD_MaintenanceFrequencyCode>
 					</gmd:maintenanceAndUpdateFrequency>
 				</gmd:MD_MaintenanceInformation>
@@ -459,7 +439,6 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					<!-- Use napMD_FileFormatCode code list (http://www.fgdc.gov/nap/metadata/register/codelists.html#IC_115). List names are {bil, bmp, bsq, bzip2, cdr, cgm, cover, csv, dbf, dgn, doc, dwg, dxf, e00, ecw, eps, ers, gdb, geotiff, gif, gml, grid, gzip, html, jpg, mdb, mif, pbm, pdf, png, ps, rtf, sdc, shp, sid, svg, tab, tar, tiff, txt, xhtml, xls, xml, xwd, zip, wpd} See Codelists section for discussion of encoding of codelist values. Note that to use this napm namespace extension in a valid xml document, the namespace declaration xmlns:napm=http://www.cits.rncan.gc.ca/html/brodeurj/.protege/.napMetadata/napMetadataWebsite/napMetadataTools/napXsd/napm must be included in the root element of the document. -->
 					<!-- The current napm.xsd schema conflicts with gmd because it refernces a local copy of the OGC gmd schema at http://www.cits.rncan.gc.ca/html/brodeurj/.protege/.napMetadata/tools/napXsd/gmd/ Until this is resolved, the gmd:fileType attributes can be omited. However, USGIN requires the use of napMD_FileFormatCode names. -->
 					
-					<!-- ISO Example -->
 					<gmd:fileType>
 						<gco:CharacterString>jpg</gco:CharacterString>
 					</gmd:fileType>
@@ -484,8 +463,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					</gmd:keyword>
 					<!-- Keyword Type - allowed values from MD_KeywordTypeCode names: {discipline, place, stratum, temporal, theme} - NAP expands with {product, subTopicCategory}. -->
 					<gmd:type>
-						
-						<!-- ISO Example -->
+					
 						<gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
 					</gmd:type>
 				</gmd:MD_Keywords>
@@ -552,12 +530,11 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 										<gco:DateTime>2001-12-17T09:30:47</gco:DateTime>
 									</gmd:date>
 									<gmd:dateType>
-										<!-- ISO Example -->
-										<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+									<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
 									</gmd:dateType>
 								</gmd:CI_Date>
 							</gmd:date>
-						</gmd:CI_Citation>
+					</gmd:CI_Citation>
 					</gmd:aggregateDataSetName>
 					<!-- Data Set Identifier -->
 					<gmd:aggregateDataSetIdentifier>
@@ -574,6 +551,86 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					</gmd:associationType>
 				</gmd:MD_AggregateInformation>
 			</gmd:aggregationInfo>
+			
+			<gmd:aggregationInfo>
+				<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
+				<gmd:MD_AggregateInformation>
+					<!-- Related dataset name -->
+					<gmd:aggregateDataSetName>
+						<gmd:CI_Citation>
+							<gmd:title>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:title>
+							<gmd:date>
+								<gmd:CI_Date>
+									<gmd:date>
+										<gco:DateTime>2001-12-17T09:30:47</gco:DateTime>
+									</gmd:date>
+									<gmd:dateType>
+							<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+									</gmd:dateType>
+								</gmd:CI_Date>
+							</gmd:date>
+					</gmd:CI_Citation>
+					</gmd:aggregateDataSetName>
+					<!-- Data Set Identifier -->
+					<gmd:aggregateDataSetIdentifier>
+						<gmd:MD_Identifier>
+							<gmd:code>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:code>
+						</gmd:MD_Identifier>
+					</gmd:aggregateDataSetIdentifier>
+					<!-- (M-M) Association Type is mandatory.. -->
+					<gmd:associationType>
+						<!-- Use DS_AssociationTypeCode names: {crossReference, largerWorkCitation, partOfSeamlessDatabase, source, stereoMate} -->
+						<gmd:DS_AssociationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#DS_AssociationTypeCode" codeListValue="crossReference">cross reference</gmd:DS_AssociationTypeCode>
+					</gmd:associationType>
+				</gmd:MD_AggregateInformation>
+			</gmd:aggregationInfo>
+			
+			
+			<gmd:aggregationInfo>
+				<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
+				<gmd:MD_AggregateInformation>
+					<!-- Related dataset name -->
+					<gmd:aggregateDataSetName>
+						<gmd:CI_Citation>
+							<gmd:title>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:title>
+							<gmd:date>
+								<gmd:CI_Date>
+									<gmd:date>
+										<gco:DateTime>2001-12-17T09:30:47</gco:DateTime>
+									</gmd:date>
+									<gmd:dateType>
+										<!-- ISO Example -->
+										<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+									</gmd:dateType>
+								</gmd:CI_Date>
+							</gmd:date>
+					</gmd:CI_Citation>
+					</gmd:aggregateDataSetName>
+					<!-- Data Set Identifier -->
+					<gmd:aggregateDataSetIdentifier>
+						<gmd:MD_Identifier>
+							<gmd:code>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:code>
+						</gmd:MD_Identifier>
+					</gmd:aggregateDataSetIdentifier>
+					<!-- (M-M) Association Type is mandatory.. -->
+					<gmd:associationType>
+						<!-- Use DS_AssociationTypeCode names: {crossReference, largerWorkCitation, partOfSeamlessDatabase, source, stereoMate} -->
+						<gmd:DS_AssociationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#DS_AssociationTypeCode" codeListValue="crossReference">cross reference</gmd:DS_AssociationTypeCode>
+					</gmd:associationType>
+				</gmd:MD_AggregateInformation>
+			</gmd:aggregationInfo>
+			
+			
+			
+			
 			<!-- (O-O) Spatial Representation Type - napMD_SpatialRepresentationTypeCode names {vector, grid, textTable, tin, stereoModel, video} -->
 			<!--
 			<gmd:spatialRepresentationType/>
@@ -596,9 +653,9 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 				<gco:CharacterString>eng</gco:CharacterString>
 			</gmd:language>
 			<!-- (C-C) Topic category -->
-			<gmd:topicCategory>
+				<gmd:topicCategory>
 				<!-- MD_TopicCategoryCode names: {farming, biota, boundaries, climatologyMeterologyAtmosphere, economy, elevation, environment, geoscientificInformation, health, imageryBaseMapsEarthCover, intelligenceMilitary, inlandWater, location, oceans, planningCadastre, society, structure, transportation, utilitiesCommunication} -->
-				<gmd:MD_TopicCategoryCode></gmd:MD_TopicCategoryCode>
+				<gmd:MD_TopicCategoryCode>geoscientificInformation</gmd:MD_TopicCategoryCode>
 			</gmd:topicCategory>
 			<!-- (C-C) Resource content extent - Defines the spatial (horizontal and vertical) and temporal region to which the content of the resource applies. For USGIN, the spatial extent is a rectangle that bounds the geographic extent to which resource content applies. -->
 			<gmd:extent>
@@ -931,8 +988,6 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 		<gmd:MD_SecurityConstraints>
 			<gmd:classification>
 				<!-- MD_SecurtyConstraints has various optional free text values, and a required MD_SecurityConstraints/classification from MD_ClassificationCode names: {unclassified, restricted, confidential, secret, topSecret}-->
-				
-				<!-- ISO Example-->
 				<gmd:MD_ClassificationCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ClassificationCode" codeListValue="unclassified">unclassified</gmd:MD_ClassificationCode>
 			</gmd:classification>
 		</gmd:MD_SecurityConstraints>

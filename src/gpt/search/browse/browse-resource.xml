@@ -10,7 +10,7 @@
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, eianther express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
@@ -21,11 +21,11 @@
     <name resourceKey="catalog.browse.toc.browseResource"></name>
 		<item>
 			<name resourceKey="catalog.resource.relationships.toc.operates-On">Operates On</name>
-	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.OperatesOnIdentifier</query>
+	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.OperatesOn-apiso.ResourceIdentifier</query>
 		</item>	
 		<item>
-			<name resourceKey="catalog.resource.relationships.toc.used-By"></name>  
-	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.ParentIdentifier</query>		
+			<name resourceKey="catalog.resource.relationships.toc.used-By">Used-By</name>  
+	    <query>urn:esri:geoportal:browse:resourceRelationship:apiso.ResourceIdentifier-apiso.OperatesOn</query>		
 		</item>	
   </item>
 </tree>

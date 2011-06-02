@@ -29,6 +29,15 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
     <section key="resource.description.caption" open="true">
         <label resourceKey="catalog.usgin.resource.description.caption"/>
+		
+		
+		 <parameter key="resource.title" meaning="title">
+            <label resourceKey="catalog.usgin.resource.title"/>
+            <input type="text" hintResourceKey="catalog.usgin.resource.title.hint" hintMode="tip"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
+        </parameter>
 
         <parameter key="resource.author">
             <label resourceKey="catalog.usgin.resource.author"/>
@@ -71,17 +80,8 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                      select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
         </parameter>
 
-        <parameter key="resource.title" meaning="title">
-            <label resourceKey="catalog.usgin.resource.title"/>
-            <input type="text" hintResourceKey="catalog.usgin.resource.title.hint" hintMode="tip"/>
-            <validation required="false"/>
-            <content useSelectForUpdate="true"
-                     select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
-        </parameter>
-
-
-        <!--  <input type="text" hintResourceKey="catalog.general.sample.hint1" hintMode="inline"/>
-  <input type="text" hintResourceKey="catalog.general.inputDateFormat" defaultValue="Reference Date is required"/-->
+ <!-- <input type="text" hintResourceKey="catalog.general.inputDateFormat" defaultValue="Reference Date is required"/-->
+ 
         <parameter key="resource.date" meaning="datetime">
             <label resourceKey="catalog.usgin.resource.date"/>
             <input type="text" hintResourceKey="catalog.general.inputDateFormat" hintMode="inline"/>
@@ -109,6 +109,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.usgin.resource.individualName"/>
                 <input type="text"/>
                 <validation required="false"/>
+			
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_Metadata/gmd:MD_Metadata/gmd:citation/gmd:CI_Citation/gmd:abstract/gco:CharacterString"/>
             </parameter>
@@ -190,10 +191,10 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 				<label resourceKey="catalog.usgin.resource.identifier"/>
 				<input type="text" size="50" maxlength="2048" defaultValue="#{EditMetadataController.newUuid}"/>
 				<validation required="false"/>
-				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
+				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
 			</parameter>
 
-
+<!--gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString-->
             <parameter key="resource.status">
                 <label resourceKey="catalog.usgin.resource.status"/>
                 <input type="selectOneMenu"/>
@@ -644,7 +645,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
             </parameter>
 
 
@@ -653,7 +654,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
             </parameter>
 
 
@@ -661,7 +662,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.usgin.relResource1.dateType"/>
                 <input type="selectOneMenu"/>
                 <content nodeType="isoCodeListValue" useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gco:CI_DateTypeCode">
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode">
                     <codes>
                         <code key="Creation" resourceKey="catalog.usgin.relResource1.dateType.publication"/>
                         <code key="Publication" resourceKey="catalog.usgin.relResource1.dateType.creation"/>
@@ -676,16 +677,16 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
             </parameter>
 
 
             <parameter key="relResource1.associationType">
                 <label resourceKey="catalog.usgin.relResource1.associationType"/>
-                <input type="text"/>
+                <input type="text" defaultValue="Cross Reference"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:associationType/gco:DS_AssociationTypeCode"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
             </parameter>
         </section>
         <!--End of first aggregate section-->
@@ -700,7 +701,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
             </parameter>
 
 
@@ -709,7 +710,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
             </parameter>
 
 
@@ -717,7 +718,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <label resourceKey="catalog.usgin.relResource2.dateType"/>
                 <input type="selectOneMenu"/>
                 <content nodeType="isoCodeListValue" useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gco:CI_DateTypeCode">
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode">
                     <codes>
                         <code key="Creation" resourceKey="catalog.usgin.relResource2.dateType.publication"/>
                         <code key="Publication" resourceKey="catalog.usgin.relResource2.dateType.creation"/>
@@ -732,16 +733,16 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
             </parameter>
 
 
             <parameter key="relResource2.associationType">
                 <label resourceKey="catalog.usgin.relResource2.associationType"/>
-                <input type="text"/>
+                <input type="text" defaultValue="Cross Reference"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:associationType/gco:DS_AssociationTypeCode"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
             </parameter>
         </section>
 		
@@ -754,7 +755,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title"/>
             </parameter>
 
 
@@ -763,15 +764,15 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:DateTime"/>
             </parameter>
 
 
             <parameter key="relResource3.dateType">
                 <label resourceKey="catalog.usgin.relResource3.dateType"/>
                 <input type="selectOneMenu"/>
-                <content nodeType="isoCodeListValue" useSelectForUpdate="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gco:CI_DateTypeCode">
+                <content nodeType="isoCodeListValue" useSelectForUpdate="true" 
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode">
                     <codes>
                         <code key="Creation" resourceKey="catalog.usgin.relResource3.dateType.publication"/>
                         <code key="Publication" resourceKey="catalog.usgin.relResource3.dateType.creation"/>
@@ -786,16 +787,16 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
             </parameter>
 
 
             <parameter key="relResource3.associationType">
                 <label resourceKey="catalog.usgin.relResource3.associationType"/>
-                <input type="text"/>
+                <input type="text" DefaultValue="Cross Reference"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:associationType/gco:DS_AssociationTypeCode"/>
+                         select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
             </parameter>
         </section>
         <!-- End of section 3-->

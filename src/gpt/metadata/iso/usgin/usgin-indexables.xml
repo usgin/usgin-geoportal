@@ -81,8 +81,7 @@
     xpath="/gmd:MD_Metadata/gmd:language/gmd:LanguageCode/text()[count(/gmd:MD_Metadata/gmd:language/gmd:LanguageCode/@codeListValue)=0] | /gmd:MD_Metadata/gmd:language/gmd:LanguageCode/@codeListValue[count(/gmd:MD_Metadata/gmd:language/gmd:LanguageCode/@codeListValue)=1] | /gmd:MD_Metadata/gmd:language/gco:CharacterString[count(/gmd:MD_Metadata/gmd:language/gmd:LanguageCode)=0]"/>
 
 <property meaning="apiso:ResourceIdentifier"
-    xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString | /gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString|
-	/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[1]/srv:SV_CoupledResource/srv:identifier"/>
+    xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString | /gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString |gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
 	<!--added srv:identifier-->
 
 <property meaning="apiso:ParentIdentifier"
