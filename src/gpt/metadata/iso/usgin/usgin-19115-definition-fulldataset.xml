@@ -187,11 +187,11 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             </parameter>
 			
 			<!--resourceId/datasetURI added 03/03/2011-->
-			<parameter key="resource.identifier">
-				<label resourceKey="catalog.usgin.resource.identifier"/>
-				<input type="text" size="50" maxlength="2048" defaultValue="#{EditMetadataController.newUuid}"/>
+			<parameter key="dataset.uri">
+				<label resourceKey="catalog.usgin.dataset.uri"/>
+				<input type="text" size="50" maxlength="2048"/>
 				<validation required="false"/>
-				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
 			</parameter>
 
 <!--gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString-->

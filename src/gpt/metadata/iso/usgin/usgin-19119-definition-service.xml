@@ -194,8 +194,10 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:language/gco:CharacterString"/>
             </parameter>
-
-            <parameter key="resource.status">
+			
+		
+			
+			  <parameter key="resource.status">
                 <label resourceKey="catalog.usgin.resource.status"/>
                 <input type="selectOneMenu"/>
                 <validation required="false"/>
@@ -682,7 +684,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" size="50" maxlength="50" hintResourceKey="catalog.usgin.dataSrv1.datasetURI.hint"
                        hintMode="tip"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn[1]/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[1]/srv:SV_CoupledResource/srv:identifier/gco:CharacterString"/>
 						
 						<!--"/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[1]/srv:SV_CoupledResource/srv:identifier"/> -->
 						
@@ -722,7 +724,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" size="50" maxlength="50" hintResourceKey="catalog.usgin.dataSrv2.datasetURI.hint"
                        hintMode="tip"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn[2]/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[2]/srv:SV_CoupledResource/srv:identifier/gco:CharacterString"/>
 						<!--
 						"/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[2]/srv:SV_CoupledResource/srv:identifier/gco:CharacterString"/> -->
             </parameter>
@@ -756,7 +758,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" size="50" maxlength="50" hintResourceKey="catalog.usgin.dataSrv3.datasetURI.hint"
                        hintMode="tip"/>
                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn[3]/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+                        select="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:coupledResource[3]/srv:SV_CoupledResource/srv:identifier/gco:CharacterString "/>
 
 
 </parameter>
