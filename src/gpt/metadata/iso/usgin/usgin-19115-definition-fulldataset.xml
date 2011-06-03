@@ -186,15 +186,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                          select="/gmd:MD_Metadata/gmd:language/gco:CharacterString"/>
             </parameter>
 			
-			<!--resourceId/datasetURI added 03/03/2011-->
-			<parameter key="dataset.uri">
+			
+		        <parameter key="dataset.uri">
 				<label resourceKey="catalog.usgin.dataset.uri"/>
 				<input type="text" size="50" maxlength="2048"/>
 				<validation required="false"/>
 				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
-			</parameter>
+			</parameter> 
 
-<!--gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString-->
             <parameter key="resource.status">
                 <label resourceKey="catalog.usgin.resource.status"/>
                 <input type="selectOneMenu"/>
@@ -674,7 +673,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource1.URI">
                 <label resourceKey="catalog.usgin.relResource1.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
@@ -730,7 +729,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource2.URI">
                 <label resourceKey="catalog.usgin.relResource2.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
@@ -739,7 +738,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource2.associationType">
                 <label resourceKey="catalog.usgin.relResource2.associationType"/>
-                <input type="text" defaultValue="Cross Reference"/>
+                <input type="text" size="65" maxlength="120" defaultValue="Cross Reference"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
@@ -784,7 +783,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource3.URI">
                 <label resourceKey="catalog.usgin.relResource3.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
