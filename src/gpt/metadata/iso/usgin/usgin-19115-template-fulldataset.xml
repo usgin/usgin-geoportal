@@ -20,7 +20,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 	<gmd:fileIdentifier>
 		<gco:CharacterString>00C02E67-F1ED-473D-A240-068CCB041A73</gco:CharacterString>
 	</gmd:fileIdentifier>
-	
+	   
 	<!-- (M-M) Metadata language -->
 	<gmd:language>
 		<gco:CharacterString>eng</gco:CharacterString>
@@ -234,7 +234,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					<gmd:identifier>
 						<gmd:MD_Identifier>
 							<gmd:code>
-								<gco:CharacterString></gco:CharacterString>
+								<gco:CharacterString> </gco:CharacterString>
 							</gmd:code>
 						</gmd:MD_Identifier>
 					</gmd:identifier>
@@ -515,7 +515,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 				</gmd:MD_LegalConstraints>
 			</gmd:resourceConstraints>
 			<!-- (O-O) Aggregation information - The citation for or name of an aggregate dataset, the type of aggregate dataset, and optionally the activity which produced the dataset. -->
-			<gmd:aggregationInfo>
+<gmd:aggregationInfo>
 				<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
 				<gmd:MD_AggregateInformation>
 					<!-- Related dataset name -->
@@ -551,8 +551,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					</gmd:associationType>
 				</gmd:MD_AggregateInformation>
 			</gmd:aggregationInfo>
-			
-			<gmd:aggregationInfo>
+<gmd:aggregationInfo>
 				<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
 				<gmd:MD_AggregateInformation>
 					<!-- Related dataset name -->
@@ -588,9 +587,7 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					</gmd:associationType>
 				</gmd:MD_AggregateInformation>
 			</gmd:aggregationInfo>
-			
-			
-			<gmd:aggregationInfo>
+<gmd:aggregationInfo>
 				<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
 				<gmd:MD_AggregateInformation>
 					<!-- Related dataset name -->
@@ -762,31 +759,104 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 	<gmd:contentInfo/>
 	-->
 	<!-- (O-O) Resource distribution information - This element provides information to inform users how to obtain or access the described resource. If distribution information is included (MD_Distribution is not null), then at least one MD_Distribution/ distributionFormat and one MD_Distribution/ transferOptions element is required, and the specified format is available via the specified transfer options. -->
+	
+											<!-- ONE-->
+	 
+	
 	<gmd:distributionInfo>
 		<gmd:MD_Distribution>
 			<!-- (O-O)  Resource distribution format - Information on the format or physical manifestation of the resource. If distribution information is included (MD_Distribution is not null), then at least one MD_Distribution/ distributionFormat element is required, and the indicated format must be avaialble from the distributor specified by the first MD_Distribution/ distributor element. -->
-			<gmd:distributionFormat>
-				<gmd:MD_Format id="Format135">
+<gmd:distributionFormat>
+			
+				<gmd:MD_Format> <!-- <gmd:MD_Format id="Format135"> -->
+					<!-- id is included in case this format is referenced in a specific distributor-format-transfer options binding -->
+					<gmd:name>
+						<gco:CharacterString>Excel</gco:CharacterString>
+					</gmd:name>
+					<gmd:version>
+						<gco:CharacterString>1.0</gco:CharacterString>
+					</gmd:version>
+				</gmd:MD_Format>
+			</gmd:distributionFormat>
+<gmd:distributionFormat>
+			
+				<gmd:MD_Format> <!-- <gmd:MD_Format id="Format135"> -->
 					<!-- id is included in case this format is referenced in a specific distributor-format-transfer options binding -->
 					
 					<gmd:name>
-						<gco:CharacterString>Adobe:Acrobat/pdf</gco:CharacterString>
+						<gco:CharacterString>WMS/Image</gco:CharacterString>
+					</gmd:name>
+					<gmd:version>
+						<gco:CharacterString>1.0</gco:CharacterString>
+					</gmd:version>
+				</gmd:MD_Format>
+			</gmd:distributionFormat>
+<gmd:distributionFormat>
+				<gmd:MD_Format> <!-- <gmd:MD_Format id="Format135"> -->
+					<!-- id is included in case this format is referenced in a specific distributor-format-transfer options binding -->
+					
+					<gmd:name>
+						<gco:CharacterString>WFS/XML</gco:CharacterString>
 					</gmd:name>
 					<gmd:version>
 						<gco:CharacterString>8.0</gco:CharacterString>
 					</gmd:version>
 				</gmd:MD_Format>
 			</gmd:distributionFormat>
+
+			
 			<!-- (O-C) Resource distributor information -->
-			<gmd:distributor>
+<gmd:distributor>
 				<!-- For USGIN profile, each distributor/MD_Distributor is a binding between one or more transfer options and the distributor formats that are available through that/those transfer options (MD_DigitalTransferOptions/ onLine/ CI_OnlineResource in particular). -->
 				<gmd:MD_Distributor>
 					<gmd:distributorContact>
 						<!-- (C-C) Distribution responsible party - For CI_ResponsibleParty, count of (individualName + organisationName + positionName) > 0 -->
 						<gmd:CI_ResponsibleParty>
+							<gmd:individualName>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+							</gmd:individualName>
 							<gmd:organisationName>
-								<gco:CharacterString></gco:CharacterString>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
 							</gmd:organisationName>
+							<gmd:positionName>
+								<gco:CharacterString>GIS Manager</gco:CharacterString>
+							</gmd:positionName>
+							<gmd:contactInfo>
+								<gmd:CI_Contact>
+									<gmd:phone>
+										<gmd:CI_Telephone>
+											<gmd:voice>
+												<gco:CharacterString>520.770.3500</gco:CharacterString>
+											</gmd:voice>
+											<gmd:facsimile>
+												<gco:CharacterString>520.770.3505</gco:CharacterString>
+											</gmd:facsimile>
+										</gmd:CI_Telephone>
+									</gmd:phone>
+									<gmd:address>
+										<gmd:CI_Address>
+											<gmd:deliveryPoint>
+												<gco:CharacterString>416 W. Congress St., Suite 100</gco:CharacterString>
+											</gmd:deliveryPoint>
+											<gmd:city>
+												<gco:CharacterString>Tucson</gco:CharacterString>
+											</gmd:city>
+											<gmd:administrativeArea>
+												<gco:CharacterString>Arizona</gco:CharacterString>
+											</gmd:administrativeArea>
+											<gmd:postalCode>
+												<gco:CharacterString>85701-1381</gco:CharacterString>
+											</gmd:postalCode>
+											<gmd:country>
+												<gco:CharacterString>USA</gco:CharacterString>
+											</gmd:country>
+											<gmd:electronicMailAddress>
+												<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
+											</gmd:electronicMailAddress>
+										</gmd:CI_Address>
+									</gmd:address>
+								</gmd:CI_Contact>
+							</gmd:contactInfo>
 							<!-- (C-C) If CI_ResponsibleParty exists, the role element is required -->
 							<gmd:role>
 								<!-- Use CI_RoleCode names {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
@@ -823,9 +893,177 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 						 -->
 				</gmd:MD_Distributor>
 			</gmd:distributor>
+<gmd:distributor>
+				<!-- For USGIN profile, each distributor/MD_Distributor is a binding between one or more transfer options and the distributor formats that are available through that/those transfer options (MD_DigitalTransferOptions/ onLine/ CI_OnlineResource in particular). -->
+				<gmd:MD_Distributor>
+					<gmd:distributorContact>
+						<!-- (C-C) Distribution responsible party - For CI_ResponsibleParty, count of (individualName + organisationName + positionName) > 0 -->
+						<gmd:CI_ResponsibleParty>
+							<gmd:individualName>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+							</gmd:individualName>
+							<gmd:organisationName>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+							</gmd:organisationName>
+							<gmd:positionName>
+								<gco:CharacterString>GIS Manager</gco:CharacterString>
+							</gmd:positionName>
+							<gmd:contactInfo>
+								<gmd:CI_Contact>
+									<gmd:phone>
+										<gmd:CI_Telephone>
+											<gmd:voice>
+												<gco:CharacterString>520.770.3500</gco:CharacterString>
+											</gmd:voice>
+											<gmd:facsimile>
+												<gco:CharacterString>520.770.3505</gco:CharacterString>
+											</gmd:facsimile>
+										</gmd:CI_Telephone>
+									</gmd:phone>
+									<gmd:address>
+										<gmd:CI_Address>
+											<gmd:deliveryPoint>
+												<gco:CharacterString>416 W. Congress St., Suite 100</gco:CharacterString>
+											</gmd:deliveryPoint>
+											<gmd:city>
+												<gco:CharacterString>Tucson</gco:CharacterString>
+											</gmd:city>
+											<gmd:administrativeArea>
+												<gco:CharacterString>Arizona</gco:CharacterString>
+											</gmd:administrativeArea>
+											<gmd:postalCode>
+												<gco:CharacterString>85701-1381</gco:CharacterString>
+											</gmd:postalCode>
+											<gmd:country>
+												<gco:CharacterString>USA</gco:CharacterString>
+											</gmd:country>
+											<gmd:electronicMailAddress>
+												<gco:CharacterString>webServices@azgs.az.gov</gco:CharacterString>
+											</gmd:electronicMailAddress>
+										</gmd:CI_Address>
+									</gmd:address>
+								</gmd:CI_Contact>
+							</gmd:contactInfo>
+							<!-- (C-C) If CI_ResponsibleParty exists, the role element is required -->
+							<gmd:role>
+								<!-- Use CI_RoleCode names {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
+								<!-- NAP Example -->
+								<!--
+								<gmd:CI_RoleCode 
+									codeList="http://www.fgdc.gov/nap/metadata/register/codelists.html#IC_90" 
+									codeListValue="RI_412">distributor</gmd:CI_RoleCode>
+								-->
+								<!-- ISO Example -->
+								<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor">distributor</gmd:CI_RoleCode>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gmd:distributorContact>
+					<!-- (O-O) Resource distributor order process - Information on the availability of the resource including at least one of fees, available date and time, ordering instructions, or turnaround. For physical resources, ordering instructions are mandatory as these will typically indicate the method of accessing the resource. -->
+					<gmd:distributionOrderProcess>
+						<gmd:MD_StandardOrderProcess>
+							<gmd:fees>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:fees>
+							<!-- (O-M) Ordering instructions - general instructions, terms and services provided by the distributor -->
+							<gmd:orderingInstructions>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:orderingInstructions>
+							<gmd:turnaround>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:turnaround>
+						</gmd:MD_StandardOrderProcess>
+					</gmd:distributionOrderProcess>
+			 
+				</gmd:MD_Distributor>
+			</gmd:distributor>
+<gmd:distributor>
+				<!-- For USGIN profile, each distributor/MD_Distributor is a binding between one or more transfer options and the distributor formats that are available through that/those transfer options (MD_DigitalTransferOptions/ onLine/ CI_OnlineResource in particular). -->
+				<gmd:MD_Distributor>
+					<gmd:distributorContact>
+						<!-- (C-C) Distribution responsible party - For CI_ResponsibleParty, count of (individualName + organisationName + positionName) > 0 -->
+						<gmd:CI_ResponsibleParty>
+							<gmd:individualName>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+							</gmd:individualName>
+							<gmd:organisationName>
+								<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+							</gmd:organisationName>
+							<gmd:positionName>
+								<gco:CharacterString>GIS Manager</gco:CharacterString>
+							</gmd:positionName>
+							<gmd:contactInfo>
+								<gmd:CI_Contact>
+									<gmd:phone>
+										<gmd:CI_Telephone>
+											<gmd:voice>
+												<gco:CharacterString>520.770.3500</gco:CharacterString>
+											</gmd:voice>
+											<gmd:facsimile>
+												<gco:CharacterString>520.770.3505</gco:CharacterString>
+											</gmd:facsimile>
+										</gmd:CI_Telephone>
+									</gmd:phone>
+									<gmd:address>
+										<gmd:CI_Address>
+											<gmd:deliveryPoint>
+												<gco:CharacterString>416 W. Congress St., Suite 100</gco:CharacterString>
+											</gmd:deliveryPoint>
+											<gmd:city>
+												<gco:CharacterString>Tucson</gco:CharacterString>
+											</gmd:city>
+											<gmd:administrativeArea>
+												<gco:CharacterString>Arizona</gco:CharacterString>
+											</gmd:administrativeArea>
+											<gmd:postalCode>
+												<gco:CharacterString>85701-1381</gco:CharacterString>
+											</gmd:postalCode>
+											<gmd:country>
+												<gco:CharacterString>USA</gco:CharacterString>
+											</gmd:country>
+											<gmd:electronicMailAddress>
+												<gco:CharacterString>webServices@azgs.az.gov</gco:CharacterString>
+											</gmd:electronicMailAddress>
+										</gmd:CI_Address>
+									</gmd:address>
+								</gmd:CI_Contact>
+							</gmd:contactInfo>
+							<!-- (C-C) If CI_ResponsibleParty exists, the role element is required -->
+							<gmd:role>
+								<!-- Use CI_RoleCode names {resourceProvider, custodian, owner, user, distributor, originator, pointOfContact, principalInvestigator, processor, publisher, author} - NAP expands with {collaborator, editor, mediator, rightsHolder}. -->
+								<!-- NAP Example -->
+								<!--
+								<gmd:CI_RoleCode 
+									codeList="http://www.fgdc.gov/nap/metadata/register/codelists.html#IC_90" 
+									codeListValue="RI_412">distributor</gmd:CI_RoleCode>
+								-->
+								<!-- ISO Example -->
+								<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor">distributor</gmd:CI_RoleCode>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gmd:distributorContact>
+					<!-- (O-O) Resource distributor order process - Information on the availability of the resource including at least one of fees, available date and time, ordering instructions, or turnaround. For physical resources, ordering instructions are mandatory as these will typically indicate the method of accessing the resource. -->
+					<gmd:distributionOrderProcess>
+						<gmd:MD_StandardOrderProcess>
+							<gmd:fees>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:fees>
+							<!-- (O-M) Ordering instructions - general instructions, terms and services provided by the distributor -->
+							<gmd:orderingInstructions>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:orderingInstructions>
+							<gmd:turnaround>
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:turnaround>
+						</gmd:MD_StandardOrderProcess>
+					</gmd:distributionOrderProcess>
+			 
+				</gmd:MD_Distributor>
+			</gmd:distributor>
+			
+			
 			<!-- (C-C) Resource distribution transfer options - MD_DigitalTransferOptions provides information on digital distribution of resource. If distribution information is included (MD_Distribution is not null), then at least one MD_Distribution/ transferOptions element is required, and the indicated options must be available from the distributor specified by the first MD_Distribution/ distributor element. -->
-			<gmd:transferOptions>
-				<gmd:MD_DigitalTransferOptions id="TransOpt2612">
+<gmd:transferOptions>
+				<gmd:MD_DigitalTransferOptions> <!-- <gmd:MD_DigitalTransferOptions id="TransOpt2612"> -->
 					<!-- id is included in case this transfer options element is referenced in a specific distributor- format- transfer options binding -->
 					<gmd:onLine>
 						<gmd:CI_OnlineResource>
@@ -841,14 +1079,14 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 							</gmd:protocol>
 							<!-- (C-C) Resource distributor online distribution application profile - applicationProfile is required if the CI_OnlineResource/linkage does not connect to a web page, and another software application is needed to use the indicated file resource. The applicationProfile character string should specify the software using the following recommended syntax: �vendor:application name/application version�, e.g. �Microsoft:Word/2007�, or �ESRI:ArcGIS/9.3� -->
 							<gmd:applicationProfile>
-								<gco:CharacterString></gco:CharacterString>
+								<gco:CharacterString>  </gco:CharacterString>
 							</gmd:applicationProfile>
 							<gmd:name>
 								<!-- The CI_OnlineResource/name element may duplicate the file name if the URL is a link to a file, but it is recommended to provide a user-friendly label for the file that could be presented in a user interface.  -->
 								<gco:CharacterString></gco:CharacterString>
 							</gmd:name>
 							<gmd:description>
-								<gco:CharacterString></gco:CharacterString>
+								<gco:CharacterString> </gco:CharacterString>
 							</gmd:description>
 							<!-- (O-C) Resource distributor online distribution function - CI_OnlineResource/function is required by USGIN to indicate how linkage is to be used. If the resource is accessible as a web service, the metadata for the service should be separate metadata record with the dataset(s) exposed through the service identified in the service metadata record as coupledResources. Required if not html URL. -->
 							<gmd:function>
@@ -861,8 +1099,81 @@ xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/
 					</gmd:onLine>
 				</gmd:MD_DigitalTransferOptions>
 			</gmd:transferOptions>
+<gmd:transferOptions>  
+				<gmd:MD_DigitalTransferOptions> <!-- <gmd:MD_DigitalTransferOptions id="TransOpt2612"> -->
+					<!-- id is included in case this transfer options element is referenced in a specific distributor- format- transfer options binding -->
+					<gmd:onLine>
+						<gmd:CI_OnlineResource>
+							<!-- (M-M) Resource distributor on-line distribution linkage - Digital transfer options are �technical means and media by which a dataset is obtained from the distributor.� -->
+							<gmd:linkage>
+								<!-- The linkage element should contain the complete URL to access the resource directly. CI_Online-Resource requires a Linkage element that is a gmd:URL. -->
+								<gmd:URL>http://azgs.az.gov/resource/00C02E67-F1ED-473D-A240-068CCB041A73/borehole_report.pdf</gmd:URL>
+							</gmd:linkage>
+							<!-- (M-M - Connection protocol ) -->
+							<gmd:protocol>
+								<!-- The protocol element defines a valid internet protocol used to access the resource.-->
+								<gco:CharacterString>http</gco:CharacterString>
+							</gmd:protocol>
+							<gmd:applicationProfile>
+								<gco:CharacterString>  </gco:CharacterString>
+							</gmd:applicationProfile>
+							<gmd:name>
+								<!-- The CI_OnlineResource/name element may duplicate the file name if the URL is a link to a file, but it is recommended to provide a user-friendly label for the file that could be presented in a user interface.  -->
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:name>
+							<gmd:description>
+								<gco:CharacterString> </gco:CharacterString>
+							</gmd:description>
+							<gmd:function>
+								<!-- CI_OnlineFunctionCode names: {download, information, offlineAccess, order, search} -->
+								
+								<!-- ISO Example -->
+								<gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download">download</gmd:CI_OnLineFunctionCode>
+							</gmd:function>
+						</gmd:CI_OnlineResource>
+					</gmd:onLine>
+				</gmd:MD_DigitalTransferOptions>
+			</gmd:transferOptions>
+<gmd:transferOptions> 
+				<gmd:MD_DigitalTransferOptions> <!-- <gmd:MD_DigitalTransferOptions id="TransOpt2612"> -->
+					<!-- id is included in case this transfer options element is referenced in a specific distributor- format- transfer options binding -->
+					<gmd:onLine>
+						<gmd:CI_OnlineResource>
+							<!-- (M-M) Resource distributor on-line distribution linkage - Digital transfer options are �technical means and media by which a dataset is obtained from the distributor.� -->
+							<gmd:linkage>
+								<!-- The linkage element should contain the complete URL to access the resource directly. CI_Online-Resource requires a Linkage element that is a gmd:URL. -->
+								<gmd:URL>http://azgs.az.gov/resource/00C02E67-F1ED-473D-A240-068CCB041A73/borehole_report.pdf</gmd:URL>
+							</gmd:linkage>
+							<!-- (M-M - Connection protocol ) -->
+							<gmd:protocol>
+								<!-- The protocol element defines a valid internet protocol used to access the resource.-->
+								<gco:CharacterString>http</gco:CharacterString>
+							</gmd:protocol>
+							<gmd:applicationProfile>
+								<gco:CharacterString>  </gco:CharacterString>
+							</gmd:applicationProfile>
+							<gmd:name>
+								<!-- The CI_OnlineResource/name element may duplicate the file name if the URL is a link to a file, but it is recommended to provide a user-friendly label for the file that could be presented in a user interface.  -->
+								<gco:CharacterString></gco:CharacterString>
+							</gmd:name>
+							<gmd:description>
+								<gco:CharacterString> </gco:CharacterString>
+							</gmd:description>
+							<gmd:function>
+								<!-- CI_OnlineFunctionCode names: {download, information, offlineAccess, order, search} -->
+								
+								<!-- ISO Example -->
+								<gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download">download</gmd:CI_OnLineFunctionCode>
+							</gmd:function>
+						</gmd:CI_OnlineResource>
+					</gmd:onLine>
+				</gmd:MD_DigitalTransferOptions>
+			</gmd:transferOptions>	
 		</gmd:MD_Distribution>
 	</gmd:distributionInfo>
+	
+	
+	
 	<!-- (C-C) Data quality Information  -->
 	<gmd:dataQualityInfo>
 		<gmd:DQ_DataQuality>

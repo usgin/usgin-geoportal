@@ -176,6 +176,15 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
         <section key="resource.details.caption" open="false">
             <label resourceKey="catalog.usgin.resource.details.caption"/>
+			
+			
+			<parameter key="usgin.dataset.uri">
+            <label resourceKey="catalog.usgin.dataset.uri"/>
+            <input type="text"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
+        </parameter>
 
             <parameter key="resource.language" meaning="language">
                 <label resourceKey="catalog.usgin.resource.language"/>
@@ -186,15 +195,10 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                          select="/gmd:MD_Metadata/gmd:language/gco:CharacterString"/>
             </parameter>
 			
-			<!--resourceId/datasetURI added 03/03/2011-->
-			<parameter key="dataset.uri">
-				<label resourceKey="catalog.usgin.dataset.uri"/>
-				<input type="text" size="50" maxlength="2048"/>
-				<validation required="false"/>
-				<content useSelectForUpdate="true" deleteParentIfEmpty="true" select="/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString"/>
-			</parameter>
+			
+			
+		        
 
-<!--gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString-->
             <parameter key="resource.status">
                 <label resourceKey="catalog.usgin.resource.status"/>
                 <input type="selectOneMenu"/>
@@ -299,19 +303,22 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
 
     <!--distributor-->
-    <section key="distibutor.information.caption" open="true">
+	 <section key="distibutor.mainCaption" open="true">
+        <label resourceKey="catalog.usgin.distibutor.mainCaption"/>
+	
+    <section key="distibutor.information.caption" open="false">
         <label resourceKey="catalog.usgin.distibutor.information.caption"/>
 
 
         <!--Contact Information for Distributor Starts here-->
         <!-- Contact name-->
         
-         <parameter key="distibutor.individualName">
+        <parameter key="distibutor.individualName">
                 <label resourceKey="catalog.usgin.distibutor.individualName"/>
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:positionName/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
             </parameter>
 
         <parameter key="distibutor.role">
@@ -319,7 +326,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <input type="selectOneMenu" defaultValue="distributor"/>
             <validation required="false"/>
             <content nodeType="isoCodeListValue" useSelectForUpdate="true"
-                     select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue">
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode">
                 <codes>
                     <code key=""/>
                     <code key="author" resourceKey="catalog.usgin.distibutor.role.author"/>
@@ -344,16 +351,20 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:email/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
             </parameter>
+			
+		<section key="distibutor.format.caption" open="false">
+        <label resourceKey="catalog.usgin.distibutor.format.caption"/>
+			
         
   <parameter key="format.name">
             <label resourceKey="catalog.usgin.distibutor.formatName"/>
-            <input type="text" hintResourceKey="catalog.usgin.distibutor.formatName.hint" hintMode="tip"/>
+            <input type="text" defaultValue="Excel" hintResourceKey="catalog.usgin.distibutor.formatName.hint" hintMode="tip"/>
             <validation required="false"/>
             <content useSelectForUpdate="true"
                      delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
-                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name/gco:CharacterString"/>
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[1]/gmd:MD_Format/gmd:name/gco:CharacterString"/>
         </parameter>
 
         <parameter key="distibutor.formatVersion">
@@ -362,13 +373,12 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <validation required="false"/>
             <content useSelectForUpdate="true"
                      delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
-                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:version/gco:CharacterString"/>
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[1]/gmd:MD_Format/gmd:version/gco:CharacterString"/>
         </parameter>
-
-
+</section>
         <!--section for access-->
-        <section key="distibutor.accesss.caption" open="false">
-            <label resourceKey="catalog.usgin.distibutor.accesss.caption"/>
+        <section key="distibutor.access.caption" open="false">
+            <label resourceKey="catalog.usgin.distibutor.access.caption"/>
 
             <!--section for Online-->
             <section key="online.caption" open="false">
@@ -376,31 +386,33 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
                 <parameter key="distibutor.online.link" meaning="resource.url">
                     <label resourceKey="catalog.usgin.distibutor.online.link"/>
-                    <input type="text" testResourceKey="catalog.publication.editMetadata.button.test.service"
-                           hintResourceKey="catalog.usgin.distibutor.online.link.hint" hintMode="tip"/>
+                    <input type="text"  defaultValue="USGIN Repository URL" testResourceKey="catalog.publication.editMetadata.button.test.service"/>
                     <validation required="false"/>
                     <content useSelectForUpdate="true"
-                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"
                              delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
                 </parameter>
-
+				
+			
                 <parameter key="online.linkFunction" meaning="resource.type">
                     <label resourceKey="catalog.usgin.distibutor.online.linkFunction"/>
                     <input type="selectOneMenu" defaultValue="download"/>
                     <validation required="false"/>
                     <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode">
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode">
                         <codes>
                             <code key=""/>
-                            <code key="download"
+                            <code key="Download"
                                   resourceKey="catalog.usgin.distibutor.online.linkCode.download"/>
-                            <code key="information"
+								  <code key="Web Service"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.webService"/>
+                            <code key="Information"
                                   resourceKey="catalog.usgin.distibutor.online.linkCode.information"/>
-                            <code key="offlineAccess"
+                            <code key="Offline Access"
                                   resourceKey="catalog.usgin.distibutor.online.linkCode.offlineAccess"/>
-                            <code key="order"
+                            <code key="Order"
                                   resourceKey="catalog.usgin.distibutor.online.linkCode.order"/>
-                            <code key="search"
+                            <code key="Search"
                                   resourceKey="catalog.usgin.distibutor.online.linkCode.search"/>
                         </codes>
                     </content>
@@ -412,8 +424,8 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                     <input type="text" defaultValue="http"/>
                     <validation required="false"/>
                     <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:protocol">
-                    </content>
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
+                    
                 </parameter>
 
 
@@ -423,18 +435,16 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                            hintMode="tip"/>
                     <validation required="false"/>
                     <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:protocol/gmd:applicationprofile">
-                      
-                    </content>
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString"/>
                 </parameter>
 
 
                 <parameter key="online.description" meaning="Desciption">
                     <label resourceKey="catalog.usgin.distibutor.online.description"/>
-                    <input type="text"/>
+                    <input type="text" defaultValue="Zipped Excel Spreadsheet"/>
                     <validation required="false"/>
                     <content useSelectForUpdate="true"
-                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:protocol/gmd:applicationprofile/gmd:name/gmd:description/gco:CharacterString"/>
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString"/>
 
                 </parameter>
 
@@ -455,7 +465,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                         <input type="textArea"/>
                         <validation required="false"/>
                         <content useSelectForUpdate="true"
-                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributorContact/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gmd:orderingInstructions/gco:CharacterString"/>
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:orderingInstructions/gco:CharacterString"/>
                     </parameter>
 
                     <parameter key="offline.fee">
@@ -463,7 +473,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                         <input type="text"/>
                         <validation required="false"/>
                         <content useSelectForUpdate="true"
-                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributorContact/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gco:CharacterString"/>
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gco:CharacterString"/>
                     </parameter>
 
                     <parameter key="offline.turnaround">
@@ -471,7 +481,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                         <input type="text"/>
                         <validation required="false"/>
                         <content useSelectForUpdate="true"
-                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributorContact/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gmd:orderingInstructions/gmd:turnaround/gco:CharacterString"/>
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:turnaround/gco:CharacterString"/>
                     </parameter>
 
 
@@ -489,7 +499,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
             </parameter>
            
 	<parameter key="distibutor.address">
@@ -497,16 +507,9 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['street'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:address/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"/>
             </parameter>
 
-            <parameter key="distibutor.state">
-                <label resourceKey="catalog.usgin.distibutor.state"/>
-                <input type="text" defaultValue="#{EditMetadataController.userProfile['stateOrProv'].value}"/>
-                <validation required="false"/>
-                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:addressState/gco:CharacterString"/>
-            </parameter>
 
 
             <parameter key="distibutor.city">
@@ -514,14 +517,14 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['city'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:addressCity/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"/>
             </parameter>
             <parameter key="distibutor.postalCode">
                 <label resourceKey="catalog.usgin.distibutor.postalCode"/>
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['postalCode'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:postalCode/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"/>
             </parameter>
            
  <parameter key="distributor.telephone">
@@ -529,13 +532,485 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
                 <input type="text" defaultValue="#{EditMetadataController.userProfile['phone'].value}"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
-                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:telephone/gco:CharacterString"/>
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[1]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString"/>
             </parameter>
 
         </section>
     </section>
+	
+	<!-- DISTRIBUTION TWO-->
+	
+	
+	  
+ <section key="distibutor.information.caption.two" open="false">
+        <label resourceKey="catalog.usgin.distibutor.information.caption.two"/>
+ 
+    <parameter key="distibutor.individualName.two">
+                <label resourceKey="catalog.usgin.distibutor.individualName.two"/>
+                <input type="text"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:positionName/gco:CharacterString"/>
+            </parameter>
+ 
+ <parameter key="distibutor.role.two">
+            <label resourceKey="catalog.usgin.distibutor.role.two"/>
+            <input type="selectOneMenu" defaultValue="distributor"/>
+            <validation required="false"/>
+            <content nodeType="isoCodeListValue" useSelectForUpdate="true"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode">
+                <codes>
+                    <code key=""/>
+                    <code key="author" resourceKey="catalog.usgin.distibutor.role.author.two"/>
+                    <code key="custodian" resourceKey="catalog.usgin.distibutor.role.custodian.two"/>
+                    <code key="distributor" resourceKey="catalog.usgin.distibutor.role.distributor.two"/>
+                    <code key="originator" resourceKey="catalog.usgin.distibutor.role.originator.two"/>
+                    <code key="owner" resourceKey="catalog.usgin.distibutor.role.owner.two"/>
+                    <code key="pointOfContact" resourceKey="catalog.usgin.distibutor.role.pointOfContact.two"/>
+                    <code key="principalInvestigator"
+                          resourceKey="catalog.usgin.distibutor.role.principalInvestigator.two"/>
+                    <code key="processor" resourceKey="catalog.usgin.distibutor.role.processor.two"/>
+                    <code key="publisher" resourceKey="catalog.usgin.distibutor.role.publisher.two"/>
+                    <code key="resourceProvider"
+                          resourceKey="catalog.usgin.distibutor.role.resourceProvider.two"/>
+                    <code key="user" resourceKey="catalog.usgin.distibutor.role.user.two"/>
+                </codes>
+            </content>
+        </parameter>
+ 
+  <parameter key="distributor.email.two">
+                <label resourceKey="catalog.usgin.distibutor.email.two"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
+            </parameter>
+ 
+ 
+ 	<section key="distibutor.format.caption.two" open="false">
+        <label resourceKey="catalog.usgin.distibutor.format.caption.two"/>
+			
+        
+  <parameter key="format.name.two">
+            <label resourceKey="catalog.usgin.distibutor.formatName.two"/>
+            <input type="text" defaultValue="WMS/image" hintResourceKey="catalog.usgin.distibutor.formatName.hint.two" hintMode="tip"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[2]/gmd:MD_Format/gmd:name/gco:CharacterString"/>
+        </parameter>
+ 
+  <parameter key="distibutor.formatVersion.two">
+            <label resourceKey="catalog.usgin.distibutor.formatVersion.two"/>
+            <input type="text"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[2]/gmd:MD_Format/gmd:version/gco:CharacterString"/>
+        </parameter>
 
-    <!--Keywords-->
+ </section>
+ 
+   <!--section for access-->
+        <section key="distibutor.access.caption.two" open="false">
+            <label resourceKey="catalog.usgin.distibutor.access.caption.two"/>
+
+            <!--section for Online-->
+            <section key="online.caption.two" open="false">
+                <label resourceKey="catalog.usgin.distibutor.online.caption.two"/>
+
+                <parameter key="distibutor.online.link.two" meaning="resource.url">
+                    <label resourceKey="catalog.usgin.distibutor.online.link.two"/>
+                    <input type="text"  defaultValue="GetCapabilites URL" testResourceKey="catalog.publication.editMetadata.button.test.service.two"
+                           hintResourceKey="catalog.usgin.distibutor.online.link.hint.two" hintMode="tip"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[2]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"
+                             delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+                </parameter>
+				
+  <parameter key="online.linkFunction.two" meaning="resource.type">
+                    <label resourceKey="catalog.usgin.distibutor.online.linkFunction.two"/>
+                    <input type="selectOneMenu" defaultValue="download"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[2]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode">
+                        <codes>
+                            <code key=""/>
+                            <code key="download"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.download.two"/>
+								  <code key="Web Service"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.webService.two"/>
+                            <code key="information"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.information.two"/>
+                            <code key="offlineAccess"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.offlineAccess.two"/>
+                            <code key="order"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.order.two"/>
+                            <code key="search"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.search.two"/>
+                        </codes>
+                    </content>
+                </parameter>
+ 
+  <parameter key="distibutor.online.linkType.two">
+                    <label resourceKey="catalog.usgin.distibutor.online.linkType.two"/>
+                    <input type="text" defaultValue="wms"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[2]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
+                </parameter>
+ 
+ 
+ <parameter key="dataQualityInfo.distribution.software.two">
+                    <label resourceKey="catalog.usgin.distibutor.online.software.two"/>
+                    <input type="text" hintResourceKey="catalog.usgin.distibutor.online.software.hint.two"
+                           hintMode="tip"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[2]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString"/>
+                 </parameter>
+				 
+ <parameter key="online.description.two" meaning="Desciption">
+                    <label resourceKey="catalog.usgin.distibutor.online.description.two"/>
+                    <input type="text" defaultValue="Service Description"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[2]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString"/>
+
+                </parameter>
+ 
+   <!--End of Section for online-->
+            </section>
+ 
+  <section key="distibutor.offline.caption.two" open="false">
+                <label resourceKey="catalog.usgin.distibutor.offline.caption.two"/>
+
+
+                <section key="offline.orderProcess.caption.two" open="true">
+                    <label resourceKey="catalog.usgin.distibutor.offline.orderProcess.caption.two"/>
+
+  <parameter key="offline.instruction.two">
+                        <label resourceKey="catalog.usgin.distibutor.offline.instruction.two"/>
+                        <input type="textArea"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:orderingInstructions/gco:CharacterString"/>
+                    </parameter>
+ 
+ 
+ 
+  <parameter key="offline.fee.two">
+                        <label resourceKey="catalog.usgin.distibutor.offline.fee.two"/>
+                        <input type="text"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gco:CharacterString"/>
+                    </parameter>
+ 
+ 
+ <parameter key="offline.turnaround.two">
+                        <label resourceKey="catalog.usgin.distibutor.offline.turnaround.two"/>
+                        <input type="text"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:turnaround/gco:CharacterString"/>
+                    </parameter>
+
+
+                </section>
+            </section>
+        </section>
+ 
+ 
+ <section key="distibutor.contact.caption.two" open="false">
+            <label resourceKey="catalog.usgin.distibutor.contact.caption.two"/>
+
+<parameter key="distributor.organisation.two">
+                <label resourceKey="catalog.usgin.distributor.organisation.two"/>
+                <input type="text"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
+            </parameter>
+ 
+ <parameter key="distibutor.address.two">
+                <label resourceKey="catalog.usgin.distibutor.address.two"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['street'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"/>
+            </parameter>
+
+ 
+ <parameter key="distibutor.city.two">
+                <label resourceKey="catalog.usgin.distibutor.city.two"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['city'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"/>
+            </parameter>
+ 
+   <parameter key="distibutor.postalCode.two">
+                <label resourceKey="catalog.usgin.distibutor.postalCode.two"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['postalCode'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"/>
+            </parameter>
+ 
+ 
+ 
+  <parameter key="distributor.telephone.two">
+                <label resourceKey="catalog.usgin.distibutor.telephone.two"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['phone'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[2]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString"/>
+            </parameter>
+
+        </section>
+    </section>
+	
+	
+	
+	<!--Distribution THREE ################################-->
+	
+		<!--######################################## Distribution Three ##################################-->
+	 <section key="distibutor.information.caption.three" open="false">
+        <label resourceKey="catalog.usgin.distibutor.information.caption.three"/>
+
+
+        <!--Contact Information for Distributor Starts here-->
+        <!-- Contact name-->
+        
+        <parameter key="distibutor.individualName.three">
+                <label resourceKey="catalog.usgin.distibutor.individualName.three"/>
+                <input type="text"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString"/>
+            </parameter>
+
+        <parameter key="distibutor.role.three">
+            <label resourceKey="catalog.usgin.distibutor.role.three"/>
+            <input type="selectOneMenu" defaultValue="distributor"/>
+            <validation required="false"/>
+            <content nodeType="isoCodeListValue" useSelectForUpdate="true"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode">
+                <codes>
+                    <code key=""/>
+                    <code key="author" resourceKey="catalog.usgin.distibutor.role.author.three"/>
+                    <code key="custodian" resourceKey="catalog.usgin.distibutor.role.custodian.three"/>
+                    <code key="distributor" resourceKey="catalog.usgin.distibutor.role.distributor.three"/>
+                    <code key="originator" resourceKey="catalog.usgin.distibutor.role.originator.three"/>
+                    <code key="owner" resourceKey="catalog.usgin.distibutor.role.owner.three"/>
+                    <code key="pointOfContact" resourceKey="catalog.usgin.distibutor.role.pointOfContact.three"/>
+                    <code key="principalInvestigator"
+                          resourceKey="catalog.usgin.distibutor.role.principalInvestigator.three"/>
+                    <code key="processor" resourceKey="catalog.usgin.distibutor.role.processor.three"/>
+                    <code key="publisher" resourceKey="catalog.usgin.distibutor.role.publisher.three"/>
+                    <code key="resourceProvider"
+                          resourceKey="catalog.usgin.distibutor.role.resourceProvider.three"/>
+                    <code key="user" resourceKey="catalog.usgin.distibutor.role.user.three"/>
+                </codes>
+            </content>
+        </parameter>
+       
+      <parameter key="distributor.email.three">
+                <label resourceKey="catalog.usgin.distibutor.email.three"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['email'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString"/>
+            </parameter>
+			
+		<section key="distibutor.format.caption.three" open="false">
+        <label resourceKey="catalog.usgin.distibutor.format.caption.three"/>
+			
+        
+  <parameter key="format.name.three">
+            <label resourceKey="catalog.usgin.distibutor.formatName.three"/>
+            <input type="text"  defaultValue="WFS/XML" hintResourceKey="catalog.usgin.distibutor.formatName.hint.three" hintMode="tip"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[3]/gmd:MD_Format/gmd:name/gco:CharacterString"/>
+        </parameter>
+
+        <parameter key="distibutor.formatVersion.three">
+            <label resourceKey="catalog.usgin.distibutor.formatVersion.three"/>
+            <input type="text"/>
+            <validation required="false"/>
+            <content useSelectForUpdate="true"
+                     delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"
+                     select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat[3]/gmd:MD_Format/gmd:version/gco:CharacterString"/>
+        </parameter>
+
+		</section>
+ <section key="distibutor.access.caption.three" open="false">
+            <label resourceKey="catalog.usgin.distibutor.access.caption.three"/>
+
+            <!--section for Online-->
+            <section key="online.caption.three" open="false">
+                <label resourceKey="catalog.usgin.distibutor.online.caption.three"/>
+				
+    
+
+                <parameter key="distibutor.online.link.three" meaning="resource.url">
+                    <label resourceKey="catalog.usgin.distibutor.online.link.three"/>
+                    <input type="text" defaultValue="GetCapabilities URL" testResourceKey="catalog.publication.editMetadata.button.test.service.three"
+                           hintResourceKey="catalog.usgin.distibutor.online.link.hint" hintMode="tip"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[3]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"
+                             delete="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+                </parameter>
+				
+			
+                <parameter key="online.linkFunction.three" meaning="resource.type">
+                    <label resourceKey="catalog.usgin.distibutor.online.linkFunction.three"/>
+                    <input type="selectOneMenu" defaultValue="download"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[3]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode">
+                        <codes>
+                            <code key=""/>
+                            <code key="download"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.download.three"/>
+								  <code key="Web Service"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.webService.three"/>
+                            <code key="information"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.information.three"/>
+                            <code key="offlineAccess"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.offlineAccess.three"/>
+                            <code key="order"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.order.three"/>
+                            <code key="search"
+                                  resourceKey="catalog.usgin.distibutor.online.linkCode.search.three"/>
+                        </codes>
+                    </content>
+                </parameter>
+
+
+                <parameter key="distibutor.online.linkType.three">
+                    <label resourceKey="catalog.usgin.distibutor.online.linkType.three"/>
+                    <input type="text" defaultValue="xml"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[3]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
+                    
+                </parameter>
+
+
+                <parameter key="dataQualityInfo.distribution.software.three">
+                    <label resourceKey="catalog.usgin.distibutor.online.software.three"/>
+                    <input type="text" hintResourceKey="catalog.usgin.distibutor.online.software.hint.three"
+                           hintMode="tip"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[3]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString"/>
+                </parameter>
+
+
+                <parameter key="online.description.three" meaning="Desciption">
+                    <label resourceKey="catalog.usgin.distibutor.online.description.three"/>
+                    <input type="text" defaultValue="Service Description"/>
+                    <validation required="false"/>
+                    <content useSelectForUpdate="true"
+                             select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[3]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString"/>
+
+                </parameter>
+
+
+                <!--Section for online-->
+            </section>
+
+            <!--Section for offline-->
+     <section key="distibutor.offline.caption.three" open="false">
+                <label resourceKey="catalog.usgin.distibutor.offline.caption.three"/>
+
+                    <parameter key="offline.instruction.three">
+                        <label resourceKey="catalog.usgin.distibutor.offline.instruction.three"/>
+                        <input type="textArea"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:orderingInstructions/gco:CharacterString"/>
+                    </parameter>
+
+                    <parameter key="offline.fee.three">
+                        <label resourceKey="catalog.usgin.distibutor.offline.fee.three"/>
+                        <input type="text"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:fees/gco:CharacterString"/>
+                    </parameter>
+
+                    <parameter key="offline.turnaround.three">
+                        <label resourceKey="catalog.usgin.distibutor.offline.turnaround.three"/>
+                        <input type="text"/>
+                        <validation required="false"/>
+                        <content useSelectForUpdate="true"
+                                 select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:turnaround/gco:CharacterString"/>
+                    </parameter>
+    </section>
+            </section>
+        
+		   
+<!-- Distributor Contact Information-->
+
+        <section key="distibutor.contact.caption.three" open="false">
+            <label resourceKey="catalog.usgin.distibutor.contact.caption.three"/>
+
+<parameter key="distributor.organisation.three">
+                <label resourceKey="catalog.usgin.distributor.organisation.three"/>
+                <input type="text"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
+            </parameter>
+           
+	<parameter key="distibutor.address.three">
+                <label resourceKey="catalog.usgin.distibutor.address.three"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['street'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"/>
+            </parameter>
+
+
+
+            <parameter key="distibutor.city.three">
+                <label resourceKey="catalog.usgin.distibutor.city.three"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['city'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"/>
+            </parameter>
+            <parameter key="distibutor.postalCode.three">
+                <label resourceKey="catalog.usgin.distibutor.postalCode.three"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['postalCode'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"/>
+            </parameter>
+           
+ <parameter key="distributor.telephone.three">
+                <label resourceKey="catalog.usgin.distibutor.telephone.three"/>
+                <input type="text" defaultValue="#{EditMetadataController.userProfile['phone'].value}"/>
+                <validation required="false"/>
+                <content useSelectForUpdate="true" deleteParentIfEmpty="true"
+                         select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor[3]/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString"/>
+            </parameter>
+
+        </section>
+    </section>
+	
+	</section>
+
+
+
+<!--Keywords-->
 
     <section key="keywords.caption" open="true">
         <label resourceKey="catalog.usgin.keywords.caption"/>
@@ -661,7 +1136,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="relResource1.dateType">
                 <label resourceKey="catalog.usgin.relResource1.dateType"/>
                 <input type="selectOneMenu"/>
-                <content nodeType="isoCodeListValue" useSelectForUpdate="true"
+                <content nodeType="isoCodeListValue" useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode">
                     <codes>
                         <code key="Creation" resourceKey="catalog.usgin.relResource1.dateType.publication"/>
@@ -674,7 +1149,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource1.URI">
                 <label resourceKey="catalog.usgin.relResource1.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
@@ -683,7 +1158,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource1.associationType">
                 <label resourceKey="catalog.usgin.relResource1.associationType"/>
-                <input type="text" defaultValue="Cross Reference"/>
+                <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[1]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
@@ -717,7 +1192,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
             <parameter key="relResource2.dateType">
                 <label resourceKey="catalog.usgin.relResource2.dateType"/>
                 <input type="selectOneMenu"/>
-                <content nodeType="isoCodeListValue" useSelectForUpdate="true"
+                <content nodeType="isoCodeListValue" useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode">
                     <codes>
                         <code key="Creation" resourceKey="catalog.usgin.relResource2.dateType.publication"/>
@@ -730,7 +1205,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource2.URI">
                 <label resourceKey="catalog.usgin.relResource2.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
@@ -739,7 +1214,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource2.associationType">
                 <label resourceKey="catalog.usgin.relResource2.associationType"/>
-                <input type="text" defaultValue="Cross Reference"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[2]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
@@ -784,7 +1259,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource3.URI">
                 <label resourceKey="catalog.usgin.relResource3.URI"/>
-                <input type="text"/>
+                <input type="text" size="65" maxlength="120"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
@@ -793,7 +1268,7 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
             <parameter key="relResource3.associationType">
                 <label resourceKey="catalog.usgin.relResource3.associationType"/>
-                <input type="text" DefaultValue="Cross Reference"/>
+                <input type="text"/>
                 <validation required="false"/>
                 <content useSelectForUpdate="true" deleteParentIfEmpty="true"
                          select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:aggregationInfo[3]/gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
