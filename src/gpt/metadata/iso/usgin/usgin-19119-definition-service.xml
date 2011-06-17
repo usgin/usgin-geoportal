@@ -304,8 +304,8 @@ either ISO-USGIN or ISO-NAP-USGIN (doesn't check version...) -->
 
 
     <!--distributor-->
-    <section key="distibutor.information.caption" open="true">
-        <label resourceKey="catalog.usgin.distibutor.information.caption"/>
+    <section key="distibutor.information.caption.srv" open="true">
+        <label resourceKey="catalog.usgin.distibutor.information.caption.srv"/>
 
 
         <!--Contact Information for Distributor Starts here-->
