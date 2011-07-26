@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+<schema key="ISO-to-USGIN-Service" editable="false"> 
+  <!--  schema namespaces-->
+ 
+  <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
+  <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+  <namespace prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
+  
+  <!-- schema interrogation  -->
+  <interrogation count="count(/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) + count(/MD_Metadata/identificationInfo/SV_ServiceIdentification) + count(//srv:SV_ServiceIdentification)" toKnownSchemaXslt="gpt/metadata/iso/to-usgin/ISOtoUSGIN-19119-service.xslt"/>
+  </schema>
+</schemas>
