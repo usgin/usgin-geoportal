@@ -1,2 +1,3 @@
 WEB-INF/classes/gpt/config/gpt.xml
 META-INF/context.xml
+config.properties
