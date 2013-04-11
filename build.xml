@@ -4,6 +4,7 @@
     <property name="context.dir" value="META-INF"/>
     <property name="driver.dir" value="postgres-drivers"/>
     <property name="lib.dir" value="WEB-INF/lib"/>
+    <property name="db.connection.string" value="jdbc:postgresql://${db.host}:${db.port}/${db.name}"/>
 
     <target name="config" description="replace configuration parameters in Geoportal files">
         <copy file="META-INF/context-template.xml" tofile="${context.dir}/context.xml"/>
@@ -46,5 +47,12 @@
         </condition>
 
         <copy file="${driver.dir}/${postgres.driver.file}" tofile="${lib.dir}/${postgres.driver.file}"/>
+
+        <exec executable="postgres-scripts/create_schema_linuxpg.sh">
+            <arg value="${db.host}"/>
+            <arg value="${db.port}"/>
+            <arg value="${db.name}"/>
+            <arg value="${db.username}"/>
+        </exec>
     </target>
 </project>
