@@ -15,36 +15,18 @@
  limitations under the License.
 -->
 <schemas>
-  <schema fileName="gpt/metadata/fgdc/fgdc-definition.xml"/>
-  <schema fileName="gpt/metadata/esri/esri-arcgis-definition.xml"/>
-  <schema fileName="gpt/metadata/esri/esri-iso-definition.xml"/>
-    
-  <schema fileName="gpt/metadata/dc/dc-definition.xml"/>
-  
-  <schema fileName="gpt/metadata/iso/nap/nap-iso-19115-definition.xml"/>
-  <schema fileName="gpt/metadata/iso/nap/nap-iso-19119-definition.xml"/>
-  
-  <!-- UK GEMINI 2.1 
-    GEMINI document interrogation rules are based upon
-    gmd:metadataStandardVersion[gco:CharacterString='UK GEMINI 2.1']
-    <schema fileName="gpt/metadata/iso/gemini/gemini-iso-19115-definition.xml"/>
-    <schema fileName="gpt/metadata/iso/gemini/gemini-iso-19119-definition.xml"/>
-  -->
-  <schema fileName="gpt/metadata/iso/Gemini2_R1r2/gemini-iso-19115-definition.xml"/>
-  <schema fileName="gpt/metadata/iso/Gemini2_R1r2/gemini-iso-19119-definition.xml"/>
-  
-  <!--  NOTE: Only one of INSPIRE or standard ISO should be enabled -->  
-  <!-- 
-  <schema fileName="gpt/metadata/iso/inspire/inspire-iso-19115-definition.xml"/>
-  <schema fileName="gpt/metadata/iso/inspire/inspire-iso-19119-definition.xml"/>
-  -->
-  <schema fileName="gpt/metadata/iso/iso-19115-definition.xml"/>
-  <schema fileName="gpt/metadata/iso/iso-19119-definition.xml"/>
-
-  <schema fileName="gpt/metadata/iso/iso-19115-2-definition.xml"/>
-  
-  <schema fileName="gpt/metadata/ogc/ogc-definition.xml"/> 
-  <schema fileName="gpt/metadata/ogc/cswRecord-definition.xml"/>
-  <schema fileName="gpt/metadata/other/georss-definition.xml"/> 
-  <schema fileName="gpt/metadata/other/opensearch-definition.xml"/>
+<!-- the first definition file tests to determine if the input record has been processed by the
+ISO to USGIN ISO xslt transform; it it has, it is processed by the definition file.  All validation criteria
+have been removed from the validation, the assumption being that once processed by the xslt, it is a valid
+usgin-profile record-->
+   <schema fileName="gpt/metadata/iso/usgin/USGIN-ISO19115Definition.xml"/>
+   
+   <!-- the second defintion tests whether the record is a MD_Metadata or MI_Metadata record and if so,
+   sends it to the ISO to USGIN ISO xslt; after transformation it will be interogated again and caught by the
+   first definition file -->
+   <schema fileName="gpt/metadata/iso/usgin/ISO-to-USGIN-19115-data-definition.xml"/>
+   
+   <!-- if its not an ISO XML record, it gets ignored. Other schema should be imported into repository.usgin.org
+   and reviewed before harvest to the USGIN geoportal-->
+   
 </schemas>
