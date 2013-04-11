@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+<schema key="AllISO19115-to-USGIN" editable="false">
+        cswOutputSchema="http://www.isotc211.org/2005/gmd" 
+        cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt" 
+        cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt" 
+        xsdLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd">  
+    
+  <label resourceKey="catalog.usgin.schema.dataset.19115"/>	
+  
+  <!--  schema namespaces -->
+  <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
+  <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+  <namespace prefix="gml" uri="http://www.opengis.net/gml"/>
+ <!-- <namespace prefix="gmi" uri="http://www.isotc211.org/2005/gmi"/> -->
+  
+ 
+   <!-- schema interrogation -->
+  <interrogation count="count(/gmd:MD_Metadata)"
+  toKnownSchemaXslt="gpt/metadata/iso/usgin/iso-19115-to-usgin-19115-data.xslt"/>
+</schema>
+</schemas>
