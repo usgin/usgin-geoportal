@@ -1,21 +1,21 @@
 <project name="usgin-geoportal" default="config" basedir=".">
     <property file="config.properties"/>
-    <property name="gpt.file" value="WEB-INF/classes/gpt/config/gpt.xml"/>
-    <property name="context.file" value="META-INF/context.xml"/>
+    <property name="gpt.dir" value="WEB-INF/classes/gpt/config"/>
+    <property name="context.dir" value="META-INF"/>
     <target name="config" description="replace configuration parameters in Geoportal files">
-        <copy file="META-INF/context-template.xml" tofile="$(context.file)"/>
-        <replace file="$(gpt.file)" token="$(db.connection.string)" value="$(db.connection.string)"/>
-        <replace file="$(gpt.file)" token="$(db.username)" value="$(db.username)"/>
-        <replace file="$(gpt.file)" token="$(db.password)" value="$(db.password)"/>
+        <copy file="META-INF/context-template.xml" tofile="${context.dir}/context.xml"/>
+        <replace file="${context.dir}/context.xml" token="$(db.connection.string)" value="${db.connection.string}"/>
+        <replace file="${context.dir}/context.xml" token="$(db.username)" value="${db.username}"/>
+        <replace file="${context.dir}/context.xml" token="$(db.password)" value="${db.password}"/>
 
-        <copy file="WEB-INF/classes/gpt/config/gpt-template.xml" tofile="$(gpt.file)"/>
-        <replace file="$(gpt.file)" token="$(lucene.index.location)" value="$(lucene.index.location)"/>
-        <replace file="$(gpt.file)" token="$(mail.host)" value="$(mail.host)"/>
-        <replace file="$(gpt.file)" token="$(mail.port)" value="$(mail.port)"/>
-        <replace file="$(gpt.file)" token="$(mail.username)" value="$(mail.username)"/>
-        <replace file="$(gpt.file)" token="$(mail.password)" value="$(mail.password)"/>
-        <replace file="$(gpt.file)" token="$(mail.emailAddress)" value="$(mail.emailAddress)"/>
-        <replace file="$(gpt.file)" token="$(admin.name)" value="$(admin.name)"/>
-        <replace file="$(gpt.file)" token="$(admin.password)" value="$(admin.password)"/>
+        <copy file="WEB-INF/classes/gpt/config/gpt-template.xml" tofile="${gpt.dir}/gpt.xml"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(lucene.index.location)" value="${lucene.index.location}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(mail.host)" value="${mail.host}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(mail.port)" value="${mail.port}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(mail.username)" value="${mail.username}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(mail.password)" value="${mail.password}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(mail.emailAddress)" value="${mail.emailAddress}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(admin.name)" value="${admin.name}"/>
+        <replace file="${gpt.dir}/gpt.xml" token="$(admin.password)" value="${admin.password}"/>
     </target>
 </project>

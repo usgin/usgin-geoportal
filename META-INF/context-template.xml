@@ -3,8 +3,8 @@
     <Resource name="jdbc/gpt" auth="Container" type="javax.sql.DataSource"
               driverClassName="org.postgresql.Driver"
               url="$(db.connection.string)"
-              username="$(db.user.name)"
-              password="$(db.user.password)"
+              username="$(db.username)"
+              password="$(db.password)"
               maxActive="20"
               maxIdle="10"
               maxWait="-1" />
