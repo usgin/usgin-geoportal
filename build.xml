@@ -2,6 +2,9 @@
     <property file="config.properties"/>
     <property name="gpt.dir" value="WEB-INF/classes/gpt/config"/>
     <property name="context.dir" value="META-INF"/>
+    <property name="driver.dir" value="postgres-drivers"/>
+    <property name="lib.dir" value="WEB-INF/lib"/>
+
     <target name="config" description="replace configuration parameters in Geoportal files">
         <copy file="META-INF/context-template.xml" tofile="${context.dir}/context.xml"/>
         <replace file="${context.dir}/context.xml" token="$(db.connection.string)" value="${db.connection.string}"/>
@@ -17,5 +20,31 @@
         <replace file="${gpt.dir}/gpt.xml" token="$(mail.emailAddress)" value="${mail.emailAddress}"/>
         <replace file="${gpt.dir}/gpt.xml" token="$(admin.name)" value="${admin.name}"/>
         <replace file="${gpt.dir}/gpt.xml" token="$(admin.password)" value="${admin.password}"/>
+
+        <condition property="postgres.driver.file" value="postgresql-9.2-1002.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="9.2"/>
+        </condition>
+
+        <condition property="postgres.driver.file" value="postgresql-9.1-903.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="9.1"/>
+        </condition>
+
+        <condition property="postgres.driver.file" value="postgresql-9.0-802.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="9.0"/>
+        </condition>
+
+        <condition property="postgres.driver.file" value="postgresql-8.4-703.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="8.4"/>
+        </condition>
+
+        <condition property="postgres.driver.file" value="postgresql-8.3-607.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="8.3"/>
+        </condition>
+
+        <condition property="postgres.driver.file" value="postgresql-8.2-512.jdbc4.jar">
+            <equals arg1="${db.postgres.version}" arg2="8.2"/>
+        </condition>
+
+        <copy file="${driver.dir}/${postgres.driver.file}" tofile="${lib.dir}/${postgres.driver.file}"/>
     </target>
 </project>
