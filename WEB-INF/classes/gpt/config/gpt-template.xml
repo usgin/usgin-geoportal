@@ -28,14 +28,14 @@
         - password: the password credential
         - encrypted: "true" or "false" (indicates if this password is encrypted) -->
     <mail
-        smtpHost="mail_server_smtp_host"  
+        smtpHost="$(mail.host)"
         smtpPort="" 
         siteEmailAddress="portal_contact_email_address"
         emailAddressRegexp="^[a-zA-Z0-9,!#\$%&amp;'\*\+/=\?\^_`\{\|}~-]+(\.[a-zA-Z0-9,!#\$%&amp;'\*\+/=\?\^_`\{\|}~-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$">
         <smtpAuth
-            username=""
-            password=""
-            encrypted="false"/>
+            username="$(mail.username)"
+            password="$(mail.password)"
+            encrypted="true"/>
     </mail>
 
    <!-- Base map configuration. (used in search page, preview, details page, editor)
@@ -73,7 +73,7 @@
     -->
       
     <lucene
-        indexLocation=""
+        indexLocation="$(lucene.index.location)"
         writeLockTimeout="60000"
         useNativeFSLockFactory="true"
         analyzerClassName="org.apache.lucene.analysis.standard.StandardAnalyzer">
@@ -368,12 +368,12 @@
         <parameter key="ldap.identity.search.maxResults" value="1000"/>  
 
         <!--
-			  This configuration is to connect FGDC Service Checker services to monitor registered live services in geoportal site. 
-			  To enable this feature, it is required to get API key from FGDC Service Checker site. 
-			  Please visit http://registry.gsdi.org/statuschecker/ and sign up for your Geoportal Server site. 
+			  This configuration is to connect FGDC Service Checker services to monitor registered live services in geoportal site.
+			  To enable this feature, it is required to get API key from FGDC Service Checker site.
+			  Please visit http://registry.gsdi.org/statuschecker/ and sign up for your Geoportal Server site.
         Service checker parameters:
             - servicechecker.enabled: enables or disables service checker. Default: false
-            - servicechecker.token: service checker token. 
+            - servicechecker.token: service checker token.
 				Contact FGDC.GOV to obtain token for your specific deployment.
             - servicechecker.checkUrl: service checker URL
             - servicechecker.infoUrl: service info URL
@@ -384,7 +384,7 @@
         <parameter key="servicechecker.infoUrl" value="http://registry.fgdc.gov/statuschecker/ServiceDetail.php"/>
 
         <!--
-        Item cart parameters: 
+        Item cart parameters:
 			  This is a sample processor, a specific processor can be created based upon the usecase.
             - catalog.cart.enabled: enables or disables the cart. Default: false
             - catalog.cart.maxItems: maximum number of items in the cart. Default: 10
@@ -395,11 +395,11 @@
         <parameter key="catalog.cart.processor" value="com.esri.gpt.control.cart.ZipXmls"/>
 
     </catalog>
-    
+
     <!-- Download data configuration.
         - taskUrl: geoprocessing task URL
         - mapServiceUrl: map service URL used by geoprocessing task
-        - mapServiceType: The caching scheme for the map service. The value can be "dynamic" or "tiled"  
+        - mapServiceType: The caching scheme for the map service. The value can be "dynamic" or "tiled"
     -->
   
     <downloadData
@@ -426,10 +426,10 @@
             <raster key="Bitmap - BMP - .bmp" alias="bmp"  resKey="catalog.download.raster.bmp"/>
             <raster key="Portable Network Graphics - PNG - .png" alias="png"  resKey="catalog.download.raster.png"/>
         </rasters>
-       
-        <!-- To support backward compatibility for the Geoportal 9.3.x data download customizations, 
-            these projections and format sections are provided. These are not used in the Geoportal 
-            10 data download customization 
+
+        <!-- To support backward compatibility for the Geoportal 9.3.x data download customizations,
+            these projections and format sections are provided. These are not used in the Geoportal
+            10 data download customization
         -->
         <!--
         <projections>
@@ -437,139 +437,32 @@
             <projection key="WGS 1984 UTM Zone 10N" alias="32610" resKey="catalog.download.projection.32610"/>
             <projection key="WGS 1984 Web Mercator" alias="102113" resKey="catalog.download.projection.102113"/>
             <projection key="WGS 1984" alias="4326" resKey="catalog.download.projection.4326"/>
-        </projections> 
+        </projections>
         <formats>
             <format key="GML - (.gml)" alias="gml" resKey="catalog.download.outputFormat.gml"/>
             <format key="GMLSF - (.gmlsf)" alias="gmlsf" resKey="catalog.download.outputFormat.gmlsf"/>
             <format key="MIF - (.mif)" alias="mif" resKey="catalog.download.outputFormat.mif"/>
             <format key="ACAD - (.dwg)" alias="dwg" resKey="catalog.download.outputFormat.acad"/>
             <format key="IGDS - (.dgn)" alias="dgn" resKey="catalog.download.outputFormat.igds"/>
-        </formats> 
-        -->        
+        </formats>
+        -->
     </downloadData>
-  
+
     <!-- User Management configuration. simpleAdapter OR ldapAdapter.
         - simpleAdpater: configures geoportal with one administrative user
-        - ldapAdapter: configures geoportal to connect to LDAP user directory store. 
+        - ldapAdapter: configures geoportal to connect to LDAP user directory store.
     -->
     <identity encKey="PtkESRI" realm="Geoportal">  
-        <!-- 
+
         <simpleAdapter>
-            <account username="gptaccount" password="gpt.account" encrypted="false"/>
+            <account username="$(admin.name)" password="$(admin.password)" encrypted="false"/>
             <roles>
                 <role key="gptRegisteredUser"/>
                 <role key="gptPublisher"/>
                 <role key="gptAdministrator"/>
             </roles>
         </simpleAdapter>
-        -->
-      
-        <ldapAdapter>
-            <ldapConnectionProperties
-                providerURL="ldap://ldap_host_name:ldap_port"
-                initialContextFactoryName="com.sun.jndi.ldap.LdapCtxFactory"
-                securityAuthentication="simple"
-                securityProtocol="">
-                <ldapServiceAccount
-                    securityPrincipal="ldap_admin_user"
-                    securityCredentials="ldap_admin_password"
-                    encrypted="false"/>
-            </ldapConnectionProperties>
-        
-            <singleSignOn
-                active="false"
-                credentialLocation="userPrincipal"
-                anonymousValue=""
-                logoutOutcome=""/>
-            
-            <selfCareSupport
-                supportsLogin="true"
-                supportsLogout="true"
-                supportsUserRegistration="true"
-                supportsUserProfileManagement="true"
-                supportsPasswordChange="true"
-                supportsPasswordRecovery="true"/>
 
-		  
-		    <!-- optional parameters for user role management: 
-				An alternate way to prevent users from specific groups is to set "forbidden" attribute to true. 
-		        - manage: Used to configure role to be managed on the user role management page.
-					If the value is true, the users having the role are managed on the user role management page. Default is true.
-				- forbidden: Used to configure role to prevent users with this role from logging in to geoportal
-					If the value is true, the users having the role will not be allowed to login.
-				- resKey: A resource key to the label displayed for the corresponding role on the user role management page.
-		    -->    
-            <roles authenticatedUserRequiresRole="true">
-                <role
-                    key="gptRegisteredUser"
-                    resKey="catalog.role.gptRegisteredUser"
-				    manage="true"
-				    forbidden="false"
-                    groupDN="group_distinguished_name_for_registered_user"/>
-                <role
-                    key="gptPublisher"
-                    inherits="gptRegisteredUser"
-                    resKey="catalog.role.gptPublisher"
-				    manage="true"
-				    forbidden="false"
-                    groupDN="group_distinguished_name_for_publisher"/>
-              <role
-                    key="gptAdministrator"
-                    inherits="gptPublisher"
-                    resKey="catalog.role.gptAdministrator"
-				    manage="true"
-				    forbidden="false"
-                    groupDN="group_distinguished_name_for_administrator"/>
-            </roles>
-        
-            <users
-                displayNameAttribute="uid"
-                passwordEncryptionAlgorithm="SHA"
-                newUserDNPattern="cn={0},Users_Node_DN"
-                usernameSearchPattern="(&amp;(objectclass=person)(uid={0}))"
-                searchDIT="Users_Node_DN">
-                <requiredObjectClasses>
-                    <objectClass name="top"/>
-                    <objectClass name="person"/>
-                    <objectClass name="organizationalPerson"/>
-                    <objectClass name="inetOrgPerson"/>
-                </requiredObjectClasses>
-                <userAttributeMap>
-                    <attribute key="username"     ldapName="uid"/>
-                    <attribute key="password"     ldapName="userPassword"/>
-                    <attribute key="email"        ldapName="mail"/>
-                    <attribute key="firstName"    ldapName="givenName"/>
-                    <attribute key="lastName"     ldapName="sn"/>
-                    <attribute key="displayName"  ldapName="displayName"/>
-                    <attribute key="organization" ldapName="o"/>
-                    <attribute key="affiliation"  ldapName="businessCategory"/>
-                    <attribute key="street"       ldapName="street"/>
-                    <attribute key="city"         ldapName="l"/>
-                    <attribute key="stateOrProv"  ldapName="st"/>
-                    <attribute key="postalCode"   ldapName="postalCode"/>
-                    <attribute key="country"      ldapName=""/>
-                    <attribute key="phone"        ldapName="telephoneNumber"/>
-                </userAttributeMap>
-            </users>
-      
-            <groups
-                displayNameAttribute="cn"
-                dynamicMemberOfGroupsAttribute=""
-                dynamicMembersAttribute=""
-                memberAttribute="uniquemember"
-                memberSearchPattern="(&amp;(objectclass=groupOfUniqueNames)(uniquemember={0}))"
-                searchDIT="Groups_Node_DN">
-     
-            <!-- 
-                <metadataManagementGroup
-                    name="Region 1"
-                    groupDN="group_distinguished_name"/>
-                <metadataManagementGroup
-                    name="Region 2"
-                    groupDN="group_distinguished_name"/>
-            -->
-            </groups>
-        </ldapAdapter>
     </identity>
   
     <!-- Scheduled Background Threads -->
