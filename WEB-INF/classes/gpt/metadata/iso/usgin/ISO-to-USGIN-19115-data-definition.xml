@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemas>
-<schema key="AllISO19115-to-USGIN" editable="false">
+<schema key="AllISO19115-to-USGIN" editable="false"
         cswOutputSchema="http://www.isotc211.org/2005/gmd" 
         cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt" 
         cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt" 
