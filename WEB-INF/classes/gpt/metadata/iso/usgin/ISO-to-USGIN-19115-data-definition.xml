@@ -16,7 +16,9 @@
   
  
    <!-- schema interrogation -->
-  <interrogation count="count(/gmd:MD_Metadata)"
+   <!-- make interrogation catch a gmd:MD_Metadata anywhere in the interrogated document
+   to catch CSW and OAI-PMH harvest responses-->
+  <interrogation count="count(//gmd:MD_Metadata)"
   toKnownSchemaXslt="gpt/metadata/iso/usgin/iso-19115-to-usgin-19115-data.xslt"/>
 </schema>
 </schemas>
