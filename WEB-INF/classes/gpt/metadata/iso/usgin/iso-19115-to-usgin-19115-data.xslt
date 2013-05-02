@@ -759,18 +759,26 @@
 					</xsl:call-template>
 					<!-- do this with a template because its a mess, and we want it to be reusable -->
 				</xsl:for-each>
+				<!-- gmd:minvalue maxvalue are required-->
 				<xsl:for-each select="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:verticalElement">
+				<xsl:if test="(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:minimumValue) and (gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:maximumValue)">
 					<gmd:extent>
 						<gmd:EX_Extent>
 							<xsl:apply-templates select="." mode="no-namespaces"/>
+							
 							<!-- <xsl:copy-of select="."/> -->
 						</gmd:EX_Extent>
 					</gmd:extent>
+					</xsl:if>
 				</xsl:for-each>
+				
+				
 				<xsl:apply-templates select="$inputInfo/gmd:supplementalInformation"
 					mode="no-namespaces"/>
 			</gmd:MD_DataIdentification>
 		</gmd:identificationInfo>
+		
+		
 	</xsl:template>
 	<!-- end processing MD_DataIdentification -->
 	<!-- Distribution -->
