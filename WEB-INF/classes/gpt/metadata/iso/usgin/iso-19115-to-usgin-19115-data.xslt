@@ -971,7 +971,7 @@
 											<xsl:when
 												test="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/@gml:id">
 												<xsl:attribute name="gml:id">
-												<xsl:value-of select="@gml:id"/>
+													<xsl:value-of select="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/@gml:id"/>
 												</xsl:attribute>
 											</xsl:when>
 											<xsl:otherwise>
