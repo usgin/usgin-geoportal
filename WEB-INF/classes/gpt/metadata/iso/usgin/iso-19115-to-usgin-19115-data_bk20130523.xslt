@@ -79,7 +79,7 @@
 			</xsl:choose>
 			<!-- characterSet defaults to UTF-8 if no character set is specified -->
 			<gmd:characterSet>
-				<xsl:comment>no character set element in source metadata, USGIN XSLT inserted default value</xsl:comment>
+			   <xsl:comment>no character set element in source metadata, USGIN XSLT inserted default value</xsl:comment>
 				<gmd:MD_CharacterSetCode
 					codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode "
 					codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
@@ -101,7 +101,7 @@
 				</xsl:when>
 				<xsl:otherwise>
 					<gmd:hierarchyLevelName>
-						<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
+						  <xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment> 
 						<gco:CharacterString>Missing</gco:CharacterString>
 					</gmd:hierarchyLevelName>
 				</xsl:otherwise>
@@ -149,7 +149,7 @@
 						</xsl:when>
 						<xsl:when
 							test="$var_InputRootNode/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:ISBN">
-							<xsl:comment>no resource identifier in source metadata, USGIN XSLT uses citation ISBN</xsl:comment>
+							  <xsl:comment>no resource identifier in source metadata, USGIN XSLT uses citation ISBN</xsl:comment> 
 							<xsl:value-of
 								select="concat('ISBN:',normalize-space(string($var_InputRootNode/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:ISBN)))"
 							/>
@@ -179,10 +179,10 @@
 			</gmd:dataSetURI>
 			<!-- <xsl:copy-of select="$var_InputRootNode/gmd:locale"/>-->
 			<xsl:apply-templates select="$var_InputRootNode/gmd:locale" mode="no-namespaces"/>
-		
+			<!--  <xsl:copy-of select="$var_InputRootNode/gmd:spatialRepresentationInfo"/>-->
 			<xsl:apply-templates select="$var_InputRootNode/gmd:spatialRepresentationInfo"
 				mode="no-namespaces"/>
-			
+			<!-- <xsl:copy-of select="$var_InputRootNode/gmd:referenceSystemInfo"/> -->
 			<xsl:apply-templates select="$var_InputRootNode/gmd:referenceSystemInfo"
 				mode="no-namespaces"/>
 			<!-- there may be multiple identificationInfo elements. Several metadata profiles put service distribution
@@ -197,192 +197,13 @@
 				/>
 			</xsl:call-template>
 			<xsl:call-template name="usgin:distributionSection">
-				<xsl:with-param name="inputDistro" select="$var_InputRootNode/gmd:distributionInfo"/>
+				<xsl:with-param name="inputDistro" select="$var_InputRootNode/gmd:distributionInfo"
+				/>
 			</xsl:call-template>
-			<!--   <xsl:copy-of select="$var_InputRootNode/gmd:dataQualityInfo"/>
-			
-			  <gmd:dataQualityInfo>
-    			<gmd:DQ_DataQuality>
-     				 <gmd:scope>
-     				 <gmd:report>  0.. many reports allowed; 19115-2 adds classes
-     				 	gmi adds QE_Usability as suptyep of DQ_element, and QE_CoverageResult as subtype of DQ_Result
-     				 <gmd:lineage> 0..1 lineage allowed; 19115-2 adds classes
-     				 	<gmd:LI_Lineage> or gmi:LE_Lineage>
-     				 		<gmd:processStep>
-     				 		<gmd:source>  0..many sources; sources have extents, which need 
-     				 							time instant to position conversion	-->
-			<!-- handle 19115-2 elements in data quality section... -->
-			<!-- first check if there is a dataquality section and make that the context node to keep paths shorter -->
-			<xsl:for-each select="$var_InputRootNode/gmd:dataQualityInfo/gmd:DQ_DataQuality">
-				<gmd:dataQualityInfo>
-					<gmd:DQ_DataQuality>
-						<!-- copy the scope -->
-						<xsl:apply-templates select="gmd:scope" mode="no-namespaces"/>
-						<!-- next handle the quality reports; these may have some gmi stuff-->
-						<xsl:for-each select="gmd:report">
-							<!-- check if it has a gmi type of DQ_Element -->
-							<xsl:choose>
-								<xsl:when
-									test="namespace-uri(./child::node()[2])='http://www.isotc211.org/2005/gmi'">
-									<!-- copy the content into a gmd DQ_Element -->
-									<gmd:DQ_ConceptualConsistency>
-										<gmd:nameOfMeasure>
-											<gco:CharacterString>
-												<xsl:value-of
-												select="concat('gmi:',local-name(./child::node()[2]))"
-												/>
-											</gco:CharacterString>
-										</gmd:nameOfMeasure>
-										<gmd:evaluationMethodDescription>
-											<!-- make the content of the element into key-value pairs -->
-											<gco:CharacterString>
-												<xsl:for-each
-												select="./descendant::gmd:nameOfMeasure/following-sibling::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												</xsl:if>
-												<!-- get all the descendent content for each sibling... -->
-												<xsl:for-each select="descendant::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												</xsl:if>
-												</xsl:for-each>
-												</xsl:for-each>
-											</gco:CharacterString>
-										</gmd:evaluationMethodDescription>
-										<gmd:result gco:nilReason="missing"/>
-									</gmd:DQ_ConceptualConsistency>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:apply-templates select="." mode="no-namespaces"/>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:for-each>
-						<!-- end for each report -->
-
-						<!-- finally handle the lineage -->
-						<gmd:lineage>
-							<gmd:LI_Lineage>
-								<xsl:for-each select="gmd:lineage/gmd:LI_Lineage/gmd:processStep">
-									<gmd:processStep>
-										<xsl:choose>
-											<xsl:when test="gmi:LE_ProcessStep">
-												<gmd:LI_ProcessStep>
-												<!-- first get the gmd content -->
-												<!-- now copy the gmi stuff as key value pairs into a variable-->
-												<xsl:variable name="gmiProcessStepStuff">
-												<!-- pick up all the sibling elements after gmd:Processor -->
-												<xsl:for-each
-												select="./gmi:LE_ProcessStep/gmd:description/following-sibling::node()">
-												<!-- kludge because have 3 optional properties after required
-													description that are in gmd namespace...-->
-												<xsl:if
-												test="string-length(local-name())>0
-													and local-name()!='rationale' and local-name()!='dateTime'
-													and local-name()!='processor'">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												<!-- get the descendent nodes -->
-												<xsl:for-each select="descendant::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												</xsl:if>
-												</xsl:for-each>
-												</xsl:if>
-												<!-- if have a node name that wat to process -->
-												</xsl:for-each>
-												</xsl:variable>
-												<!-- defintion of gmiProcessStepStuff -->
-
-												<gmd:description>
-												<gco:CharacterString>
-												<xsl:value-of
-												select="concat(string(gmi:LE_ProcessStep/gmd:description/gco:CharacterString),'. ',$gmiProcessStepStuff)"
-												/>
-												</gco:CharacterString>
-												</gmd:description>
-												<xsl:apply-templates
-												select="gmi:LE_ProcessStep/gmd:rationale"
-												mode="no-namespaces"/>
-												<xsl:apply-templates
-												select="gmi:LE_ProcessStep/gmd:dateTime"
-												mode="no-namespaces"/>
-												<xsl:apply-templates
-												select="gmi:LE_ProcessStep/gmd:processor"
-												mode="no-namespaces"/>
-												</gmd:LI_ProcessStep>
-											</xsl:when>
-											<xsl:otherwise>
-												<!-- copy the ProcessStep -->
-												<xsl:apply-templates select="gmd:LI_ProcessStep"
-												mode="no-namespaces"/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</gmd:processStep>
-								</xsl:for-each>
-								<!-- processStep -->
-								<!-- now do the sources, they have an extent that might be temporal 
-						als need to handle gmi:LE_source...-->
-								<xsl:for-each select="gmd:lineage/gmd:LI_Lineage/gmd:source/gmi:LE_Source
-									| gmd:lineage/gmd:LI_Lineage/gmd:source/gmd:LI_Source">
-									<gmd:source>
-											<gmd:LI_Source>
-												<gmd:description>
-												<gco:CharacterString>
-					<!-- start with the LI_SourceDescription, then concat text from  
-												gmi elements if present -->
-												<xsl:value-of select="gmd:description"/>
-												<xsl:for-each
-												select="gmi:processedLevel/descendant::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of select="concat(local-name(),':',string(.))"/>
-												</xsl:if>
-												</xsl:for-each>
-												<xsl:for-each
-												select="gmi:resolution/descendant::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												</xsl:if>
-												</xsl:for-each>
-
-												</gco:CharacterString>
-												</gmd:description>
-					<xsl:apply-templates	select="gmd:MD_RepresentativeFraction"	mode="no-namespaces"/>
-					<xsl:apply-templates select="gmd:MD_ReferenceSystem" mode="no-namespaces"/>
-												
-												<!-- use USGIN Citation Handler -->
-												<xsl:if test="gmd:sourceCitation">
-													<gmd:sourceCitation>
-												<xsl:call-template name="usgin:citationHandler">
-													<xsl:with-param name="inputCit" select="gmd:sourceCitation/gmd:CI_Citation"/>
-												</xsl:call-template>
-													</gmd:sourceCitation>
-												</xsl:if>  <!-- end citation section -->
-												<!-- use usgin extent handler -->
-												<xsl:if test="gmd:sourceExtent">
-													<gmd:sourceExtent>
-														<gmd:EX_Extent>
-												<xsl:call-template name="usgin:extentHandler">
-													<xsl:with-param name="inputExtent" select="gmd:sourceExtent/gmd:EX_Extent"/>
-												</xsl:call-template>
-														</gmd:EX_Extent>
-													</gmd:sourceExtent>
-											</xsl:if> <!-- end extent section -->
-											</gmd:LI_Source>
-									</gmd:source>
-								</xsl:for-each><!-- end for each source-->
-							
-							</gmd:LI_Lineage>
-						</gmd:lineage>
-					</gmd:DQ_DataQuality>
-				</gmd:dataQualityInfo>
-			</xsl:for-each>
-			<!-- end for each data quality (0 or 1 will be present -->
-
+			<!--   <xsl:copy-of select="$var_InputRootNode/gmd:dataQualityInfo"/>-->
+			<xsl:apply-templates select="$var_InputRootNode/gmd:dataQualityInfo"
+				mode="no-namespaces"/>
+			<!--    <xsl:copy-of select="$var_InputRootNode/gmd:portrayalCatalogueInfo"/>-->
 			<xsl:apply-templates select="$var_InputRootNode/gmd:portrayalCatalogueInfo"
 				mode="no-namespaces"/>
 			<!--    <xsl:copy-of select="$var_InputRootNode/gmd:metadataConstraints"/>-->
@@ -453,7 +274,7 @@
 		</gmd:MD_Metadata>
 	</xsl:template>
 	<!-- Templates Start Here -->
-	<!--- contact information CI_ResponsibleParty handler -->
+	<!---Metadata contact-->
 	<xsl:template name="usgin:ResponsibleParty">
 		<!-- parameter should be a CI_ResponsibleParty node -->
 		<xsl:param name="inputParty" select="."/>
@@ -464,12 +285,10 @@
 					<xsl:choose>
 						<xsl:when test="$inputParty/gmd:individualName/gco:CharacterString">
 							<xsl:value-of
-								select="$inputParty/gmd:individualName/gco:CharacterString"/> de </xsl:when>
+								select="$inputParty/gmd:individualName/gco:CharacterString"/>
+						</xsl:when>
 						<xsl:otherwise>missing</xsl:otherwise>
 					</xsl:choose>
-					<xsl:apply-templates
-						select="$inputParty/gmd:individualName/gco:CharacterString/@*"
-						mode="no-namespaces"/>
 				</gco:CharacterString>
 			</gmd:individualName>
 			<gmd:organisationName>
@@ -481,9 +300,6 @@
 						</xsl:when>
 						<xsl:otherwise>missing</xsl:otherwise>
 					</xsl:choose>
-					<xsl:apply-templates
-						select="$inputParty/gmd:organisationName/gco:CharacterString/@*"
-						mode="no-namespaces"/>
 				</gco:CharacterString>
 			</gmd:organisationName>
 			<gmd:positionName>
@@ -495,104 +311,123 @@
 						</xsl:when>
 						<xsl:otherwise>missing</xsl:otherwise>
 					</xsl:choose>
-					<xsl:apply-templates
-						select="$inputParty/gmd:positionName/gco:CharacterString/@*"
-						mode="no-namespaces"/>
 				</gco:CharacterString>
 			</gmd:positionName>
 			<gmd:contactInfo>
 				<gmd:CI_Contact>
-					<xsl:if
-						test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone">
-						<gmd:phone>
-							<gmd:CI_Telephone>
-								<xsl:choose>
-									<xsl:when
-										test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString">
-										<xsl:for-each
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice">
-											<gmd:voice>
-												<gco:CharacterString>
+					<gmd:phone>
+						<gmd:CI_Telephone>
+							<xsl:choose>
+								<xsl:when
+									test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString">
+									<xsl:for-each
+										select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice">
+										<gmd:voice>
+											<gco:CharacterString>
 												<xsl:choose>
 												<xsl:when test="gco:CharacterString">
 												<xsl:value-of select="gco:CharacterString"/>
 												</xsl:when>
 												<xsl:otherwise>999-999-9999</xsl:otherwise>
 												</xsl:choose>
-												</gco:CharacterString>
-											</gmd:voice>
-										</xsl:for-each>
-									</xsl:when>
-									<xsl:otherwise>
-										<gmd:voice>
-											<gco:CharacterString>999-999-9999</gco:CharacterString>
+											</gco:CharacterString>
 										</gmd:voice>
-									</xsl:otherwise>
-								</xsl:choose>
-								<!-- if there is a voice phone -->
-								<!-- copy any fax numbers -->
-								<!-- <xsl:copy-of
+									</xsl:for-each>
+								</xsl:when>
+								<xsl:otherwise>
+									<gmd:voice>
+										<gco:CharacterString>999-999-9999</gco:CharacterString>
+									</gmd:voice>
+								</xsl:otherwise>
+							</xsl:choose>
+							<!-- if there is a voice phone -->
+							<!-- copy any fax numbers -->
+							<!-- <xsl:copy-of
                                 select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:facsimile"
                             />-->
-								<xsl:apply-templates
-									select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:facsimile"
-									mode="no-namespaces"/>
-							</gmd:CI_Telephone>
-						</gmd:phone>
-					</xsl:if>
-					<!-- if there is a phone number -->
+							<xsl:apply-templates
+								select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:facsimile/gco:CharacterString"
+								mode="no-namespaces"/>
+						</gmd:CI_Telephone>
+					</gmd:phone>
 					<gmd:address>
 						<gmd:CI_Address>
-							<xsl:if
-								test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString">
-								<gmd:deliveryPoint>
-									<gco:CharacterString>
-										<xsl:value-of
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"
-										/>
-									</gco:CharacterString>
-								</gmd:deliveryPoint>
-							</xsl:if>
-							<xsl:if
-								test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString">
-								<gmd:city>
-									<gco:CharacterString>
-										<xsl:value-of
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"
-										/>
-									</gco:CharacterString>
-								</gmd:city>
-							</xsl:if>
-							<xsl:if
-								test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString">
-								<gmd:administrativeArea>
-									<gco:CharacterString>
-										<xsl:value-of
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString"
-										/>
-									</gco:CharacterString>
-								</gmd:administrativeArea>
-							</xsl:if>
-							<xsl:if
-								test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString">
-								<gmd:postalCode>
-									<gco:CharacterString>
-										<xsl:value-of
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"
-										/>
-									</gco:CharacterString>
-								</gmd:postalCode>
-							</xsl:if>
-							<xsl:if
-								test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString">
-								<gmd:country>
-									<gco:CharacterString>
-										<xsl:value-of
-											select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString"
-										/>
-									</gco:CharacterString>
-								</gmd:country>
-							</xsl:if>
+							<gmd:deliveryPoint>
+								<gco:CharacterString>
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"/>
+
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="Missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gco:CharacterString>
+							</gmd:deliveryPoint>
+							<gmd:city>
+								<gco:CharacterString>
+
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"/>
+
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="Missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gco:CharacterString>
+							</gmd:city>
+							<gmd:administrativeArea>
+								<gco:CharacterString>
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString"
+											/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="Missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gco:CharacterString>
+							</gmd:administrativeArea>
+							<gmd:postalCode>
+								<gco:CharacterString>
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"
+											/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="Missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gco:CharacterString>
+							</gmd:postalCode>
+							<gmd:country>
+								<gco:CharacterString>
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString"
+											/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="Missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gco:CharacterString>
+							</gmd:country>
 							<!-- there will be an e-mail address -->
 							<xsl:choose>
 								<xsl:when
@@ -622,20 +457,39 @@
 
 						</gmd:CI_Address>
 					</gmd:address>
-					<!-- check if there is an online resource for the contact -->
-					<xsl:apply-templates
-						select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource"
-						mode="no-namespaces"/>
-						
+					<gmd:onlineResource>
+						<gmd:CI_OnlineResource>
+							<gmd:linkage>
+								<gmd:URL>
+									<xsl:choose>
+										<xsl:when
+											test="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+											<xsl:value-of
+												select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"
+											/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="missing"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</gmd:URL>
+							</gmd:linkage>
+						</gmd:CI_OnlineResource>
+					</gmd:onlineResource>
+					<!-- <xsl:copy-of
+                        select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource"/>-->
+
+					<!-- <xsl:copy-of
+                        select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:hoursOfService"/>-->
 					<xsl:apply-templates
 						select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:hoursOfService"
-						mode="no-namespaces"/>
+						mode="copy-no-namespaces"/>
 					<!--   <xsl:copy-of
                         select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:contactInstructions"
                     />-->
 					<xsl:apply-templates
 						select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:contactInstructions"
-						mode="no-namespaces"/>
+						mode="copy-no-namespaces"/>
 				</gmd:CI_Contact>
 			</gmd:contactInfo>
 			<gmd:role>
@@ -655,22 +509,139 @@
 			<gmd:MD_DataIdentification>
 				<!-- elements from abstract MD_Identification -->
 				<gmd:citation>
-					<xsl:call-template name="usgin:citationHandler">
-						<xsl:with-param name="inputCit"
-							select="$inputInfo/gmd:citation/gmd:CI_Citation"/>
-					</xsl:call-template>
+					<gmd:CI_Citation>
+						<gmd:title>
+							<gco:CharacterString>
+								<xsl:value-of
+									select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:title"/>
+							</gco:CharacterString>
+						</gmd:title>
+						<!-- Keeping the title from being indented correctly-->
+
+						<!--  <xsl:copy-of
+                            select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:alternateTitle"/>-->
+						<!--	<xsl:apply-templates select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" mode="no-namespaces"/>-->
+						<gmd:date>
+							<gmd:CI_Date>
+								<gmd:date>
+									<gco:DateTime>
+										<xsl:call-template name="usgin:dateFormat">
+											<xsl:with-param name="inputDate"
+												select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date"
+											/>
+										</xsl:call-template>
+									</gco:DateTime>
+								</gmd:date>
+								<gmd:dateType>
+									<gmd:CI_DateTypeCode
+										codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+										codeListValue="publication"
+										>publication</gmd:CI_DateTypeCode>
+								</gmd:dateType>
+							</gmd:CI_Date>
+						</gmd:date>
+						<!-- <xsl:copy-of select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:edition"/>-->
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:edition"
+							mode="no-namespaces"/>
+						<!-- <xsl:copy-of
+                            select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:editionDate"/>-->
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:editionDate"
+							mode="no-namespaces"/>
+						<!--   <xsl:copy-of select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:identifier"/>-->
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:identifier"
+							mode="no-namespaces"/>
+						<!---Responsible Party may not be included in Repo output, yet It is required for USGIN validation.-->
+						<!-- for each statement alows more than one contact to be processed -->
+						<xsl:choose>
+							<xsl:when
+								test="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
+								<xsl:for-each
+									select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
+									<gmd:citedResponsibleParty>
+										<xsl:call-template name="usgin:ResponsibleParty">
+											<xsl:with-param name="inputParty"
+												select="gmd:CI_ResponsibleParty"/>
+											<xsl:with-param name="defaultRole">
+												<gmd:role>
+												<gmd:CI_RoleCode
+												codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+												codeListValue="originator"
+												>originator</gmd:CI_RoleCode>
+												</gmd:role>
+											</xsl:with-param>
+										</xsl:call-template>
+									</gmd:citedResponsibleParty>
+								</xsl:for-each>
+							</xsl:when>
+							<xsl:otherwise>
+								<!-- no responsible party reported, put in minimal missing element -->
+								<gmd:citedResponsibleParty gco:nilReason="missing">
+									<gmd:CI_ResponsibleParty>
+										<gmd:individualName>
+											<gco:CharacterString>missing</gco:CharacterString>
+										</gmd:individualName>
+										<gmd:contactInfo>
+											<gmd:CI_Contact>
+												<gmd:phone>
+												<gmd:CI_Telephone>
+												<gmd:voice>
+												<gco:CharacterString>999-999-9999</gco:CharacterString>
+												</gmd:voice>
+												</gmd:CI_Telephone>
+												</gmd:phone>
+											</gmd:CI_Contact>
+										</gmd:contactInfo>
+										<gmd:role>
+											<gmd:CI_RoleCode
+												codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+												codeListValue="originator"
+												>originatory</gmd:CI_RoleCode>
+										</gmd:role>
+									</gmd:CI_ResponsibleParty>
+								</gmd:citedResponsibleParty>
+							</xsl:otherwise>
+						</xsl:choose>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:presentationForm"
+							mode="no-namespaces"/>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:series"
+							mode="no-namespaces"/>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails"
+							mode="no-namespaces"/>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:collectiveTitle"
+							mode="no-namespaces"/>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:ISBN"
+							mode="no-namespaces"/>
+						<xsl:apply-templates
+							select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:ISSN"
+							mode="no-namespaces"/>
+					</gmd:CI_Citation>
 				</gmd:citation>
+				<!--<xsl:apply-templates select="$inputInfo/gmd:citation/gmd:CI_Citation/gmd:identifier" mode="no-namespaces"/>-->
 				<xsl:apply-templates select="$inputInfo/gmd:abstract" mode="no-namespaces"/>
 				<xsl:apply-templates select="$inputInfo/gmd:purpose" mode="no-namespaces"/>
 				<xsl:apply-templates select="$inputInfo/gmd:credit" mode="no-namespaces"/>
 				<xsl:apply-templates select="$inputInfo/gmd:status" mode="no-namespaces"/>
 				<xsl:apply-templates select="$inputInfo/gmd:pointOfContact" mode="no-namespaces"/>
-				<xsl:apply-templates select="$inputInfo/gmd:resourceMaintenance" mode="no-namespaces"/>
+				<xsl:apply-templates select="$inputInfo/gmd:resourceMaintenance"
+					mode="no-namespaces"/>
 				<!--          USGIN puts format information in distributionFormat 
          <xsl:copy-of select="$inputInfo/gmd:resourceFormat" copy-namespaces="no"/>  -->
-				<!--	<xsl:copy-of select="$inputInfo/gmd:descriptiveKeywords"/>  -->
-				<xsl:apply-templates select="$inputInfo/gmd:descriptiveKeywords"
-					mode="no-namespaces"/>
+
+
+
+
+
+				<xsl:copy-of select="$inputInfo/gmd:descriptiveKeywords"/>
+
+
 				<xsl:apply-templates select="$inputInfo/gmd:resourceSpecificUsage"
 					mode="no-namespaces"/>
 				<xsl:apply-templates select="$inputInfo/gmd:resourceConstraints"
@@ -712,213 +683,104 @@
 				</xsl:choose>
 				<xsl:apply-templates select="$inputInfo/gmd:environmentDescription"
 					mode="no-namespaces"/>
-				<!-- Get all the extent information. Have to make sure temporal extent gml:timePeriod is used and has gml:id   -->
-				<xsl:for-each select="$inputInfo/gmd:extent">
-<gmd:extent>
-	<gmd:EX_Extent>
-				<xsl:call-template name="usgin:extentHandler">
-	<xsl:with-param name="inputExtent" select="gmd:EX_Extent"/>
-</xsl:call-template>
-	</gmd:EX_Extent>
-</gmd:extent>
-				</xsl:for-each> <!-- end of for-each extent -->
+				<!-- Get all the extent information. Have to make sure temporal extent gml:timePeriod 
+                    is used and has gml:id   -->
+				<xsl:for-each select="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:geographicElement">
+					<!-- might have a description, and a geoboundingbox or a polygon -->
+					<gmd:extent>
+						<gmd:EX_Extent>
+							<xsl:if test="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:description">
+								<gmd:description>
+									<gco:CharacterString>
+										<xsl:value-of
+											select="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:description/gco:CharacterString"
+										/>
+									</gco:CharacterString>
+								</gmd:description>
+							</xsl:if>
+							<!-- probably could be copy-of... -->
+							<xsl:if test="gmd:EX_GeographicBoundingBox">
+								<gmd:geographicElement>
+									<gmd:EX_GeographicBoundingBox>
+										<gmd:extentTypeCode>
+											<gco:Boolean>
+												<xsl:value-of
+												select="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode/gco:Boolean"
+												/>
+											</gco:Boolean>
+										</gmd:extentTypeCode>
+										<gmd:westBoundLongitude>
+											<gco:Decimal>
+												<xsl:value-of
+												select="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal"
+												/>
+											</gco:Decimal>
+										</gmd:westBoundLongitude>
+										<gmd:eastBoundLongitude>
+											<gco:Decimal>
+												<xsl:value-of
+												select="gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal"
+												/>
+											</gco:Decimal>
+										</gmd:eastBoundLongitude>
+										<gmd:southBoundLatitude>
+											<gco:Decimal>
+												<xsl:value-of
+												select="gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal"
+												/>
+											</gco:Decimal>
+										</gmd:southBoundLatitude>
+										<gmd:northBoundLatitude>
+											<gco:Decimal>
+												<xsl:value-of
+												select="gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal"
+												/>
+											</gco:Decimal>
+										</gmd:northBoundLatitude>
+									</gmd:EX_GeographicBoundingBox>
+								</gmd:geographicElement>
+							</xsl:if>
+							<xsl:if test="gmd:EX_BoundingPolygon">
+								<gmd:geographicElement>
+									<xsl:apply-templates select="gmd:EX_BoundingPolygon"
+										mode="no-namespaces"/>
+								</gmd:geographicElement>
+							</xsl:if>
+						</gmd:EX_Extent>
+					</gmd:extent>
+				</xsl:for-each>
+				<!-- end of geographicElement handler -->
+				<!-- gmd:geographicElement/gmd:EX_GeographicDescription code values are copied into the
+                keywords.type = 'place' group -->
+				<xsl:for-each select="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:temporalElement">
+					<xsl:call-template name="usgin:temporalElement">
+						<xsl:with-param name="thetempelem" select="."/>
+						<xsl:with-param name="gmlid" select="concat('a',string(generate-id()))"/>
+					</xsl:call-template>
+					<!-- do this with a template because its a mess, and we want it to be reusable -->
+				</xsl:for-each>
+				<!-- gmd:minvalue maxvalue are required-->
+				<xsl:for-each select="$inputInfo/gmd:extent/gmd:EX_Extent/gmd:verticalElement">
+				<xsl:if test="(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:minimumValue) and (gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:maximumValue)">
+					<gmd:extent>
+						<gmd:EX_Extent>
+							<xsl:apply-templates select="." mode="no-namespaces"/>
+							
+							<!-- <xsl:copy-of select="."/> -->
+						</gmd:EX_Extent>
+					</gmd:extent>
+					</xsl:if>
+				</xsl:for-each>
+				
+				
 				<xsl:apply-templates select="$inputInfo/gmd:supplementalInformation"
 					mode="no-namespaces"/>
 			</gmd:MD_DataIdentification>
 		</gmd:identificationInfo>
+		
+		
 	</xsl:template>
 	<!-- end processing MD_DataIdentification -->
-
-	<!-- Citation template -->
-	<xsl:template name="usgin:citationHandler">
-		<xsl:param name="inputCit"/>
-		<gmd:CI_Citation>
-			<gmd:title>
-				<gco:CharacterString>
-					<xsl:value-of select="$inputCit/gmd:title"/>
-				</gco:CharacterString>
-			</gmd:title>
-			<!-- Keeping the title from being indented correctly-->
-			<gmd:date>
-				<gmd:CI_Date>
-					<gmd:date>
-						<gco:DateTime>
-							<xsl:call-template name="usgin:dateFormat">
-								<xsl:with-param name="inputDate"
-									select="$inputCit/gmd:date/gmd:CI_Date/gmd:date"/>
-							</xsl:call-template>
-						</gco:DateTime>
-					</gmd:date>
-					<gmd:dateType>
-						<gmd:CI_DateTypeCode
-							codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
-							codeListValue="publication">publication</gmd:CI_DateTypeCode>
-					</gmd:dateType>
-				</gmd:CI_Date>
-			</gmd:date>
-			<!-- <xsl:copy-of select="$inputCit/gmd:edition"/>-->
-			<xsl:apply-templates select="$inputCit/gmd:edition" mode="no-namespaces"/>
-			<!-- <xsl:copy-of
-                            select="$inputCit/gmd:editionDate"/>-->
-			<xsl:apply-templates select="$inputCit/gmd:editionDate" mode="no-namespaces"/>
-			<!--   <xsl:copy-of select="$inputCit/gmd:identifier"/>-->
-			<xsl:apply-templates select="$inputCit/gmd:identifier" mode="no-namespaces"/>
-			<!---Responsible Party may not be included in Repo output, yet It is required for USGIN validation.-->
-			<!-- for each statement alows more than one contact to be processed -->
-			<xsl:choose>
-				<xsl:when test="$inputCit/gmd:citedResponsibleParty">
-					<xsl:for-each select="$inputCit/gmd:citedResponsibleParty">
-						<gmd:citedResponsibleParty>
-							<xsl:call-template name="usgin:ResponsibleParty">
-								<xsl:with-param name="inputParty" select="gmd:CI_ResponsibleParty"/>
-								<xsl:with-param name="defaultRole">
-									<gmd:role>
-										<gmd:CI_RoleCode
-											codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-											codeListValue="originator">originator</gmd:CI_RoleCode>
-									</gmd:role>
-								</xsl:with-param>
-							</xsl:call-template>
-						</gmd:citedResponsibleParty>
-					</xsl:for-each>
-				</xsl:when>
-				<xsl:otherwise>
-					<!-- no responsible party reported, put in minimal missing element -->
-					<gmd:citedResponsibleParty gco:nilReason="missing">
-						<gmd:CI_ResponsibleParty>
-							<gmd:individualName>
-								<gco:CharacterString>missing</gco:CharacterString>
-							</gmd:individualName>
-							<gmd:contactInfo>
-								<gmd:CI_Contact>
-									<gmd:phone>
-										<gmd:CI_Telephone>
-											<gmd:voice>
-												<gco:CharacterString>999-999-9999</gco:CharacterString>
-											</gmd:voice>
-										</gmd:CI_Telephone>
-									</gmd:phone>
-								</gmd:CI_Contact>
-							</gmd:contactInfo>
-							<gmd:role>
-								<gmd:CI_RoleCode
-									codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
-									codeListValue="originator">originatory</gmd:CI_RoleCode>
-							</gmd:role>
-						</gmd:CI_ResponsibleParty>
-					</gmd:citedResponsibleParty>
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:apply-templates select="$inputCit/gmd:presentationForm" mode="no-namespaces"/>
-			<xsl:apply-templates select="$inputCit/gmd:series" mode="no-namespaces"/>
-			<xsl:apply-templates select="$inputCit/gmd:otherCitationDetails" mode="no-namespaces"/>
-			<xsl:apply-templates select="$inputCit/gmd:collectiveTitle" mode="no-namespaces"/>
-			<xsl:apply-templates select="$inputCit/gmd:ISBN" mode="no-namespaces"/>
-			<xsl:apply-templates select="$inputCit/gmd:ISSN" mode="no-namespaces"/>
-		</gmd:CI_Citation>
-
-	</xsl:template>
-	<!-- end of citation handler -->
-
-<!-- Extent handler -->
-	
-	<xsl:template name="usgin:extentHandler">
-		<xsl:param name="inputExtent"/>
-
-		<xsl:for-each select="$inputExtent/gmd:geographicElement">
-			<!-- might have a description, and a geoboundingbox or a polygon -->
-
-					<xsl:if test="$inputExtent/gmd:description">
-						<gmd:description>
-							<gco:CharacterString>
-								<xsl:value-of
-									select="$inputExtent/gmd:description/gco:CharacterString"
-								/>
-							</gco:CharacterString>
-						</gmd:description>
-					</xsl:if>
-					<!-- probably could be copy-of... -->
-					<xsl:if test="gmd:EX_GeographicBoundingBox">
-						<gmd:geographicElement>
-							<gmd:EX_GeographicBoundingBox>
-								<xsl:if
-									test="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode">
-									<gmd:extentTypeCode>
-										<gco:Boolean>
-											<xsl:choose>
-												<xsl:when 
-													test="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode/gco:Boolean">
-													<xsl:value-of 
-														select="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode/gco:Boolean"
-													/>
-												</xsl:when>
-												<!-- default value -->
-										<xsl:otherwise>1</xsl:otherwise>
-											</xsl:choose>
-										</gco:Boolean>
-									</gmd:extentTypeCode>
-								</xsl:if>
-								<gmd:westBoundLongitude>
-									<gco:Decimal>
-										<xsl:value-of
-											select="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal"
-										/>
-									</gco:Decimal>
-								</gmd:westBoundLongitude>
-								<gmd:eastBoundLongitude>
-									<gco:Decimal>
-										<xsl:value-of
-											select="gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal"
-										/>
-									</gco:Decimal>
-								</gmd:eastBoundLongitude>
-								<gmd:southBoundLatitude>
-									<gco:Decimal>
-										<xsl:value-of
-											select="gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal"
-										/>
-									</gco:Decimal>
-								</gmd:southBoundLatitude>
-								<gmd:northBoundLatitude>
-									<gco:Decimal>
-										<xsl:value-of
-											select="gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal"
-										/>
-									</gco:Decimal>
-								</gmd:northBoundLatitude>
-							</gmd:EX_GeographicBoundingBox>
-						</gmd:geographicElement>
-					</xsl:if>
-					<xsl:if test="gmd:EX_BoundingPolygon">
-						<gmd:geographicElement>
-							<xsl:apply-templates select="gmd:EX_BoundingPolygon"
-								mode="no-namespaces"/>
-						</gmd:geographicElement>
-					</xsl:if>
-
-
-		</xsl:for-each>	<!-- end of geographicElement handler -->
-		<!-- gmd:geographicElement/gmd:EX_GeographicDescription code values are copied into the
-                keywords.type = 'place' group -->
-		<xsl:for-each select="$inputExtent/gmd:temporalElement">
-			<xsl:call-template name="usgin:temporalElement">
-				<xsl:with-param name="thetempelem" select="."/>
-				<xsl:with-param name="gmlid" select="concat('a',string(generate-id()))"/>
-			</xsl:call-template>
-			<!-- do this with a template because its a mess, and we want it to be reusable -->
-		</xsl:for-each>
-		<!-- gmd:minvalue maxvalue are required; might need to put logic in to test that....-->
-			<xsl:apply-templates select="$inputExtent/gmd:verticalElement"
-				mode="no-namespaces"/>
-		 <!-- vertical element -->
-		
-		<!-- end exent processing -->
-		
-	</xsl:template>
-	
-	<!-- end of extent handler -->
-
-
 	<!-- Distribution -->
 	<xsl:template name="usgin:distributionSection">
 		<xsl:param name="inputDistro"/>
@@ -989,7 +851,8 @@
 				</xsl:choose>
 				<!-- accomodate service distributions described in SV_ServiceIdentification sections -->
 				<xsl:if test="//srv:serviceType">
-					<xsl:for-each select="//gmd:identificationInfo/srv:SV_ServiceIdentification">
+					<xsl:for-each
+						select="/gmi:MI_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
 						<!-- each service is in a separate transferOptions section -->
 						<gmd:transferOptions>
 							<gmd:MD_DigitalTransferOptions>
@@ -1001,9 +864,7 @@
 										<gmd:CI_OnlineResource>
 											<gmd:linkage>
 												<gmd:URL>
-												<xsl:value-of
-												select="string(srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL)"
-												/>
+												<xsl:value-of select="."/>
 												</gmd:URL>
 											</gmd:linkage>
 											<gmd:protocol>
@@ -1013,13 +874,14 @@
 												/>
 												</gco:CharacterString>
 											</gmd:protocol>
-											
+											<xsl:if test="string-length(string(srv:DCP))>0">
 												<gmd:applicationProfile>
 												<gco:CharacterString>
-													<xsl:if test="string-length(string(srv:DCP))>0"><xsl:value-of select="concat('DCP:',normalize-space(string(srv:DCP)),': ')"/></xsl:if><xsl:if test="srv:connectPoint/gmd:CI_OnlineResource/gmd:applicationProfile"></xsl:if><xsl:value-of select='srv:connectPoint/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString'/>
+												<xsl:value-of
+												select="normalize-space(string(srv:DCP))"/>
 												</gco:CharacterString>
 												</gmd:applicationProfile>
-											
+											</xsl:if>
 											<gmd:name>
 												<gco:CharacterString>
 												<xsl:value-of
@@ -1093,49 +955,52 @@
 		<!-- if its a TimeInstant, copy the gml:timePosition into gml:beginPosition and gml:endPosition
     of the gml:TimePeriod
     Also have to make sure that TimePeriod has a gml:id -->
+		<gmd:extent>
+			<gmd:EX_Extent>
 				<gmd:temporalElement>
 					<!-- note that a gmd:EX_SpatialTemporalExtent might show up here; we're just going to
                 pull the temporal part of that here-->
 					<gmd:EX_TemporalExtent>
 						<!-- temporal extent could be a gemetric primitive (TimeInstant or TimePeriod
                     or a topologic primitive (TimeNote or TimeEdge); we're not handling topologic time -->
-						<xsl:choose> <!-- local-name references to get around gml version problems (3 vs 3.2) -->
-							<xsl:when test="gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimePeriod']">
+						<xsl:choose>
+							<xsl:when test="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
 								<gmd:extent>
 									<gml:TimePeriod>
 										<xsl:choose>
-					<!-- take care of the gml:id, use existing in the data if there is one.. use local-name trick to get around gml 3.0 vs 3.2 namespace problems -->
 											<xsl:when
-												test="gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimePeriod']/@*">
+												test="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/@gml:id">
 												<xsl:attribute name="gml:id">
-													<xsl:value-of select="string(gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimePeriod']/@*)"/>
+													<xsl:value-of select="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/@gml:id"/>
 												</xsl:attribute>
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:attribute name="gml:id">
-												<xsl:value-of
-												select="concat('a',string(generate-id()))"/>
+												<xsl:value-of select="$gmlid"/>
 												</xsl:attribute>
-										</xsl:otherwise>
+											</xsl:otherwise>
 										</xsl:choose>
 										<gml:name/>
-			<!-- now do the begin and end position with proper iso8601 formatting... -->
 										<gml:beginPosition>
-											<xsl:variable name="btpos" select="gmd:EX_TemporalExtent/gmd:extent/descendant::node()[local-name()='beginPosition']"			/>
-								<xsl:choose>
+											<xsl:variable name="btpos">
+												<xsl:value-of
+												select="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition"
+												/>
+											</xsl:variable>
+											<xsl:choose>
 												<xsl:when
 												test="(string-length(normalize-space(string($btpos)))&gt;17)">
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="string($btpos)"/>
+												<xsl:value-of select="$btpos"/>
 												</xsl:when>
 												<xsl:when
 												test="string-length(normalize-space(string($btpos)))=10">
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="concat(string($btpos),'T12:00:00Z')"
+												<xsl:value-of select="concat($btpos,'T12:00:00Z')"
 												/>
 												</xsl:when>
 												<xsl:when
@@ -1152,7 +1017,7 @@
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="concat(string($btpos),':00Z')"/>
+												<xsl:value-of select="concat($btpos,':00Z')"/>
 												</xsl:when>
 												<xsl:otherwise>
 												<!-- can't match format with 8601...-->
@@ -1166,7 +1031,7 @@
 										</gml:beginPosition>
 										<gml:endPosition>
 											<xsl:variable name="etpos"
-												select="gmd:EX_TemporalExtent/gmd:extent/descendant::node()[local-name()='endPosition']"/>
+												select="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition"/>
 											<xsl:choose>
 												<xsl:when
 												test="(string-length(normalize-space(string($etpos)))&gt;17)">
@@ -1174,14 +1039,14 @@
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="string($etpos)"/>
+												<xsl:value-of select="$etpos"/>
 												</xsl:when>
 												<xsl:when
 												test="string-length(normalize-space(string($etpos)))=10">
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="concat(string($etpos),'T12:00:00Z')"
+												<xsl:value-of select="concat($etpos,'T12:00:00Z')"
 												/>
 												</xsl:when>
 												<xsl:when
@@ -1198,7 +1063,7 @@
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="concat(string($etpos),':00Z')"/>
+												<xsl:value-of select="concat($etpos,':00Z')"/>
 												</xsl:when>
 												<xsl:otherwise>
 												<!-- can't match format with 8601...-->
@@ -1213,18 +1078,20 @@
 									</gml:TimePeriod>
 								</gmd:extent>
 							</xsl:when>
-							<xsl:when test="gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimeInstant']">
+							<xsl:when test="gmd:EX_TemporalExtent/gmd:extent/gml:TimeInstant">
 								<gmd:extent>
 									<gml:TimePeriod>
-										<!-- changing timeInstant to timePeriod, so don't use same gml:id -->
-											<xsl:attribute name="gml:id">
+										<xsl:attribute name="gml:id">
 											<xsl:value-of select="$gmlid"/>
 										</xsl:attribute>
 										<gml:name>Time instant in original data, converted to period
 											with same start and end</gml:name>
 										<xsl:variable name="tpos">
-											<xsl:variable name="tinst"					select="gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimeInstant']/child::node()[local-name()='timePosition']"/>
-											
+											<xsl:variable name="tinst">
+												<xsl:value-of
+												select="gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:timePosition"
+												/>
+											</xsl:variable>
 											<xsl:choose>
 												<xsl:when
 												test="(string-length(normalize-space(string($tinst)))&gt;18)">
@@ -1232,7 +1099,7 @@
 												</xsl:when>
 												<xsl:when
 												test="string-length(normalize-space(string($tinst)))=10">
-												<xsl:value-of select="concat(string($tinst),'T12:00:00Z')"
+												<xsl:value-of select="concat($tinst,'T12:00:00Z')"
 												/>
 												</xsl:when>
 												<xsl:when
@@ -1243,7 +1110,7 @@
 												</xsl:when>
 												<xsl:when
 												test="string-length(normalize-space(string($tinst)))=14">
-												<xsl:value-of select="concat(string($tinst),':00Z')"/>
+												<xsl:value-of select="concat($tinst,':00Z')"/>
 												</xsl:when>
 												<xsl:otherwise>
 												<!-- can't match format with 8601...-->
@@ -1254,7 +1121,7 @@
 										</xsl:variable>
 										<gml:beginPosition>
 											<xsl:choose>
-												<xsl:when test="string($tpos) ='1900-01-01T12:00:00Z'">
+												<xsl:when test="$tpos ='1900-01-01T12:00:00Z'">
 												<xsl:attribute name="indeterminatePosition">
 												<xsl:value-of select="'unknown'"/>
 												</xsl:attribute>
@@ -1263,13 +1130,13 @@
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-												<xsl:value-of select="string($tpos)"/>
+												<xsl:value-of select="$tpos"/>
 												</xsl:otherwise>
 											</xsl:choose>
 										</gml:beginPosition>
 										<gml:endPosition>
 											<xsl:choose>
-												<xsl:when test="string($tpos) ='1900-01-01T12:00:00Z'">
+												<xsl:when test="$tpos ='1900-01-01T12:00:00Z'">
 												<xsl:attribute name="indeterminatePosition">
 												<xsl:value-of select="'unknown'"/>
 												</xsl:attribute>
@@ -1278,7 +1145,7 @@
 												<xsl:attribute name="frame">
 												<xsl:value-of select="'#ISO-8601'"/>
 												</xsl:attribute>
-													<xsl:value-of select="string($tpos)"/>
+												<xsl:value-of select="$tpos"/>
 												</xsl:otherwise>
 											</xsl:choose>
 										</gml:endPosition>
@@ -1289,7 +1156,7 @@
                         will catch on otherwise-->
 							<xsl:otherwise>
 								<gmd:extent>
-									<xsl:attribute name="gco:nilReason">
+									<xsl:attribute name="gml:nilReason">
 										<xsl:value-of select="'Missing'"/>
 									</xsl:attribute>
 								</gmd:extent>
@@ -1298,10 +1165,9 @@
 						</xsl:choose>
 					</gmd:EX_TemporalExtent>
 				</gmd:temporalElement>
+			</gmd:EX_Extent>
+		</gmd:extent>
 	</xsl:template>
-	<!-- end extent handler template -->
-	<!-- *********************** -->
-	<!--                           -->
 	<!-- generate a new element in the same namespace as the matched element,
      copying its attributes, but without copying its unused namespace nodes,
      then continue processing content in the "copy-no-namepaces" mode -->
