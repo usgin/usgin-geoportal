@@ -23,7 +23,7 @@
 	<!-- This xslt transforms an ISO19139 XML metadata record to conform to requirements of USGIN
     catalogs. 
     Leah Musil and Stephen Richard
-    2013-03-28 Last update 2013-05-28 -->
+    2013-03-28 -->
 	<xsl:param name="sourceUrl"/>
 	<xsl:param name="serviceType"/>
 	<xsl:param name="currentDate"/>
@@ -265,6 +265,11 @@
 						<!-- finally handle the lineage -->
 						<gmd:lineage>
 							<gmd:LI_Lineage>
+							<gmd:statement>
+<gco:CharacterString>
+<xsl:value-of select="."/>
+</gco:CharacterString>							
+							</gmd:statement>
 								<xsl:for-each select="gmd:lineage/gmd:LI_Lineage/gmd:processStep">
 									<gmd:processStep>
 										<xsl:choose>
