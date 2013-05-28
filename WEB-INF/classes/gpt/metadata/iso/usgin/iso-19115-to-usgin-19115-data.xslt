@@ -1215,7 +1215,7 @@
 												<xsl:otherwise>
 												<!-- can't match format with 8601...-->
 												<xsl:attribute name="indeterminatePosition">
-												<xsl:value-of select="'gml:id'"/>
+												<xsl:value-of select="'unknown'"/>
 												</xsl:attribute>
 												<xsl:value-of
 												select="string('1900-01-01T12:00:00Z')"/>
