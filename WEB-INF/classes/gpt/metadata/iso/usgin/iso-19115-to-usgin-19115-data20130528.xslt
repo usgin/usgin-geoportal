@@ -23,7 +23,7 @@
 	<!-- This xslt transforms an ISO19139 XML metadata record to conform to requirements of USGIN
     catalogs. 
     Leah Musil and Stephen Richard
-    2013-03-28 Last update 2013-05-28 -->
+    2013-03-28 -->
 	<xsl:param name="sourceUrl"/>
 	<xsl:param name="serviceType"/>
 	<xsl:param name="currentDate"/>
@@ -179,10 +179,10 @@
 			</gmd:dataSetURI>
 			<!-- <xsl:copy-of select="$var_InputRootNode/gmd:locale"/>-->
 			<xsl:apply-templates select="$var_InputRootNode/gmd:locale" mode="no-namespaces"/>
-
+		
 			<xsl:apply-templates select="$var_InputRootNode/gmd:spatialRepresentationInfo"
 				mode="no-namespaces"/>
-
+			
 			<xsl:apply-templates select="$var_InputRootNode/gmd:referenceSystemInfo"
 				mode="no-namespaces"/>
 			<!-- there may be multiple identificationInfo elements. Several metadata profiles put service distribution
@@ -353,7 +353,7 @@
 												</gmd:description>
 					<xsl:apply-templates	select="gmd:MD_RepresentativeFraction"	mode="no-namespaces"/>
 					<xsl:apply-templates select="gmd:MD_ReferenceSystem" mode="no-namespaces"/>
-
+												
 												<!-- use USGIN Citation Handler -->
 												<xsl:if test="gmd:sourceCitation">
 													<gmd:sourceCitation>
@@ -375,7 +375,7 @@
 											</gmd:LI_Source>
 									</gmd:source>
 								</xsl:for-each><!-- end for each source-->
-
+							
 							</gmd:LI_Lineage>
 						</gmd:lineage>
 					</gmd:DQ_DataQuality>
@@ -626,7 +626,7 @@
 					<xsl:apply-templates
 						select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource"
 						mode="no-namespaces"/>
-
+						
 					<xsl:apply-templates
 						select="$inputParty/gmd:contactInfo/gmd:CI_Contact/gmd:hoursOfService"
 						mode="no-namespaces"/>
@@ -821,7 +821,7 @@
 	<!-- end of citation handler -->
 
 <!-- Extent handler -->
-
+	
 	<xsl:template name="usgin:extentHandler">
 		<xsl:param name="inputExtent"/>
 
@@ -911,11 +911,11 @@
 			<xsl:apply-templates select="$inputExtent/gmd:verticalElement"
 				mode="no-namespaces"/>
 		 <!-- vertical element -->
-
+		
 		<!-- end exent processing -->
-
+		
 	</xsl:template>
-
+	
 	<!-- end of extent handler -->
 
 
@@ -1013,13 +1013,13 @@
 												/>
 												</gco:CharacterString>
 											</gmd:protocol>
-
+											
 												<gmd:applicationProfile>
 												<gco:CharacterString>
 													<xsl:if test="string-length(string(srv:DCP))>0"><xsl:value-of select="concat('DCP:',normalize-space(string(srv:DCP)),': ')"/></xsl:if><xsl:if test="srv:connectPoint/gmd:CI_OnlineResource/gmd:applicationProfile"></xsl:if><xsl:value-of select='srv:connectPoint/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString'/>
 												</gco:CharacterString>
 												</gmd:applicationProfile>
-
+											
 											<gmd:name>
 												<gco:CharacterString>
 												<xsl:value-of
@@ -1058,7 +1058,7 @@
 			<xsl:when test="$inputDate/gco:DateTime">
 				<xsl:choose>
 					<!-- Leah please fix these tests should be string-length(normalize-space(string($inputDate/gco:DateTime))) -->
-					<xsl:when test="string-length(normalize-space(string($inputDate/gco:DateTime))&gt;17)">
+					<xsl:when test="(normalize-space(string($inputDate/gco:DateTime))&gt;17)">
 						<xsl:value-of select="$inputDate/gco:DateTime"/>
 					</xsl:when>
 					<xsl:when test="string-length($inputDate/gco:DateTime)=10">
@@ -1074,13 +1074,6 @@
 						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=14">
 						<xsl:value-of select="concat($inputDate/gco:DateTime,':00Z')"/>
 					</xsl:when>
-					
-					
-					<xsl:when
-						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=19">
-						<xsl:value-of select="$inputDate/gco:DateTime"/>
-					</xsl:when>
-					
 					<xsl:otherwise>
 						<xsl:value-of select="string('1900-01-01T12:00:00Z')"/>
 					</xsl:otherwise>
@@ -1231,7 +1224,7 @@
 											with same start and end</gml:name>
 										<xsl:variable name="tpos">
 											<xsl:variable name="tinst"					select="gmd:EX_TemporalExtent/gmd:extent/child::node()[local-name()='TimeInstant']/child::node()[local-name()='timePosition']"/>
-
+											
 											<xsl:choose>
 												<xsl:when
 												test="(string-length(normalize-space(string($tinst)))&gt;18)">
