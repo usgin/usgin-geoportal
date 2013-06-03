@@ -469,7 +469,7 @@
 					<xsl:choose>
 						<xsl:when test="$inputParty/gmd:individualName/gco:CharacterString">
 							<xsl:value-of
-								select="$inputParty/gmd:individualName/gco:CharacterString"/> de </xsl:when>
+								select="$inputParty/gmd:individualName/gco:CharacterString"/>  </xsl:when>
 						<xsl:otherwise>missing</xsl:otherwise>
 					</xsl:choose>
 					<xsl:apply-templates
@@ -610,7 +610,7 @@
 												<xsl:when test="gco:CharacterString">
 												<xsl:value-of select="gco:CharacterString"/>
 												</xsl:when>
-												<xsl:otherwise>missing@usgin.org</xsl:otherwise>
+												<xsl:otherwise>metadata@usgin.org</xsl:otherwise>
 												</xsl:choose>
 											</gco:CharacterString>
 										</gmd:electronicMailAddress>
@@ -620,7 +620,7 @@
 									<!-- no e-mail address in the source doc -->
 									<gmd:electronicMailAddress gco:nilReason="missing">
 										<!--   <xsl:comment>no e-mail address for contact in source metadata, USGIN XSLT inserted nil value</xsl:comment> -->
-										<gco:CharacterString>missing@usgin.org</gco:CharacterString>
+										<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
 									</gmd:electronicMailAddress>
 								</xsl:otherwise>
 							</xsl:choose>

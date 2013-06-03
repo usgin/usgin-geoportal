@@ -291,8 +291,8 @@
         <parameter key="webharvester.autoSelectFrequency" value=""/>
         <parameter key="webharvester.watchDogFrequency" value=""/>
         <parameter key="webharvester.baseContextPath" value=""/>
-        <parameter key="webharvester.maxRepRecords" value="70"/> 
-        <parameter key="webharvester.maxRepErrors" value="7"/> 
+        <parameter key="webharvester.maxRepRecords" value="50"/> 
+        <parameter key="webharvester.maxRepErrors" value="50"/> 
         <parameter key="webharvester.resource.autoApprove" value=""/>     
         <parameter key="webharvester.updateindex" value="true"/>
         <parameter key="webharvester.cleanup" value="true"/>
@@ -339,7 +339,7 @@
             - httpClient.alwaysClose: forces to always close socket connection for requests to the remote endpoints using Apache HTTP client. 
 				Default: false.                  
         -->  
-        <parameter key="catalog.enableEditForAllPubMethods" value="false"/>
+        <parameter key="catalog.enableEditForAllPubMethods" value="true"/>
         <parameter key="catalog.admin.allowApplyToAll" value="true"/>
         <parameter key="catalog.useCollections" value="false"/>
         <parameter key="database.isCaseSensitive" value="true"/>
