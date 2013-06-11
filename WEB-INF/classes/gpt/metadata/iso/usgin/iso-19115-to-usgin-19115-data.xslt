@@ -1063,29 +1063,25 @@
 			<xsl:when test="$inputDate/gco:DateTime">
 				<xsl:choose>
 					<!-- Leah please fix these tests should be string-length(normalize-space(string($inputDate/gco:DateTime))) -->
-					<xsl:when test="string-length(normalize-space(string($inputDate/gco:DateTime))&gt;17)">
+					<xsl:when test="string-length(normalize-space(string($inputDate/gco:DateTime))) &gt; 17">
 						<xsl:value-of select="$inputDate/gco:DateTime"/>
 					</xsl:when>
-					<xsl:when test="string-length($inputDate/gco:DateTime)=10">
+					<xsl:when test="string-length(normalize-space(string($inputDate/gco:DateTime)))=10">
+						<!-- YYYY-MM-DD -->
 						<xsl:value-of select="concat($inputDate/gco:DateTime,'T12:00:00Z')"/>
 					</xsl:when>
 					<xsl:when
 						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=11">
+						<!-- YYYY-MM-DDT -->
 						<xsl:value-of
-							select="concat(normalize-space(string($inputDate/gco:DateTime)),'00:00Z')"
+							select="concat(normalize-space(string($inputDate/gco:DateTime)),'00:00:00Z')"
 						/>
 					</xsl:when>
 					<xsl:when
-						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=14">
+						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=16">
+						<!-- YYYY-MM-DDTHH:MM -->
 						<xsl:value-of select="concat($inputDate/gco:DateTime,':00Z')"/>
-					</xsl:when>
-					
-					
-					<xsl:when
-						test="string-length(normalize-space(string($inputDate/gco:DateTime)))=19">
-						<xsl:value-of select="$inputDate/gco:DateTime"/>
-					</xsl:when>
-					
+					</xsl:when>					
 					<xsl:otherwise>
 						<xsl:value-of select="string('1900-01-01T12:00:00Z')"/>
 					</xsl:otherwise>
