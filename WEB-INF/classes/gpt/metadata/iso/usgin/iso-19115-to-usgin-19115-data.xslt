@@ -77,22 +77,36 @@
 					</gmd:language>
 				</xsl:otherwise>
 			</xsl:choose>
+			
+			<xsl:choose>
+				<xsl:when test="$var_InputRootNode/gmd:characterSet">
+					<xsl:apply-templates select="$var_InputRootNode/gmd:characterSet"
+						mode="no-namespaces"/>
+				</xsl:when>
+				<xsl:otherwise>
 			<!-- characterSet defaults to UTF-8 if no character set is specified -->
 			<gmd:characterSet>
 				<xsl:comment>no character set element in source metadata, USGIN XSLT inserted default value</xsl:comment>
-				<gmd:MD_CharacterSetCode
-					codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode "
-					codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
+				<gmd:MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode " codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
 			</gmd:characterSet>
-
+				</xsl:otherwise>
+			</xsl:choose>
+		
+			<xsl:choose>
+				<xsl:when test="$var_InputRootNode/gmd:hierarchyLevel">
+					<xsl:apply-templates select="$var_InputRootNode/gmd:hierarchyLevel"
+						mode="no-namespaces"/>
+				</xsl:when>
+				<xsl:otherwise>
 			<!-- hierarchyLevel defaults to dataset -->
-
 			<gmd:hierarchyLevel>
 				<xsl:comment>no hierarchyLevel in source metadata, USGIN XSLT inserted default value</xsl:comment>
-				<gmd:MD_ScopeCode
-					codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-					codeListValue="Dataset">dataset</gmd:MD_ScopeCode>
+				<gmd:MD_ScopeCode 
+codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="Dataset">dataset</gmd:MD_ScopeCode>
 			</gmd:hierarchyLevel>
+				</xsl:otherwise>
+			</xsl:choose>
+			
 			<!-- copy hierarchyLevelName -->
 			<xsl:choose>
 				<xsl:when test="$var_InputRootNode/gmd:hierarchyLevelName">
@@ -102,7 +116,7 @@
 				<xsl:otherwise>
 					<gmd:hierarchyLevelName>
 						<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
-						<gco:CharacterString>Missing</gco:CharacterString>
+	<gco:CharacterString>Missing</gco:CharacterString>
 					</gmd:hierarchyLevelName>
 				</xsl:otherwise>
 			</xsl:choose>
@@ -116,7 +130,7 @@
 						<xsl:with-param name="defaultRole">
 							<gmd:role>
 								<gmd:CI_RoleCode
-									codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+									codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
 									codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
 							</gmd:role>
 						</xsl:with-param>
@@ -143,9 +157,9 @@
 			<gmd:dataSetURI>
 				<gco:CharacterString>
 					<xsl:choose>
-						<xsl:when test="$var_InputRootNode/gmd:datasetURI/gco:CharacterString">
+						<xsl:when test="$var_InputRootNode/gmd:dataSetURI/gco:CharacterString">
 							<xsl:value-of
-								select="$var_InputRootNode/gmd:datasetURI/gco:CharacterString"/>
+								select="$var_InputRootNode/gmd:dataSetURI/gco:CharacterString"/>
 						</xsl:when>
 						<xsl:when
 							test="$var_InputRootNode/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:ISBN">
@@ -645,7 +659,7 @@
 			</gmd:contactInfo>
 			<gmd:role>
 				<gmd:CI_RoleCode
-					codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+					codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
 					codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
 			</gmd:role>
 
@@ -696,7 +710,7 @@
 						<gmd:characterSet>
 							<!-- <xsl:comment>no character set element in source metadata, USGIN XSLT inserted default value</xsl:comment> -->
 							<gmd:MD_CharacterSetCode
-								codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode "
+								codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode "
 								codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
 						</gmd:characterSet>
 					</xsl:otherwise>
@@ -756,7 +770,7 @@
 					</gmd:date>
 					<gmd:dateType>
 						<gmd:CI_DateTypeCode
-							codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+							codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
 							codeListValue="publication">publication</gmd:CI_DateTypeCode>
 					</gmd:dateType>
 				</gmd:CI_Date>
@@ -779,7 +793,7 @@
 								<xsl:with-param name="defaultRole">
 									<gmd:role>
 										<gmd:CI_RoleCode
-											codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+											codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
 											codeListValue="originator">originator</gmd:CI_RoleCode>
 									</gmd:role>
 								</xsl:with-param>
@@ -952,7 +966,7 @@
 									<xsl:with-param name="defaultRole">
 										<gmd:role>
 											<gmd:CI_RoleCode
-												codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+												codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
 												codeListValue="distributor"
 												>distributor</gmd:CI_RoleCode>
 										</gmd:role>
