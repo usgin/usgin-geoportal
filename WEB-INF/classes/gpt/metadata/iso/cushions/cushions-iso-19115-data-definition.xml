@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+<schema key="Cushions-to-iso19115" editable="false"
+        cswOutputSchema="http://www.isotc211.org/2005/gmd" 
+        cswBriefXslt="gpt/metadata/iso/apiso-brief.xslt" 
+        cswSummaryXslt="gpt/metadata/iso/apiso-summary.xslt" 
+        xsdLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd">  
+    
+  <label resourceKey="catalog.cushions.schema.dataset"/>	
+  
+  <!--  schema namespaces -->
+  <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
+  <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+  <namespace prefix="gml" uri="http://www.opengis.net/gml"/>
+ <!-- <namespace prefix="gmi" uri="http://www.isotc211.org/2005/gmi"/> -->
+  
+ 
+   <!-- schema interrogation -->
+   <!--interrogation is set up to catch items that include record/couchDbId's to process through an xslt. intermediate xml. Set up to harvest metadata from couch db / cushions-->
+  <interrogation count="count(/record/couchDbId)"
+  toKnownSchemaXslt="gpt/metadata/iso/cushions/Cushions-to-Iso19115.xslt"/>
+</schema>
+</schemas>

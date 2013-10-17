@@ -25,7 +25,8 @@ usgin-profile record-->
    sends it to the ISO to USGIN ISO xslt; after transformation it will be interogated again and caught by the
    first definition file -->
    <schema fileName="gpt/metadata/iso/usgin/ISO-to-USGIN-19115-data-definition.xml"/>
-   
+   <!-- to include metadata xml that comes from cushions or couch db -->
+    <schema fileName="gpt/metadata/iso/cushions/cushions-iso-19115-data-definition.xml"/>
    <!-- if its not an ISO XML record, it gets ignored. Other schema should be imported into repository.usgin.org
    and reviewed before harvest to the USGIN geoportal-->
    
