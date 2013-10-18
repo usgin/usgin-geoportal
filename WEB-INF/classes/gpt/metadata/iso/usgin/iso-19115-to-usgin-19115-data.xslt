@@ -311,7 +311,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 												</xsl:if>
 												</xsl:for-each>
 												</xsl:if>
-												<!-- if have a node name that wat to process -->
+												<!-- if have a node name than process -->
 												</xsl:for-each>
 												</xsl:variable>
 												<!-- defintion of gmiProcessStepStuff -->
@@ -783,7 +783,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 			<!--   <xsl:copy-of select="$inputCit/gmd:identifier"/>-->
 			<xsl:apply-templates select="$inputCit/gmd:identifier" mode="no-namespaces"/>
 			<!---Responsible Party may not be included in Repo output, yet It is required for USGIN validation.-->
-			<!-- for each statement alows more than one contact to be processed -->
+			<!-- for each statement allows more than one contact to be processed -->
 			<xsl:choose>
 				<xsl:when test="$inputCit/gmd:citedResponsibleParty">
 					<xsl:for-each select="$inputCit/gmd:citedResponsibleParty">

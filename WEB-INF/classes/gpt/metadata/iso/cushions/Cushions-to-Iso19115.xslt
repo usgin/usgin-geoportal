@@ -111,7 +111,12 @@
 			<gmd:metadataStandardVersion>
 				<gco:CharacterString>1.1.4</gco:CharacterString>
 			</gmd:metadataStandardVersion>
-			<xsl:apply-templates select="resource_id"/>
+			<!-- dataSetURI will be a concatenation of resource URL and the date of edit to the section.-->
+			<gmd:dataSetURI>
+			<gco:CharacterString>
+				<xsl:value-of select="concat(/record/resource_url,'2013-10-18T12:00:00Z')"/>
+			</gco:CharacterString>
+		</gmd:dataSetURI>
 			<gmd:identificationInfo>
 				<gmd:MD_DataIdentification>
 					<gmd:citation>
@@ -497,25 +502,7 @@
 						mode="no-namespaces"/>
 				</gmd:MD_MaintenanceInformation>
 			</gmd:metadataMaintenance>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		
 		</gmd:MD_Metadata>
 	</xsl:template>
 	<xsl:template match="metadata_uuid">
@@ -655,13 +642,6 @@
 				</gmd:linkage>
 			</gmd:CI_OnlineResource>
 		</gmd:onlineResource>
-	</xsl:template>
-	<xsl:template match="resource_id">
-		<gmd:dataSetURI>
-			<gco:CharacterString>
-				<xsl:value-of select="."/>
-			</gco:CharacterString>
-		</gmd:dataSetURI>
 	</xsl:template>
 	<xsl:template match="originator_contact_person_name">
 		<gmd:individualName>
