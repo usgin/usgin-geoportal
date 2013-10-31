@@ -27,11 +27,8 @@
 	
 	
 	
-	
 	<xsl:template match="record">
 	<xsl:variable name="var_InputRootNode" select="."/>
-
-	
 		<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
 			<xsl:apply-templates select="metadata_uuid"/>
 			<gmd:language>
@@ -826,70 +823,17 @@
 			</gco:CharacterString>
 		</gmd:keyword>
 	</xsl:template>
-<!-- {label, URL} | {label, URL} , label belongs in aggregateDataSetName/CI_Citation/title & URL belongs in aggregateDataSetIdentifier/MD_Identifier/code -->
-	
 	<xsl:template match="related_resource">
-	<xsl:variable name="var_stripNormalizeCode" select="normalize-space(translate(//related_resource,'}',''))"/>
-	<xsl:variable name="var_stripNormalizeTitle" select="normalize-space(translate(//related_resource,'{',''))"/>
-		 <gmd:aggregationInfo>
+		<gmd:aggregationInfo>
 			<!-- (?-C) MD_AggregateInformation requires either aggregateDataSetName/CI_Citation or aggregateDataSetIdentifier/MD_Identifier.   -->
 			<gmd:MD_AggregateInformation>
-			  <gmd:aggregateDataSetName>
-		   <gmd:CI_Citation>
-		<gmd:title>
-			     <gco:CharacterString>
-				
-				  <!-- test if RR contains a comma, if so pull the text before comma as a title-->
-				   <xsl:choose>
-						<xsl:when test="contains(//related_resource,',')">
-						<xsl:value-of select="substring-before($var_stripNormalizeTitle,',')"/>
-				 </xsl:when>
-				  <!-- if value is less than 1 character than insert Related Resource as default, choose statement -->
-				  <xsl:when test="string-length(//related_resource) &lt; 1">
-        <xsl:value-of select="'Related Resource'" />
-			</xsl:when>
-				
-				
-			
-				 <xsl:otherwise>
-				
-				  <!-- if test for RR that does not contain a comma, than use default Related Resource title-->
-				  <!--	 <xsl:when test="not(contains(//related_resource, ','))"/> -->
-			 <xsl:value-of select="normalize-space(.)"/>
-  </xsl:otherwise>
-  </xsl:choose>
-				</gco:CharacterString>
-			  </gmd:title> 
-			  <gmd:date gco:nilReason="missing"/>
-	 </gmd:CI_Citation>
-	  </gmd:aggregateDataSetName>
-
-		<gmd:aggregateDataSetIdentifier>
+				<gmd:aggregateDataSetIdentifier>
 					<gmd:MD_Identifier>
-				
 						<gmd:code>
-						<gco:CharacterString>
-						<xsl:choose>
-						<!-- test if there is http:// inside related resource value, if so pull link between , and } characters-->
-						<xsl:when test="contains(//related_resource,'http://')">
-						<xsl:value-of select="normalize-space(substring-after($var_stripNormalizeCode,','))"/>
-				 </xsl:when>
-				 <!--<xsl:when test="not(contains(//related_resource, 'http://'))">
-				 <xsl:value-of select="$Var_Missing"/>
-						</xsl:when> -->
-				 
-				  <xsl:otherwise>
-				  </xsl:otherwise>
-				 </xsl:choose>
-				 </gco:CharacterString>
-				
-				 </gmd:code>
-				 			
-					
-				 	
-						
-				
-						
+							<gco:CharacterString>
+								<xsl:value-of select="."/>
+							</gco:CharacterString>
+						</gmd:code>
 					</gmd:MD_Identifier>
 				</gmd:aggregateDataSetIdentifier>
 				<!-- (M-M) Association Type is mandatory.. -->
@@ -901,10 +845,6 @@
 			</gmd:MD_AggregateInformation>
 		</gmd:aggregationInfo>
 	</xsl:template>
-	
-	
-	
-	
 	<xsl:template match="resource_languages">
 		<gmd:language>
 			<gco:CharacterString>
@@ -964,13 +904,10 @@
 	</xsl:template>
 	<xsl:template match="//interval_depth_bottom">
 		<xsl:choose>
-		
-		
-			<!--<xsl:when test="string-length(string(.))>0"> value must be number otherwise it is missing-->
-			<xsl:when test="number(//interval_depth_bottom)=//interval_depth_bottom">
+			<xsl:when test="string-length(string(.))>0">
 				<gmd:minimumValue>
 					<gco:Real>
-						<xsl:value-of select="."/>
+						<xsl:value-of select="0"/>
 					</gco:Real>
 				</gmd:minimumValue>
 			</xsl:when>
@@ -978,20 +915,13 @@
 				<gmd:minimumValue gco:nilReason="missing"/>
 			</xsl:otherwise>
 		</xsl:choose>
-		
-		
-		
-		
-		
 	</xsl:template>
-	
 	<xsl:template match="//interval_depth_top">
 		<xsl:choose>
-			<!-- <xsl:when test="string-length(string(.))>0">  change to logic, value must be number otherwise it is missing-->
-			<xsl:when test="number(//interval_depth_top)=//interval_depth_top">
+			<xsl:when test="string-length(string(.))>0">
 				<gmd:maximumValue>
 					<gco:Real>
-						<xsl:value-of select="."/>
+						<xsl:value-of select="0"/>
 					</gco:Real>
 				</gmd:maximumValue>
 			</xsl:when>
@@ -1000,7 +930,6 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<!-- check if top, if not a number and surface elv is  then use surface elv-->
 	<xsl:template match="//surface_elevation">
 		<xsl:choose>
 			<xsl:when test="string-length(string(.))>0">
@@ -1280,4 +1209,3 @@
 		</gmd:metadataConstraints>
 	</xsl:template>
 </xsl:stylesheet>
-
