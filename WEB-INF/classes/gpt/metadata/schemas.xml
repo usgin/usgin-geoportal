@@ -30,4 +30,21 @@ usgin-profile record-->
    <!-- if its not an ISO XML record, it gets ignored. Other schema should be imported into repository.usgin.org
    and reviewed before harvest to the USGIN geoportal-->
    
+   <!--Add back in csw functionality --> 
+<schema fileName="gpt/metadata/fgdc/fgdc-definition.xml"/>
+
+<schema fileName="gpt/metadata/esri/esri-arcgis-definition.xml"/>
+
+<schema fileName="gpt/metadata/esri/esri-iso-definition.xml"/>
+
+<schema fileName="gpt/metadata/dc/dc-definition.xml"/>
+
+<schema fileName="gpt/metadata/ogc/ogc-definition.xml"/>
+
+<schema fileName="gpt/metadata/ogc/cswRecord-definition.xml"/>
+
+<schema fileName="gpt/metadata/other/georss-definition.xml"/>
+
+<schema fileName="gpt/metadata/other/opensearch-definition.xml"/>
+   
 </schemas>
