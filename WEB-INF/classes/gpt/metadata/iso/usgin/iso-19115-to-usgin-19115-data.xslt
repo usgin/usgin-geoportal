@@ -457,7 +457,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 					<gmd:maintenanceNote>
 						<gco:CharacterString>
 							<xsl:value-of
-								select="concat($metadataMaintenanceNote, '2013-04-04T12:00:00')"/>
+								select="concat($metadataMaintenanceNote, '2013-11-04T12:00:00')"/>
 						</gco:CharacterString>
 					</gmd:maintenanceNote>
 					<!--  <xsl:copy-of
