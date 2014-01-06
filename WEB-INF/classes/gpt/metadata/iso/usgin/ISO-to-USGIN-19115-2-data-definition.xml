@@ -12,13 +12,16 @@
   <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
   <namespace prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
   <namespace prefix="gml" uri="http://www.opengis.net/gml"/>
-  <namespace prefix="gmi" uri="http://www.isotc211.org/2005/gmi"/> 
+  <namespace prefix="gts" uri="http://www.isotc211.org/2005/gts"/> 
+  <namespace prefix="gmi" uri="http://www.isotc211.org/2005/gmi"/>
+  <!--  NGDC Addition -->
+  <namespace prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
   
  
    <!-- schema interrogation -->
-   <!-- make interrogation catch a gmd:MD_Metadata or gmi:MI_Metadata anywhere in the interrogated document
+   <!-- make interrogation catch a gmi:MI_Metadata anywhere in the interrogated document
    to catch CSW and OAI-PMH harvest responses-->
-  <interrogation count="count(//gmi:MI_Metadata)"
+  <interrogation count="count(/gmi:MI_Metadata)"
   toKnownSchemaXslt="gpt/metadata/iso/usgin/iso-19115-to-usgin-19115-data.xslt"/>
 </schema>
 </schemas>
