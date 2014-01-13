@@ -279,11 +279,13 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 						<!-- finally handle the lineage -->
 						<gmd:lineage>
 							<gmd:LI_Lineage>
+								<xsl:if test="gmd:lineage/gmd:LI_Lineage/gmd:statement">
 							<gmd:statement>
-<gco:CharacterString>
-<xsl:value-of select="."/>
-</gco:CharacterString>							
+								<gco:CharacterString>
+									<xsl:value-of select="gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString"/>
+								</gco:CharacterString>		
 							</gmd:statement>
+								</xsl:if>
 								<xsl:for-each select="gmd:lineage/gmd:LI_Lineage/gmd:processStep">
 									<gmd:processStep>
 										<xsl:choose>
@@ -301,26 +303,21 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 												test="string-length(local-name())>0
 													and local-name()!='rationale' and local-name()!='dateTime'
 													and local-name()!='processor'">
+													<!-- this is all on one line to avoid extra whitespace in output -->
 												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
-												<!-- get the descendent nodes -->
-												<xsl:for-each select="descendant::node()">
-												<xsl:if test="string-length(local-name())>0">
-												<xsl:value-of
-												select="concat(local-name(),':',string(.))"/>
+												select="concat(local-name(),':',string(.))"/> <!-- get the descendent nodes -->
+												<xsl:for-each select="descendant::node()"> <xsl:if test="string-length(local-name())>0"> <xsl:value-of select="concat(local-name(),':',string(.))"/> </xsl:if> </xsl:for-each>
 												</xsl:if>
-												</xsl:for-each>
-												</xsl:if>
-												<!-- if have a node name than process -->
+												<!-- if have a node name then process -->
 												</xsl:for-each>
 												</xsl:variable>
 												<!-- defintion of gmiProcessStepStuff -->
 
 												<gmd:description>
 												<gco:CharacterString>
+									
 												<xsl:value-of
-												select="concat(string(gmi:LE_ProcessStep/gmd:description/gco:CharacterString),'. ',$gmiProcessStepStuff)"
-												/>
+												select="concat(string(gmi:LE_ProcessStep/gmd:description/gco:CharacterString),'. ',$gmiProcessStepStuff)"/>
 												</gco:CharacterString>
 												</gmd:description>
 												<xsl:apply-templates
@@ -344,7 +341,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 								</xsl:for-each>
 								<!-- processStep -->
 								<!-- now do the sources, they have an extent that might be temporal 
-						als need to handle gmi:LE_source...-->
+						also need to handle gmi:LE_source...-->
 								<xsl:for-each select="gmd:lineage/gmd:LI_Lineage/gmd:source/gmi:LE_Source
 									| gmd:lineage/gmd:LI_Lineage/gmd:source/gmd:LI_Source">
 									<gmd:source>
@@ -353,7 +350,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 												<gco:CharacterString>
 					<!-- start with the LI_SourceDescription, then concat text from  
 												gmi elements if present -->
-												<xsl:value-of select="gmd:description"/>
+												<xsl:value-of select="gmd:description/gco:CharacterString"/>
 												<xsl:for-each
 												select="gmi:processedLevel/descendant::node()">
 												<xsl:if test="string-length(local-name())>0">
@@ -754,7 +751,7 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 		<gmd:CI_Citation>
 			<gmd:title>
 				<gco:CharacterString>
-					<xsl:value-of select="$inputCit/gmd:title"/>
+					<xsl:value-of select="$inputCit/gmd:title/gco:CharacterString"/>
 				</gco:CharacterString>
 			</gmd:title>
 			<!-- Keeping the title from being indented correctly-->
@@ -840,7 +837,6 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 	<!-- end of citation handler -->
 
 <!-- Extent handler -->
-
 	<xsl:template name="usgin:extentHandler">
 		<xsl:param name="inputExtent"/>
 
@@ -934,7 +930,6 @@ codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_Sc
 		<!-- end exent processing -->
 
 	</xsl:template>
-
 	<!-- end of extent handler -->
 
 
