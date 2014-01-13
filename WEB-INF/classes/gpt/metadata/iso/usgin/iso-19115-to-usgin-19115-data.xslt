@@ -1039,6 +1039,10 @@
 			<!-- for dimension properties, copy MI_Band content, if present, into the MD_RangeDimension/descriptor string -->
 
 			<xsl:choose>
+				<xsl:when test="gmd:MD_FeatureCatalogueDescription">
+					<xsl:apply-templates select="gmd:MD_FeatureCatalogueDescription"
+						mode="no-namespaces"/>
+				</xsl:when>
 				<xsl:when test="gmd:MD_CoverageDescription | gmi:MI_CoverageDescription">
 					<gmd:MD_CoverageDescription>
 						<xsl:apply-templates select="./child::node()/gmd:attributeDescription"
