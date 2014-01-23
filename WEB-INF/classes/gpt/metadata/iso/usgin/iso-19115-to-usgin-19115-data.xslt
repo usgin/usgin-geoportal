@@ -36,18 +36,21 @@
 	<xsl:param name="metadataMaintenanceNote"
 		select="'This metadata record has been processed by the iso-19115-to-usgin-19115-data XSLT to ensure that all mandatory content for USGIN profile has been added.'"/>
 	<!-- for lower-casing in XSLT 1.0 -->
-	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
-	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />	
-	
-	
+	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'"/>
+	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+	<xsl:variable name="USGIN-resourceTypes"
+		select="'|collection|collection:dataset|collection:dataset:catalog|collection:physical artifact collection|document|document:image|document:image:stillimage|document:image:stillimage:human-generated image|document:image:stillimage:human-generated image:map|document:image:stillimage:photograph|document:image:stillimage:remote sensing earth image|document:image:moving image|document:sound|document:text|document:text:hypertext document|event|event:project|model|physical artifact|service|software|software:stand-alone-application|software:interactive resource|structured digital data item|sampling point|'"/>
+
+
 	<!-- start main processing chain
     <xsl:template match="/">
         <xsl:call-template name="main"/>
     </xsl:template>   -->
 	<xsl:template match="gmd:MD_Metadata | gmi:MI_Metadata">
 		<xsl:variable name="var_InputRootNode" select="."/>
-		<xsl:variable name="var_TitleString" select="string(./gmd:identificationInfo[1]//gmd:citation//gmd:title/gco:CharacterString)"/>
-		
+		<xsl:variable name="var_TitleString"
+			select="string(./gmd:identificationInfo[1]//gmd:citation//gmd:title/gco:CharacterString)"/>
+
 		<gmd:MD_Metadata
 			xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd"
 			xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml"
@@ -121,80 +124,103 @@
 			<!-- the logic here is complicated by handler for keywords in imported metadata that have resource category encoded in a keyword with 
 			the prefix usginres:. These use the USGIN resource category hierarchy outlined in the USGIN metadata profile. -->
 
+			<!-- first test if the hierarchyLevelName is one of the valid values -->
+			<xsl:variable name="flag_hlnIsGood">
+				<xsl:for-each select="./gmd:hierarchyLevelName">
+					<xsl:if
+						test="contains($USGIN-resourceTypes,concat('|',normalize-space(translate(string(./gco:CharacterString), $uppercase, $lowercase)),'|'))">
+						<xsl:value-of select="'True'"/>
+					</xsl:if>
+				</xsl:for-each>
+			</xsl:variable>
+
 			<xsl:choose>
-				<xsl:when test="//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]">
-					<xsl:variable name="theUSGINres"
-						select="string(//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]/gco:CharacterString)"/>
-					<gmd:hierarchyLevelName>
-						<gco:CharacterString>
-							<xsl:value-of select="substring-after($theUSGINres,'usginres:')"/>
-						</gco:CharacterString>
-					</gmd:hierarchyLevelName>
+				<xsl:when test="string-length($flag_hlnIsGood)>0">
+					<xsl:apply-templates select="$var_InputRootNode/gmd:hierarchyLevelName"
+						mode="no-namespaces"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<!-- if there isn't anything else try to figure it out... -->
-					<gmd:hierarchyLevelName>
-						<!-- try to guess what kind of resource based on the online distribution URL
+					<xsl:choose>
+						<xsl:when
+							test="//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]">
+							<xsl:variable name="theUSGINres"
+								select="string(//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]/gco:CharacterString)"/>
+							<gmd:hierarchyLevelName>
+								<gco:CharacterString>
+									<xsl:value-of select="substring-after($theUSGINres,'usginres:')"
+									/>
+								</gco:CharacterString>
+							</gmd:hierarchyLevelName>
+						</xsl:when>
+						<xsl:otherwise>
+							<!-- if there isn't anything else try to figure it out... -->
+							<gmd:hierarchyLevelName>
+								<!-- try to guess what kind of resource based on the online distribution URL
 					strings. This will take the first one that matches, so order of tests matters...-->
-
-						
-						<xsl:choose>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.xls')]">
-								<gco:CharacterString>collection:dataset</gco:CharacterString>
-							</xsl:when>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.mdb')]">
-								<gco:CharacterString>collection:dataset</gco:CharacterString>
-							</xsl:when>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'service=WFS')]">
-								<gco:CharacterString>collection:dataset</gco:CharacterString>
-							</xsl:when>
-							
-							<xsl:when
-								test="contains(translate($var_TitleString, $uppercase, $lowercase),'map of')">
-			<gco:CharacterString>document:image:stillimage:human-generated image:map</gco:CharacterString>
-							</xsl:when>
-							
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.pdf')]">
-								<gco:CharacterString>document:text</gco:CharacterString>
-							</xsl:when>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.tif')]">
-								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
-							</xsl:when>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.png')]">
-								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
-							</xsl:when>
-							<xsl:when
-								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.jpg')]">
-								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
-							</xsl:when>
-							<xsl:otherwise>
 								<xsl:choose>
-									<!-- if there is an existing hierarchy level name, pass it on -->
-									<xsl:when test="$var_InputRootNode/gmd:hierarchyLevelName">
-										<gco:CharacterString>
-										<xsl:value-of
-											select="string($var_InputRootNode/gmd:hierarchyLevelName[1]/gco:CharacterString)"/>
-										</gco:CharacterString>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.xls')]">
+										<gco:CharacterString>collection:dataset</gco:CharacterString>
+									</xsl:when>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.mdb')]">
+										<gco:CharacterString>collection:dataset</gco:CharacterString>
+									</xsl:when>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'service=WFS')]">
+										<gco:CharacterString>collection:dataset</gco:CharacterString>
+									</xsl:when>
+
+									<xsl:when
+										test="contains(translate($var_TitleString, $uppercase, $lowercase),'map of')">
+										<gco:CharacterString>document:image:stillimage:human-generated
+											image:map</gco:CharacterString>
+									</xsl:when>
+
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.pdf')]">
+										<gco:CharacterString>document:text</gco:CharacterString>
+									</xsl:when>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.tif')]">
+										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+									</xsl:when>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.png')]">
+										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+									</xsl:when>
+									<xsl:when
+										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.jpg')]">
+										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:attribute name="gco:nilReason">
-											<xsl:value-of select="string('unknown')"/>
-										</xsl:attribute>
-										<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
-										<gco:CharacterString>Missing</gco:CharacterString>
+										<xsl:choose>
+											<!-- if there is an existing hierarchy level name, pass it on -->
+											<xsl:when
+												test="$var_InputRootNode/gmd:hierarchyLevelName">
+												<gco:CharacterString>
+												<xsl:value-of
+												select="string($var_InputRootNode/gmd:hierarchyLevelName[1]/gco:CharacterString)"
+												/>
+												</gco:CharacterString>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:attribute name="gco:nilReason">
+												<xsl:value-of select="string('unknown')"/>
+												</xsl:attribute>
+												<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
+												<gco:CharacterString>Missing</gco:CharacterString>
+											</xsl:otherwise>
+										</xsl:choose>
 									</xsl:otherwise>
 								</xsl:choose>
-							</xsl:otherwise>
-						</xsl:choose>
-					</gmd:hierarchyLevelName>
+							</gmd:hierarchyLevelName>
+						</xsl:otherwise>
+					</xsl:choose>
+					<!-- handler for getting hLN from keyword, or guessing, or taking whats already there, or nil/missing -->
 				</xsl:otherwise>
 			</xsl:choose>
+			<!-- is there a good hierarchyLevelName already -->
 
 			<!--        <xsl:apply-templates select="$var_InputRootNode/gmd:contact"/>  -->
 			<!--use for multiple contact-->
