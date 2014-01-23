@@ -35,12 +35,19 @@
 	<!-- use this to document things added or changed by this xslt -->
 	<xsl:param name="metadataMaintenanceNote"
 		select="'This metadata record has been processed by the iso-19115-to-usgin-19115-data XSLT to ensure that all mandatory content for USGIN profile has been added.'"/>
+	<!-- for lower-casing in XSLT 1.0 -->
+	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />	
+	
+	
 	<!-- start main processing chain
     <xsl:template match="/">
         <xsl:call-template name="main"/>
     </xsl:template>   -->
 	<xsl:template match="gmd:MD_Metadata | gmi:MI_Metadata">
 		<xsl:variable name="var_InputRootNode" select="."/>
+		<xsl:variable name="var_TitleString" select="string(./gmd:identificationInfo[1]//gmd:citation//gmd:title/gco:CharacterString)"/>
+		
 		<gmd:MD_Metadata
 			xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd"
 			xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml"
@@ -95,12 +102,13 @@
 			</xsl:choose>
 
 			<xsl:choose>
+
 				<xsl:when test="$var_InputRootNode/gmd:hierarchyLevel">
 					<xsl:apply-templates select="$var_InputRootNode/gmd:hierarchyLevel"
 						mode="no-namespaces"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<!-- hierarchyLevel defaults to dataset -->
+					<!-- hierarchyLevel defaults to dataset; this is pretty useless... -->
 					<gmd:hierarchyLevel>
 						<xsl:comment>no hierarchyLevel in source metadata, USGIN XSLT inserted default value</xsl:comment>
 						<gmd:MD_ScopeCode
@@ -110,16 +118,80 @@
 				</xsl:otherwise>
 			</xsl:choose>
 
-			<!-- copy hierarchyLevelName -->
+			<!-- the logic here is complicated by handler for keywords in imported metadata that have resource category encoded in a keyword with 
+			the prefix usginres:. These use the USGIN resource category hierarchy outlined in the USGIN metadata profile. -->
+
 			<xsl:choose>
-				<xsl:when test="$var_InputRootNode/gmd:hierarchyLevelName">
-					<xsl:apply-templates select="$var_InputRootNode/gmd:hierarchyLevelName"
-						mode="no-namespaces"/>
+				<xsl:when test="//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]">
+					<xsl:variable name="theUSGINres"
+						select="string(//gmd:keyword[contains(string(gco:CharacterString),'usginres:')]/gco:CharacterString)"/>
+					<gmd:hierarchyLevelName>
+						<gco:CharacterString>
+							<xsl:value-of select="substring-after($theUSGINres,'usginres:')"/>
+						</gco:CharacterString>
+					</gmd:hierarchyLevelName>
 				</xsl:when>
 				<xsl:otherwise>
+					<!-- if there isn't anything else try to figure it out... -->
 					<gmd:hierarchyLevelName>
-						<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
-						<gco:CharacterString>Missing</gco:CharacterString>
+						<!-- try to guess what kind of resource based on the online distribution URL
+					strings. This will take the first one that matches, so order of tests matters...-->
+
+						
+						<xsl:choose>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.xls')]">
+								<gco:CharacterString>collection:dataset</gco:CharacterString>
+							</xsl:when>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.mdb')]">
+								<gco:CharacterString>collection:dataset</gco:CharacterString>
+							</xsl:when>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'service=WFS')]">
+								<gco:CharacterString>collection:dataset</gco:CharacterString>
+							</xsl:when>
+							
+							<xsl:when
+								test="contains(translate($var_TitleString, $uppercase, $lowercase),'map of')">
+			<gco:CharacterString>document:image:stillimage:human-generated image:map</gco:CharacterString>
+							</xsl:when>
+							
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.pdf')]">
+								<gco:CharacterString>document:text</gco:CharacterString>
+							</xsl:when>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.tif')]">
+								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+							</xsl:when>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.png')]">
+								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+							</xsl:when>
+							<xsl:when
+								test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.jpg')]">
+								<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:choose>
+									<!-- if there is an existing hierarchy level name, pass it on -->
+									<xsl:when test="$var_InputRootNode/gmd:hierarchyLevelName">
+										<gco:CharacterString>
+										<xsl:value-of
+											select="string($var_InputRootNode/gmd:hierarchyLevelName[1]/gco:CharacterString)"/>
+										</gco:CharacterString>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="gco:nilReason">
+											<xsl:value-of select="string('unknown')"/>
+										</xsl:attribute>
+										<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
+										<gco:CharacterString>Missing</gco:CharacterString>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:otherwise>
+						</xsl:choose>
 					</gmd:hierarchyLevelName>
 				</xsl:otherwise>
 			</xsl:choose>
@@ -1114,86 +1186,83 @@
 				<xsl:when test="gmi:MI_Band">
 					<xsl:if test="gmi:MI_Band/gmi:bandBoundaryDefinition/gmi:MI_BandDefinition">
 						<xsl:value-of
-							select="concat('band boundary definition: ',gmi:MI_Band/gmi:bandBoundaryDefinition/gmi:MI_BandDefinition/@codeListValue, '...')"/>
+							select="concat('band boundary definition: ',gmi:MI_Band/gmi:bandBoundaryDefinition/gmi:MI_BandDefinition/@codeListValue, '...')"
+						/>
 					</xsl:if>
 					<xsl:if test="gmi:MI_Band/gmi:nominalSpatialResolution/gco:Real">
 						<xsl:value-of
-							select="concat('nominal spatial resoution: ',string(gmi:MI_Band/gmi:nominalSpatialResolution/gco:Real), '...')"/>
+							select="concat('nominal spatial resoution: ',string(gmi:MI_Band/gmi:nominalSpatialResolution/gco:Real), '...')"
+						/>
 					</xsl:if>
 					<xsl:if
 						test="gmi:MI_Band/gmi:transferFunctionType/gmi:MI_TransferFunctionTypeCode">
 						<xsl:value-of
-							select="concat('transfer function type: ',gmi:MI_Band/gmi:transferFunctionType/gmi:MI_TransferFunctionTypeCode/@codeListValue, '...')"/>
+							select="concat('transfer function type: ',gmi:MI_Band/gmi:transferFunctionType/gmi:MI_TransferFunctionTypeCode/@codeListValue, '...')"
+						/>
 					</xsl:if>
 					<xsl:if
 						test="gmi:MI_Band/gmi:transmittedPolarisation/gmi:MI_PolarisationOrientationCode">
 						<xsl:value-of
-							select="concat('transmitted polarisation: ',gmi:MI_Band/gmi:transmittedPolarisation/gmi:MI_PolarisationOrientationCode/@codeListValue, '...')"/>
+							select="concat('transmitted polarisation: ',gmi:MI_Band/gmi:transmittedPolarisation/gmi:MI_PolarisationOrientationCode/@codeListValue, '...')"
+						/>
 					</xsl:if>
 					<xsl:if
 						test="gmi:MI_Band/gmi:detectedPolarisation/gmi:MI_PolarisationOrientationCode">
 						<xsl:value-of
-							select="concat('detected polarisation: ',gmi:MI_Band/gmi:detectedPolarisation/gmi:MI_PolarisationOrientationCode/@codeListValue, '...')"/>
+							select="concat('detected polarisation: ',gmi:MI_Band/gmi:detectedPolarisation/gmi:MI_PolarisationOrientationCode/@codeListValue, '...')"
+						/>
 					</xsl:if>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="''"/>
 				</xsl:otherwise>
 			</xsl:choose>
-		</xsl:variable> <!-- end definition of mi_bandText -->
-		<gmd:dimension> 
+		</xsl:variable>
+		<!-- end definition of mi_bandText -->
+		<gmd:dimension>
 			<xsl:choose>
 				<xsl:when test="gmd:MD_RangeDimension">
 					<gmd:MD_RangeDimension>
-					<xsl:apply-templates
-						select="./child::node()/gmd:sequenceIdentifier"
-						mode="no-namespaces"/>
-					<gmd:descriptor>
-						<gco:CharacterString>
-						<xsl:value-of select="concat(./child::node()/gmd:descriptor/gco:CharacterString, '...')"/>
-						</gco:CharacterString>
-					</gmd:descriptor>
+						<xsl:apply-templates select="./child::node()/gmd:sequenceIdentifier"
+							mode="no-namespaces"/>
+						<gmd:descriptor>
+							<gco:CharacterString>
+								<xsl:value-of
+									select="concat(./child::node()/gmd:descriptor/gco:CharacterString, '...')"
+								/>
+							</gco:CharacterString>
+						</gmd:descriptor>
 					</gmd:MD_RangeDimension>
 				</xsl:when>
 				<xsl:when test="gmd:MD_Band | gmi:MI_Band">
 					<gmd:MD_Band>
-					<xsl:apply-templates
-						select="./child::node()/gmd:sequenceIdentifier"
-						mode="no-namespaces"/>
-					<gmd:descriptor>
-						<gco:CharacterString>
-							<xsl:if
-								test="./child::node()/gmd:descriptor">
-								<xsl:value-of
-									select="concat(./child::node()/gmd:descriptor/gco:CharacterString, '...')"/>
-							</xsl:if>
-							<xsl:value-of select="normalize-space($mi_bandText)"/>
-						</gco:CharacterString>
-					</gmd:descriptor>
-					<xsl:apply-templates
-						select="./child::node()/gmd:maxValue"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:minValue"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:units"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:peakResponse"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:bitsPerValue"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:toneGradation"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:scaleFactor"
-						mode="no-namespaces"/>
-					<xsl:apply-templates
-						select="./child::node()/gmd:offset"
-						mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:sequenceIdentifier"
+							mode="no-namespaces"/>
+						<gmd:descriptor>
+							<gco:CharacterString>
+								<xsl:if test="./child::node()/gmd:descriptor">
+									<xsl:value-of
+										select="concat(./child::node()/gmd:descriptor/gco:CharacterString, '...')"
+									/>
+								</xsl:if>
+								<xsl:value-of select="normalize-space($mi_bandText)"/>
+							</gco:CharacterString>
+						</gmd:descriptor>
+						<xsl:apply-templates select="./child::node()/gmd:maxValue"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:minValue"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:units" mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:peakResponse"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:bitsPerValue"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:toneGradation"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:scaleFactor"
+							mode="no-namespaces"/>
+						<xsl:apply-templates select="./child::node()/gmd:offset"
+							mode="no-namespaces"/>
 					</gmd:MD_Band>
 				</xsl:when>
 			</xsl:choose>
