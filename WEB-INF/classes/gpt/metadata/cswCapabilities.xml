@@ -17,41 +17,32 @@
 <csw:Capabilities version="2.0.2" xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xlink="http://www.w3.org/1999/xlink">
   <ows:ServiceIdentification>
     <ows:Title>
-      ArcGIS Server Geoportal Extension 10 - OGC CSW 2.0.2 ISO AP
+      United States Geoscience Information Network Metadata Catalog
     </ows:Title>
     <ows:Abstract>
       A catalogue service that conforms to the HTTP protocol binding of the OpenGIS Catalogue Service ISO Metadata Application Profile specification (version 2.0.2)
     </ows:Abstract>
     <ows:Keywords>
-      <ows:Keyword>keyword1</ows:Keyword>
-      <ows:Keyword>keyword2</ows:Keyword>
+      <ows:Keyword>geoscience</ows:Keyword>
+      <ows:Keyword>usgin</ows:Keyword>
     </ows:Keywords>
     <ows:ServiceType>CSW</ows:ServiceType>
     <ows:ServiceTypeVersion>2.0.2</ows:ServiceTypeVersion>
-    <ows:Fees>unknown</ows:Fees>
-    <ows:AccessConstraints>unknown</ows:AccessConstraints>
+    <ows:Fees>NONE</ows:Fees>
+    <ows:AccessConstraints>NONE</ows:AccessConstraints>
   </ows:ServiceIdentification>
   <ows:ServiceProvider>
-    <ows:ProviderName>provider name</ows:ProviderName>
-    <ows:ProviderSite xlink:href="http://localhost"/>
+    <ows:ProviderName>United States Geoscience Information Network (USGIN) </ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://usgin.org/"/>
     <ows:ServiceContact>
-      <ows:IndividualName>name</ows:IndividualName>
-      <ows:PositionName>position</ows:PositionName>
+      <ows:PositionName>Metadata Handler</ows:PositionName>
       <ows:ContactInfo>
         <ows:Phone>
-          <ows:Voice>voice</ows:Voice>
-          <ows:Facsimile>fax</ows:Facsimile>
+          <ows:Voice>520-770-3500</ows:Voice>  
         </ows:Phone>
         <ows:Address>
-          <ows:DeliveryPoint>address1</ows:DeliveryPoint>
-          <ows:DeliveryPoint>address2</ows:DeliveryPoint>
-          <ows:City>city</ows:City>
-          <ows:AdministrativeArea>adminArea</ows:AdministrativeArea>
-          <ows:PostalCode>postCode</ows:PostalCode>
-          <ows:Country>country</ows:Country>
-          <ows:ElectronicMailAddress>email</ows:ElectronicMailAddress>
+          <ows:ElectronicMailAddress>metadata@usgin.org</ows:ElectronicMailAddress>
         </ows:Address>
-        <ows:OnlineResource xlink:href=""/>
       </ows:ContactInfo>
     </ows:ServiceContact>
   </ows:ServiceProvider>
@@ -59,8 +50,8 @@
     <ows:Operation name="GetCapabilities">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href=""/>
-          <ows:Post xlink:href="">
+          <ows:Get xlink:href="http://catalog.usgin.org/geoportal/csw"/>
+          <ows:Post xlink:href="http://catalog.usgin.org/geoportal/csw">
             <ows:Constraint name="PostEncoding">
 				  <ows:Value>XML</ows:Value> 
 				  <ows:Value>SOAP</ows:Value> 
@@ -81,8 +72,8 @@
     <ows:Operation name="DescribeRecord">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href=""/>
-          <ows:Post xlink:href="">
+          <ows:Get xlink:href="http://catalog.usgin.org/geoportal/csw"/>
+          <ows:Post xlink:href="http://catalog.usgin.org/geoportal/csw">
             <ows:Constraint name="PostEncoding">
 				  <ows:Value>XML</ows:Value> 
 				  <ows:Value>SOAP</ows:Value> 				  
@@ -107,8 +98,8 @@
     <ows:Operation name="GetRecords">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href=""/>        
-          <ows:Post xlink:href="">
+          <ows:Get xlink:href="http://catalog.usgin.org/geoportal/csw"/>        
+          <ows:Post xlink:href="http://catalog.usgin.org/geoportal/csw">
             <ows:Constraint name="PostEncoding">
 				  <ows:Value>XML</ows:Value> 
 				  <ows:Value>SOAP</ows:Value> 				  
@@ -210,8 +201,8 @@
     <ows:Operation name="GetRecordById">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href=""/>
-          <ows:Post xlink:href="">
+          <ows:Get xlink:href="http://catalog.usgin.org/geoportal/csw"/>
+          <ows:Post xlink:href="http://catalog.usgin.org/geoportal/csw">
             <ows:Constraint name="PostEncoding">
 				  <ows:Value>XML</ows:Value> 
 				  <ows:Value>SOAP</ows:Value> 				  
@@ -237,7 +228,7 @@
     <ows:Operation name="Transaction">
       <ows:DCP>
         <ows:HTTP>       
-          <ows:Post xlink:href="">
+          <ows:Post xlink:href="http://catalog.usgin.org/geoportal/csw">
             <ows:Constraint name="PostEncoding">
 				  <ows:Value>XML</ows:Value> 
 				  <ows:Value>SOAP</ows:Value> 				  
