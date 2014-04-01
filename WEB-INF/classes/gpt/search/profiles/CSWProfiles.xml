@@ -22,8 +22,7 @@
         <Name>ArcGIS Server Geoportal Extension (GPT)</Name> 
         <CswNamespace>http://www.opengis.net/cat/csw/2.0.2</CswNamespace> 
         <Description /> 
-       <GetRecords>
-          
+       <GetRecords>        
          <XSLTransformations>
           <Request expectedGptXmlOutput="FULL_NATIVE_GPTXML">
             CSW_2.0.2_OGCCORE_ESRI_GPT_GetRecords_Request.xslt
@@ -400,6 +399,30 @@
                 <SupportContentTypeQuery>False</SupportContentTypeQuery>
                 <SupportSpatialBoundary>True</SupportSpatialBoundary>    
        </Profile>
+    
+    <!--CKAN USGIN APISO -->
+    <!--CKAN APISO 2.0.2 USGIN -->
+    <Profile>
+        <ID>urn:ogc:CSW:2.0.2:HTTP:APISO:CKAN</ID>
+        <Name>CKAN CSW 2.0.2 USGIN APISO</Name>
+        <Description></Description>
+        <CswNamespace>http://www.opengis.net/cat/csw/2.0.2</CswNamespace>
+        <GetRecords>
+            <XSLTransformations>
+                <Request>CSW_2.0.2_APISO_USGIN-CKAN_GetRecords_Request.xslt</Request>
+                <Response>CSW_2.0.2_APISO_USGIN-CKAN_GetRecords_Response.xslt</Response>
+            </XSLTransformations>
+        </GetRecords>
+        <GetRecordByID>
+            <RequestKVPs><![CDATA[service=CSW&request=GetRecordById&version=2.0.2&ElementSetName=full&OutputSchema='http://www.isotc211.org/2005/gmd']]></RequestKVPs>
+            <XSLTransformations>
+                <Response>CSW_2.0.2_APISO_USGIN-CKAN_GetRecordByID_Response.xslt</Response>
+            </XSLTransformations>
+        </GetRecordByID>
+        <SupportSpatialQuery>True</SupportSpatialQuery>
+        <SupportContentTypeQuery>False</SupportContentTypeQuery>
+        <SupportSpatialBoundary>True</SupportSpatialBoundary>    
+    </Profile>
 	
 				<!-- SRU CSW 2.0.2 Gateway to Z39.50 -->
         <Profile>
