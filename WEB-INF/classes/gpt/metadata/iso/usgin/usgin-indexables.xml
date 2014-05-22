@@ -164,7 +164,8 @@
   <!-- table 14 (page 49) for service  -->
   <!-- ISO queryables applicable to services -->
  <property meaning="apiso:ServiceType"
-    xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType/gco:LocalName"/>
+    xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType/gco:LocalName | 
+	//gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
         
  <property meaning="apiso:ServiceTypeVersion"
     xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:serviceTypeVersion/gco:CharacterString"/>
