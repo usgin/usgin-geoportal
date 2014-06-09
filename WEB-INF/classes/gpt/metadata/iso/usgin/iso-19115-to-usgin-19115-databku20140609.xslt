@@ -154,67 +154,81 @@
 						</xsl:when>
 						<xsl:otherwise>
 							<!-- if there isn't anything else try to figure it out... -->
-							<gmd:hierarchyLevelName>
+
 								<!-- try to guess what kind of resource based on the online distribution URL
 					strings. This will take the first one that matches, so order of tests matters...-->
 								<xsl:choose>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.xls')]">
-										<gco:CharacterString>collection:dataset</gco:CharacterString>
-									</xsl:when>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>collection:dataset</gco:CharacterString>
+										</gmd:hierarchyLevelName>									</xsl:when>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.mdb')]">
-										<gco:CharacterString>collection:dataset</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>collection:dataset</gco:CharacterString>
+										</gmd:hierarchyLevelName>
 									</xsl:when>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'service=WFS')]">
-										<gco:CharacterString>collection:dataset</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>collection:dataset</gco:CharacterString>
+											</gmd:hierarchyLevelName>
 									</xsl:when>
 
 									<xsl:when
 										test="contains(translate($var_TitleString, $uppercase, $lowercase),'map of')">
-										<gco:CharacterString>document:image:stillimage:human-generated
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>document:image:stillimage:human-generated
 											image:map</gco:CharacterString>
+											</gmd:hierarchyLevelName>
 									</xsl:when>
 
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.pdf')]">
-										<gco:CharacterString>document:text</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>document:text</gco:CharacterString>
+										</gmd:hierarchyLevelName>
 									</xsl:when>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.tif')]">
-										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										</gmd:hierarchyLevelName>
 									</xsl:when>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.png')]">
-										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										</gmd:hierarchyLevelName>
 									</xsl:when>
 									<xsl:when
 										test="//gmd:transferOptions//gmd:linkage[contains(string(gmd:URL),'.jpg')]">
-										<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										<gmd:hierarchyLevelName>
+											<gco:CharacterString>document:image:stillimage</gco:CharacterString>
+										</gmd:hierarchyLevelName>
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:choose>
 											<!-- if there is an existing hierarchy level name, pass it on -->
 											<xsl:when
 												test="$var_InputRootNode/gmd:hierarchyLevelName">
-												<gco:CharacterString>
-												<xsl:value-of
-												select="string($var_InputRootNode/gmd:hierarchyLevelName[1]/gco:CharacterString)"
-												/>
-												</gco:CharacterString>
+												<xsl:apply-templates select="$var_InputRootNode/gmd:hierarchyLevelName"
+													mode="no-namespaces"/>
 											</xsl:when>
 											<xsl:otherwise>
+											<gmd:hierarchyLevelName>
 												<xsl:attribute name="gco:nilReason">
 												<xsl:value-of select="string('unknown')"/>
 												</xsl:attribute>
+												
 												<xsl:comment>no hierarchyLevelName in source metadata, USGIN XSLT inserted default value</xsl:comment>
 												<gco:CharacterString>Missing</gco:CharacterString>
+											</gmd:hierarchyLevelName>
 											</xsl:otherwise>
 										</xsl:choose>
 									</xsl:otherwise>
 								</xsl:choose>
-							</gmd:hierarchyLevelName>
 						</xsl:otherwise>
 					</xsl:choose>
 					<!-- handler for getting hLN from keyword, or guessing, or taking whats already there, or nil/missing -->
@@ -225,7 +239,6 @@
 			<!--        <xsl:apply-templates select="$var_InputRootNode/gmd:contact"/>  -->
 			<!--use for multiple contact-->
 			<xsl:for-each select="$var_InputRootNode/gmd:contact">
-			<!-- changing all role codes/contacts info -->
 				<gmd:contact>
 					<xsl:call-template name="usgin:ResponsibleParty">
 						<xsl:with-param name="inputParty" select="gmd:CI_ResponsibleParty"/>
@@ -608,11 +621,7 @@
 	<xsl:template name="usgin:ResponsibleParty">
 		<!-- parameter should be a CI_ResponsibleParty node -->
 		<xsl:param name="inputParty" select="."/>
-		<xsl:param name="defaultRoleMD" select="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty"/>
-        <xsl:param name="defaultRoleCI" select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty"/>
-      <xsl:param name="defaultRoleDI" select="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty"/>
-		
-		
+		<xsl:param name="defaultRole" select="."/>
 		<gmd:CI_ResponsibleParty>
 			<gmd:individualName>
 				<gco:CharacterString>
@@ -794,8 +803,13 @@
 						mode="no-namespaces"/>
 				</gmd:CI_Contact>
 			</gmd:contactInfo>
-			<xsl:apply-templates select="$inputParty/gmd:role"
-				mode="no-namespaces"/>
+			<gmd:role>
+				<gmd:CI_RoleCode
+					codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+					codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
+			</gmd:role>
+
+
 		</gmd:CI_ResponsibleParty>
 	</xsl:template>
 	<!-- end of ResponsibleParty handler -->
@@ -821,7 +835,7 @@
 					<gmd:pointOfContact>
 						<xsl:call-template name="usgin:ResponsibleParty">
 							<xsl:with-param name="inputParty" select="gmd:CI_ResponsibleParty"/>
-							<xsl:with-param name="defaultRoleMD">
+							<xsl:with-param name="defaultRole">
 								<gmd:role>
 									<gmd:CI_RoleCode
 										codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
@@ -984,7 +998,7 @@
 						<gmd:citedResponsibleParty>
 							<xsl:call-template name="usgin:ResponsibleParty">
 								<xsl:with-param name="inputParty" select="gmd:CI_ResponsibleParty"/>
-								<xsl:with-param name="defaultRoleCI">
+								<xsl:with-param name="defaultRole">
 									<gmd:role>
 										<gmd:CI_RoleCode
 											codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
@@ -1039,16 +1053,16 @@
 
 		<xsl:for-each select="$inputExtent/gmd:geographicElement">
 			<!-- might have a description, and a geoboundingbox or a polygon -->
-
-			<xsl:if test="$inputExtent/gmd:description">
+<xsl:choose>
+			<xsl:when test="$inputExtent/gmd:description">
 				<gmd:description>
 					<gco:CharacterString>
 						<xsl:value-of select="$inputExtent/gmd:description/gco:CharacterString"/>
 					</gco:CharacterString>
 				</gmd:description>
-			</xsl:if>
-			<!-- probably could be copy-of... -->
-			<xsl:if test="gmd:EX_GeographicBoundingBox">
+			</xsl:when>
+			<!-- handle bounding box, with some error checking ... -->
+			<xsl:when test="gmd:EX_GeographicBoundingBox">
 				<gmd:geographicElement>
 					<gmd:EX_GeographicBoundingBox>
 						<xsl:if test="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode">
@@ -1061,52 +1075,108 @@
 												select="gmd:EX_GeographicBoundingBox/gmd:extentTypeCode/gco:Boolean"
 											/>
 										</xsl:when>
-										<!-- default value -->
+										<!-- put in default value -->
 										<xsl:otherwise>1</xsl:otherwise>
 									</xsl:choose>
 								</gco:Boolean>
 							</gmd:extentTypeCode>
 						</xsl:if>
+	<!-- degenerate bounding boxes cause CKAN harvest to fail; in the past we had trouble with geonetwork harvest also; 
+		if a point location is reported	best to put points in as a bounding polygon with a gml:point geometry? 
+		This bounding box processor changes point to small box with the point in the center -->
+	<!-- also check for east long gt west long and north lat gt south lat -->
+						<xsl:variable name="var_wLongIn" select="number(gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal)"/>
+						<xsl:variable name="var_eLongIn" select="number(gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal)"/>
+						<xsl:variable name="var_nLatIn" select="number(gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal)"/>
+						<xsl:variable name="var_sLatIn" select="number(gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal)"/>
+						
+						<xsl:variable name="var_wLong">
+							<xsl:choose>
+								<xsl:when test="$var_wLongIn=$var_eLongIn">
+									<xsl:value-of select="$var_wLongIn + number('-.01')"/>
+								</xsl:when>
+								<xsl:when test="$var_wLongIn &gt; $var_eLongIn">
+									<xsl:value-of select="$var_eLongIn"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$var_wLongIn"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						<xsl:variable name="var_eLong">
+							<xsl:choose>
+								<xsl:when test="$var_wLongIn=$var_eLongIn">
+									<xsl:value-of select="$var_eLongIn + number('.01')"/>
+								</xsl:when>
+								<xsl:when test="$var_wLongIn &gt; $var_eLongIn">
+									<xsl:value-of select="$var_wLongIn"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$var_eLongIn"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						<!-- north latitute -->
+						<xsl:variable name="var_nLat">
+							<xsl:choose>
+								<xsl:when test="$var_nLatIn=$var_sLatIn">
+									<xsl:value-of select="$var_nLatIn + number('.01')"/>
+								</xsl:when>
+								<xsl:when test="$var_sLatIn &gt; $var_nLatIn">
+									<xsl:value-of select="$var_sLatIn"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$var_nLatIn"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						<!-- south latitude ***********************************-->
+						<xsl:variable name="var_sLat">
+							<xsl:choose>
+								<xsl:when test="$var_nLatIn=$var_sLatIn">
+									<xsl:value-of select="$var_sLatIn + number('-.01')"/>
+								</xsl:when>
+								<xsl:when test="$var_sLatIn &gt; $var_nLatIn">
+									<xsl:value-of select="$var_nLatIn"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$var_sLatIn"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+					<!-- now populate the output... -->	
 						<gmd:westBoundLongitude>
 							<gco:Decimal>
-								<xsl:value-of
-									select="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal"
-								/>
+								<xsl:value-of select="$var_wLong"/>
 							</gco:Decimal>
 						</gmd:westBoundLongitude>
 						<gmd:eastBoundLongitude>
 							<gco:Decimal>
-								<xsl:value-of
-									select="gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal"
-								/>
+								<xsl:value-of select="$var_eLong"/>
 							</gco:Decimal>
 						</gmd:eastBoundLongitude>
 						<gmd:southBoundLatitude>
 							<gco:Decimal>
-								<xsl:value-of
-									select="gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal"
-								/>
+								<xsl:value-of select="$var_sLat"/>
 							</gco:Decimal>
 						</gmd:southBoundLatitude>
 						<gmd:northBoundLatitude>
 							<gco:Decimal>
-								<xsl:value-of
-									select="gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal"
-								/>
+								<xsl:value-of select="$var_nLat"/>
 							</gco:Decimal>
 						</gmd:northBoundLatitude>
 					</gmd:EX_GeographicBoundingBox>
 				</gmd:geographicElement>
-			</xsl:if>
-			<xsl:if test="gmd:EX_BoundingPolygon">
+			</xsl:when>
+			<xsl:when test="gmd:EX_BoundingPolygon">
 				<gmd:geographicElement>
 					<xsl:apply-templates select="gmd:EX_BoundingPolygon" mode="no-namespaces"/>
 				</gmd:geographicElement>
-			</xsl:if>
-
-
+			</xsl:when>
+</xsl:choose>
 		</xsl:for-each>
 		<!-- end of geographicElement handler -->
+		
 		<!-- gmd:geographicElement/gmd:EX_GeographicDescription code values are copied into the
                 keywords.type = 'place' group -->
 		<xsl:for-each select="$inputExtent/gmd:temporalElement">
@@ -1322,7 +1392,7 @@
 								<xsl:call-template name="usgin:ResponsibleParty">
 									<xsl:with-param name="inputParty"
 										select="gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty"/>
-									<xsl:with-param name="defaultRoleDI">
+									<xsl:with-param name="defaultRole">
 										<gmd:role>
 											<gmd:CI_RoleCode
 												codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
@@ -1438,11 +1508,10 @@
 		<!-- input data should be either a gco:Date or a gco:DateTime node -->
 		<!-- USGIN mandates use of DateTime, so will need to add 'T12:00:00Z' to gco:Date string -->
 		<xsl:choose>
-			<xsl:when test="string-length(normalize-space(string($inputDate)))=4">
-				<xsl:value-of select="concat(normalize-space(translate(string($inputDate), '/', '-')),'-01-01T12:00:00Z')"/>
-			</xsl:when>
-			<xsl:when test="string-length(normalize-space(string($inputDate)))=10">
-				<xsl:value-of select="concat(normalize-space(translate(string($inputDate), '/', '-')),'T12:00:00Z')"/>
+			<xsl:when test="$inputDate/gco:Date">
+				<xsl:value-of
+					select="concat(normalize-space(translate(string($inputDate), '/', '-')),'T12:00:00Z')"
+				/>
 			</xsl:when>
 			<xsl:when test="$inputDate/gco:DateTime">
 				<xsl:choose>
