@@ -15,7 +15,7 @@
  limitations under the License.
 -->
 <!-- apiso-indexables.xml -->
-<indexables>
+<indexables>/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString
 
   <!-- namespaces -->
   <namespace prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>

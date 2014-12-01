@@ -20,7 +20,8 @@ ISO to USGIN ISO xslt transform; it it has, it is processed by the definition fi
 have been removed from the validation, the assumption being that once processed by the xslt, it is a valid
 usgin-profile record-->
    <schema fileName="gpt/metadata/iso/usgin/USGIN-ISO19115Definition.xml"/>
-   <!-- to include metadata xml that comes from cushions or couch db -->   <schema fileName="gpt/metadata/iso/cushions/cushions-iso-19115-data-definition.xml"/>  
+   <!-- to include metadata xml that comes from cushions or couch db -->   
+   <schema fileName="gpt/metadata/iso/cushions/cushions-iso-19115-data-definition.xml"/>  
    <!-- the second defintion tests whether the record is a MD_Metadata record and if so,
    sends it to the ISO to USGIN ISO xslt; after transformation it will be interogated again and caught by the
    first definition file -->
