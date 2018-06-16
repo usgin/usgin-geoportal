@@ -1,0 +1,249 @@
+2018-06-16 08:53:53,631 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-06-16 08:53:59,677 [Worker-7] WARN  org.eclipse.jgit.util.FS_Win32 - null
+2018-06-16 08:54:55,129 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded file://${project.basedir}/../../lib/com/esri/gpt/geoportal/1.2.9-SNAPSHOT/maven-metadata.xml
+2018-06-16 08:54:55,152 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded file://${project.basedir}/../../lib/com/esri/gpt/geoportal/1.2.9-SNAPSHOT/geoportal-1.2.9-SNAPSHOT.pom
+2018-06-16 08:54:55,295 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.esri.gpt:geoportal:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\pom.xml.
+2018-06-16 08:54:55,853 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/2.6/maven-dependency-plugin-2.6.jar
+2018-06-16 08:54:55,919 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/2.6/maven-dependency-plugin-2.6.jar
+2018-06-16 08:54:56,326 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2018-06-16 08:54:56,421 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2018-06-16 08:54:56,899 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2018-06-16 08:54:56,919 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2018-06-16 08:54:56,944 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2018-06-16 08:54:56,976 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2018-06-16 08:54:57,549 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2018-06-16 08:54:57,568 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2018-06-16 08:54:57,587 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2018-06-16 08:54:57,607 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2018-06-16 08:54:57,659 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2018-06-16 08:54:57,677 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2018-06-16 08:54:57,698 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2018-06-16 08:54:57,716 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2018-06-16 08:54:57,735 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2018-06-16 08:54:57,753 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2018-06-16 08:54:57,793 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2018-06-16 08:54:57,903 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2018-06-16 08:54:57,909 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2018-06-16 08:54:57,957 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2018-06-16 08:54:57,963 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2018-06-16 08:54:58,017 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2018-06-16 08:54:58,463 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.esri.gpt:geoportal-war:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\pom.xml.
+2018-06-16 08:54:58,466 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 08:54:58,541 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/javaee-web-api/6.0/javaee-web-api-6.0.pom
+2018-06-16 08:54:58,568 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/javaee-web-api/6.0/javaee-web-api-6.0.pom
+2018-06-16 08:54:58,600 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/javaee-web-api/6.0/javaee-web-api-6.0.jar
+2018-06-16 08:54:58,760 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/javaee-web-api/6.0/javaee-web-api-6.0.jar
+2018-06-16 08:54:59,168 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/2.6/maven-dependency-plugin-2.6.pom
+2018-06-16 08:54:59,191 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/2.6/maven-dependency-plugin-2.6.pom
+2018-06-16 08:55:02,832 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal-war/src/main/java
+2018-06-16 08:55:02,832 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal-war/src/test/java
+2018-06-16 08:55:05,224 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 08:55:05,433 [Worker-3] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 3 project(s) in 11 sec
+2018-06-16 08:55:08,445 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 08:55:09,681 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-10/doxia-sink-api-1.0-alpha-10.pom
+2018-06-16 08:55:09,748 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-10/doxia-sink-api-1.0-alpha-10.pom
+2018-06-16 08:55:09,894 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-10/doxia-1.0-alpha-10.pom
+2018-06-16 08:55:09,984 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-10/doxia-1.0-alpha-10.pom
+2018-06-16 08:55:10,040 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/6/maven-parent-6.pom
+2018-06-16 08:55:10,521 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/6/maven-parent-6.pom
+2018-06-16 08:55:11,161 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom
+2018-06-16 08:55:11,378 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom
+2018-06-16 08:55:11,739 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-core/1.0/doxia-core-1.0.pom
+2018-06-16 08:55:11,806 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-core/1.0/doxia-core-1.0.pom
+2018-06-16 08:55:11,832 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.7/plexus-utils-1.5.7.pom
+2018-06-16 08:55:11,858 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.7/plexus-utils-1.5.7.pom
+2018-06-16 08:55:11,924 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-site-renderer/1.0/doxia-site-renderer-1.0.pom
+2018-06-16 08:55:11,999 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-site-renderer/1.0/doxia-site-renderer-1.0.pom
+2018-06-16 08:55:12,034 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sitetools/1.0/doxia-sitetools-1.0.pom
+2018-06-16 08:55:12,114 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sitetools/1.0/doxia-sitetools-1.0.pom
+2018-06-16 08:55:13,055 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-decoration-model/1.0/doxia-decoration-model-1.0.pom
+2018-06-16 08:55:13,074 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-decoration-model/1.0/doxia-decoration-model-1.0.pom
+2018-06-16 08:55:13,108 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-apt/1.0/doxia-module-apt-1.0.pom
+2018-06-16 08:55:13,126 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-apt/1.0/doxia-module-apt-1.0.pom
+2018-06-16 08:55:13,148 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-modules/1.0/doxia-modules-1.0.pom
+2018-06-16 08:55:13,169 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-modules/1.0/doxia-modules-1.0.pom
+2018-06-16 08:55:13,192 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-fml/1.0/doxia-module-fml-1.0.pom
+2018-06-16 08:55:13,210 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-fml/1.0/doxia-module-fml-1.0.pom
+2018-06-16 08:55:13,233 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xdoc/1.0/doxia-module-xdoc-1.0.pom
+2018-06-16 08:55:13,256 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xdoc/1.0/doxia-module-xdoc-1.0.pom
+2018-06-16 08:55:13,279 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xhtml/1.0/doxia-module-xhtml-1.0.pom
+2018-06-16 08:55:13,299 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xhtml/1.0/doxia-module-xhtml-1.0.pom
+2018-06-16 08:55:13,323 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom
+2018-06-16 08:55:13,350 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom
+2018-06-16 08:55:13,377 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/11/maven-shared-components-11.pom
+2018-06-16 08:55:13,416 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/11/maven-shared-components-11.pom
+2018-06-16 08:55:13,592 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.pom
+2018-06-16 08:55:13,620 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.pom
+2018-06-16 08:55:13,879 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.pom
+2018-06-16 08:55:13,948 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.pom
+2018-06-16 08:55:13,973 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.20/plexus-components-1.1.20.pom
+2018-06-16 08:55:13,994 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.20/plexus-components-1.1.20.pom
+2018-06-16 08:55:14,065 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.7/plexus-utils-3.0.7.pom
+2018-06-16 08:55:14,345 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.7/plexus-utils-3.0.7.pom
+2018-06-16 08:55:14,373 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.4/plexus-io-2.0.4.pom
+2018-06-16 08:55:14,456 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.4/plexus-io-2.0.4.pom
+2018-06-16 08:55:15,091 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.9/plexus-utils-3.0.9.pom
+2018-06-16 08:55:15,133 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.9/plexus-utils-3.0.9.pom
+2018-06-16 08:55:15,431 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.pom
+2018-06-16 08:55:15,453 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.pom
+2018-06-16 08:55:15,486 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.pom
+2018-06-16 08:55:15,976 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.pom
+2018-06-16 08:55:16,091 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.pom
+2018-06-16 08:55:16,120 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.pom
+2018-06-16 08:55:16,205 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-analyzer/1.3/maven-dependency-analyzer-1.3.pom
+2018-06-16 08:55:16,260 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-analyzer/1.3/maven-dependency-analyzer-1.3.pom
+2018-06-16 08:55:16,301 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/asm/asm/3.3.1/asm-3.3.1.pom
+2018-06-16 08:55:16,332 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/asm/asm/3.3.1/asm-3.3.1.pom
+2018-06-16 08:55:16,361 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/asm/asm-parent/3.3.1/asm-parent-3.3.1.pom
+2018-06-16 08:55:16,386 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/asm/asm-parent/3.3.1/asm-parent-3.3.1.pom
+2018-06-16 08:55:16,454 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.5/maven-project-2.0.5.pom
+2018-06-16 08:55:16,496 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.5/maven-project-2.0.5.pom
+2018-06-16 08:55:16,575 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.5/maven-settings-2.0.5.pom
+2018-06-16 08:55:16,635 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.5/maven-settings-2.0.5.pom
+2018-06-16 08:55:16,684 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.5/maven-profile-2.0.5.pom
+2018-06-16 08:55:16,706 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.5/maven-profile-2.0.5.pom
+2018-06-16 08:55:16,731 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.5/maven-artifact-manager-2.0.5.pom
+2018-06-16 08:55:16,759 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.5/maven-artifact-manager-2.0.5.pom
+2018-06-16 08:55:16,786 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.5/maven-repository-metadata-2.0.5.pom
+2018-06-16 08:55:16,824 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.5/maven-repository-metadata-2.0.5.pom
+2018-06-16 08:55:16,867 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-tree/2.0/maven-dependency-tree-2.0.pom
+2018-06-16 08:55:16,894 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-tree/2.0/maven-dependency-tree-2.0.pom
+2018-06-16 08:55:16,954 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.2.0/maven-project-2.2.0.pom
+2018-06-16 08:55:16,976 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.2.0/maven-project-2.2.0.pom
+2018-06-16 08:55:17,026 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven/2.2.0/maven-2.2.0.pom
+2018-06-16 08:55:17,060 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven/2.2.0/maven-2.2.0.pom
+2018-06-16 08:55:17,083 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.2.0/maven-settings-2.2.0.pom
+2018-06-16 08:55:17,493 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.2.0/maven-settings-2.2.0.pom
+2018-06-16 08:55:17,517 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.2.0/maven-model-2.2.0.pom
+2018-06-16 08:55:17,545 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.2.0/maven-model-2.2.0.pom
+2018-06-16 08:55:17,576 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.2.0/maven-profile-2.2.0.pom
+2018-06-16 08:55:17,593 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.2.0/maven-profile-2.2.0.pom
+2018-06-16 08:55:17,615 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.2.0/maven-artifact-manager-2.2.0.pom
+2018-06-16 08:55:17,644 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.2.0/maven-artifact-manager-2.2.0.pom
+2018-06-16 08:55:17,689 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.2.0/maven-repository-metadata-2.2.0.pom
+2018-06-16 08:55:17,733 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.2.0/maven-repository-metadata-2.2.0.pom
+2018-06-16 08:55:17,768 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.2.0/maven-artifact-2.2.0.pom
+2018-06-16 08:55:17,802 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.2.0/maven-artifact-2.2.0.pom
+2018-06-16 08:55:17,826 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.2.0/maven-plugin-registry-2.2.0.pom
+2018-06-16 08:55:18,173 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.2.0/maven-plugin-registry-2.2.0.pom
+2018-06-16 08:55:18,200 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.4/maven-common-artifact-filters-1.4.pom
+2018-06-16 08:55:18,224 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.4/maven-common-artifact-filters-1.4.pom
+2018-06-16 08:55:18,250 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.0.8/maven-artifact-2.0.8.pom
+2018-06-16 08:55:18,272 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.0.8/maven-artifact-2.0.8.pom
+2018-06-16 08:55:18,294 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven/2.0.8/maven-2.0.8.pom
+2018-06-16 08:55:18,317 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven/2.0.8/maven-2.0.8.pom
+2018-06-16 08:55:18,338 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.0.8/maven-model-2.0.8.pom
+2018-06-16 08:55:18,361 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.0.8/maven-model-2.0.8.pom
+2018-06-16 08:55:18,382 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.8/maven-project-2.0.8.pom
+2018-06-16 08:55:18,402 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.8/maven-project-2.0.8.pom
+2018-06-16 08:55:18,428 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.8/maven-settings-2.0.8.pom
+2018-06-16 08:55:18,450 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.8/maven-settings-2.0.8.pom
+2018-06-16 08:55:18,471 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.8/maven-profile-2.0.8.pom
+2018-06-16 08:55:18,498 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.8/maven-profile-2.0.8.pom
+2018-06-16 08:55:18,522 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.8/maven-artifact-manager-2.0.8.pom
+2018-06-16 08:55:18,559 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.8/maven-artifact-manager-2.0.8.pom
+2018-06-16 08:55:18,581 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.8/maven-repository-metadata-2.0.8.pom
+2018-06-16 08:55:18,912 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.8/maven-repository-metadata-2.0.8.pom
+2018-06-16 08:55:18,934 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.0.8/maven-plugin-registry-2.0.8.pom
+2018-06-16 08:55:18,954 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.0.8/maven-plugin-registry-2.0.8.pom
+2018-06-16 08:55:18,973 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.8/maven-plugin-api-2.0.8.pom
+2018-06-16 08:55:18,992 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.8/maven-plugin-api-2.0.8.pom
+2018-06-16 08:55:19,115 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.1/plexus-utils-2.1.pom
+2018-06-16 08:55:19,133 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.1/plexus-utils-2.1.pom
+2018-06-16 08:55:19,154 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.pom
+2018-06-16 08:55:19,174 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.pom
+2018-06-16 08:55:19,389 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.jar
+2018-06-16 08:55:19,509 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.jar
+2018-06-16 08:55:19,517 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-core/1.0/doxia-core-1.0.jar
+2018-06-16 08:55:19,546 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-core/1.0/doxia-core-1.0.jar
+2018-06-16 08:55:19,554 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.jar
+2018-06-16 08:55:19,721 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.jar
+2018-06-16 08:55:19,731 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar
+2018-06-16 08:55:19,765 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar
+2018-06-16 08:55:19,771 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar
+2018-06-16 08:55:19,805 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar
+2018-06-16 08:55:19,811 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar
+2018-06-16 08:55:19,879 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar
+2018-06-16 08:55:19,884 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-site-renderer/1.0/doxia-site-renderer-1.0.jar
+2018-06-16 08:55:20,060 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-site-renderer/1.0/doxia-site-renderer-1.0.jar
+2018-06-16 08:55:20,066 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-decoration-model/1.0/doxia-decoration-model-1.0.jar
+2018-06-16 08:55:20,253 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-decoration-model/1.0/doxia-decoration-model-1.0.jar
+2018-06-16 08:55:20,258 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-apt/1.0/doxia-module-apt-1.0.jar
+2018-06-16 08:55:20,426 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-apt/1.0/doxia-module-apt-1.0.jar
+2018-06-16 08:55:20,434 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-fml/1.0/doxia-module-fml-1.0.jar
+2018-06-16 08:55:20,514 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-fml/1.0/doxia-module-fml-1.0.jar
+2018-06-16 08:55:20,521 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xdoc/1.0/doxia-module-xdoc-1.0.jar
+2018-06-16 08:55:20,638 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xdoc/1.0/doxia-module-xdoc-1.0.jar
+2018-06-16 08:55:20,646 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xhtml/1.0/doxia-module-xhtml-1.0.jar
+2018-06-16 08:55:20,734 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-xhtml/1.0/doxia-module-xhtml-1.0.jar
+2018-06-16 08:55:20,742 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.jar
+2018-06-16 08:55:20,782 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.jar
+2018-06-16 08:55:20,790 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.9/plexus-utils-3.0.9.jar
+2018-06-16 08:55:20,836 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.9/plexus-utils-3.0.9.jar
+2018-06-16 08:55:20,844 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.jar
+2018-06-16 08:55:20,865 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.jar
+2018-06-16 08:55:20,872 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-analyzer/1.3/maven-dependency-analyzer-1.3.jar
+2018-06-16 08:55:20,980 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-analyzer/1.3/maven-dependency-analyzer-1.3.jar
+2018-06-16 08:55:20,987 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/asm/asm/3.3.1/asm-3.3.1.jar
+2018-06-16 08:55:21,014 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/asm/asm/3.3.1/asm-3.3.1.jar
+2018-06-16 08:55:21,020 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-tree/2.0/maven-dependency-tree-2.0.jar
+2018-06-16 08:55:21,044 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-dependency-tree/2.0/maven-dependency-tree-2.0.jar
+2018-06-16 08:55:21,050 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.4/maven-common-artifact-filters-1.4.jar
+2018-06-16 08:55:21,177 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.4/maven-common-artifact-filters-1.4.jar
+2018-06-16 08:55:21,183 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.jar
+2018-06-16 08:55:21,316 [Worker-12] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.jar
+2018-06-16 08:55:25,035 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 08:55:25,036 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\main\resources
+2018-06-16 08:55:25,038 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 08:55:25,039 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\test\resources
+2018-06-16 08:55:25,042 [Worker-12] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for geoportal-war
+2018-06-16 08:55:25,084 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 08:55:25,184 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 951 resources to WEB-INF/classes
+2018-06-16 09:02:24,586 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.esri.gpt:geoportal-war:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\pom.xml.
+2018-06-16 09:02:24,598 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:02:24,661 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:02:25,855 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:02:26,034 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 09:02:26,034 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\main\resources
+2018-06-16 09:02:26,035 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 09:02:26,036 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\test\resources
+2018-06-16 09:10:15,343 [Worker-23] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.esri.gpt:geoportal:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\pom.xml.
+2018-06-16 09:10:15,535 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2018-06-16 09:10:16,714 [Worker-8] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-antrun-plugin/1.6/maven-antrun-plugin-1.6.jar
+2018-06-16 09:10:16,875 [Worker-8] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-antrun-plugin/1.6/maven-antrun-plugin-1.6.jar
+2018-06-16 09:10:16,991 [Worker-8] WARN  o.e.a.i.i.DefaultRepositoryEventDispatcher - Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+2018-06-16 09:10:18,241 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.geoportal.etc.web:etc:1.0 @ E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\tags\1.2-RELEASE\geoportal\etc\pom.xml.
+2018-06-16 09:10:18,910 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal_etc/src/main/java
+2018-06-16 09:10:18,912 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal_etc/src/test/java
+2018-06-16 09:10:18,965 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.esri.gpt:geoportal:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\pom.xml.
+2018-06-16 09:10:19,308 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2018-06-16 09:10:19,309 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2018-06-16 09:10:19,401 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.esri.gpt:geoportal-war:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\pom.xml.
+2018-06-16 09:10:19,412 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:10:19,822 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.geoportal.etc.web:etc:1.0 @ E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\tags\1.2-RELEASE\geoportal\etc\pom.xml.
+2018-06-16 09:10:19,936 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.geoportal.etc.web:etc:1.0 @ E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\trunk\geoportal\etc\pom.xml.
+2018-06-16 09:10:20,606 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal_etc/src/main/java
+2018-06-16 09:10:20,607 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /geoportal_etc/src/test/java
+2018-06-16 09:10:21,463 [Worker-24] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.esri.gpt:geoportal:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\pom.xml.
+2018-06-16 09:10:21,718 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /etc/src/main/java
+2018-06-16 09:10:21,718 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /etc/src/test/java
+2018-06-16 09:10:21,842 [Worker-24] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.esri.gpt:geoportal-war:1.2.7-SNAPSHOT @ E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\pom.xml.
+2018-06-16 09:10:21,848 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:10:21,976 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:10:23,284 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2018-06-16 09:10:23,430 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-06-16 09:10:23,440 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\trunk\geoportal\etc\src\main\resources
+2018-06-16 09:10:23,442 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-06-16 09:10:23,470 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\trunk\geoportal\etc\src\test\resources
+2018-06-16 09:10:23,527 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.esri.gpt:geoportal-jar:jar:1.2.7-SNAPSHOT is missing, no dependency information available
+2018-06-16 09:10:24,413 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 09:10:24,413 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\main\resources
+2018-06-16 09:10:24,414 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 09:10:24,415 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\geoportal\maven\geoportal-war\src\test\resources
+2018-06-16 09:10:24,415 [Worker-21] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for geoportal-war
+2018-06-16 09:10:24,422 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-16 09:10:24,540 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 951 resources to WEB-INF/classes
+2018-06-16 09:10:33,484 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-06-16 09:10:33,505 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\tags\1.2-RELEASE\geoportal\etc\src\main\resources
+2018-06-16 09:10:33,506 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-06-16 09:10:33,566 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\GitHub\USGIN\usgin-geoportal\components\flex\extension\tags\1.2-RELEASE\geoportal\etc\src\test\resources
